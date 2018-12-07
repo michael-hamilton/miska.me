@@ -1,16 +1,16 @@
+mixin navItem(url, title, active)
+			li.nav-item
+				a.nav-link(href=`${url}` class=`${active}`) #{title}
+
 nav.navbar.navbar-light.bg-light.navbar-expand-lg.justify-content-space-between.main-navigation
 	div.col-4
 		ul.navbar-nav.d-flex.justify-content-around
-			li.nav-item
-				a.nav-link(href="/") Home
-			li.nav-item
-				a.nav-link(href="/bio.pug") Bio
+			+navItem("/", "Home")
+			+navItem("/bio.pug", "Bio")
 	div.col-4
 		p.d-flex.justify-content-center
 			img(width="200" height="200" src="../images/mike.jpg").rounded-circle.profile-image.shadow
 	div.col-4
 		ul.navbar-nav.d-flex.justify-content-around
-			li.nav-item
-				a.nav-link(href="/projects.pug") Projects
-			li.nav-item
-				a.nav-link(href="/professional.pug") Professional
+			+navItem("/projects.pug", "Projects")
+			+navItem("/professional.pug", "Professional")
