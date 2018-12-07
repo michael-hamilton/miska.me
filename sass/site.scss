@@ -1,0 +1,58 @@
+$gray: #373737;
+$surf: #7cbb9f;
+
+.header {
+	background-image: url('../images/pumpkins.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+	margin-bottom: 0;
+
+	.header-title {
+		text-shadow: 0px 0px 6px $gray;
+	}
+}
+
+.profile-image {
+	border: 6px solid white;
+	position: absolute;
+	top: -70;
+}
+
+.main-navigation {
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+}
+
+.main-content-wrapper {
+	margin-bottom: 4rem;
+	margin-top: 6rem;
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+}
+
+.text-surf {
+	color: $surf;
+
+	&:hover {
+		color: darken($surf, 25%);
+	}
+}
+
+.skills-list {
+	li {
+		margin-bottom: 2rem;
+
+		.progress {
+			margin-top: 0.5rem;
+
+			.progress-bar {
+				font-family: sans-serif;
+				font-size: 1em;	
+			}
+		}
+
+		i {
+			font-size: 3rem;
+		}
+	}
+}
