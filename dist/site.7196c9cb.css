@@ -1,7 +1,8 @@
 .header {
-  background-image: url("pumpkins.d0ccf18c.jpg");
+  background-image: url("header.6be7909e.jpg");
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
+  background-position: center;
   margin-bottom: 0;
 }
 .header .header-title {
@@ -10,8 +11,17 @@
 
 .profile-image {
   border: 6px solid white;
+  height: 200;
   position: absolute;
   top: -70;
+  width: 200;
+}
+@media screen and (max-width: 992px) {
+  .profile-image {
+    height: 160;
+    top: -70;
+    width: 160;
+  }
 }
 
 .main-navigation {
@@ -24,6 +34,11 @@
   margin-top: 6rem;
   padding-bottom: 2rem;
   padding-top: 2rem;
+}
+@media screen and (max-width: 992px) {
+  .main-content-wrapper {
+    margin-top: 3rem;
+  }
 }
 
 .text-surf {

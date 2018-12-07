@@ -1,10 +1,14 @@
 $gray: #373737;
 $surf: #7cbb9f;
 
+$break-small: "576px";
+$break-large: "992px";
+
 .header {
-	background-image: url('../images/pumpkins.jpg');
+	background-image: url('../images/header.jpg');
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
+	background-position: center;
 	margin-bottom: 0;
 
 	.header-title {
@@ -14,8 +18,16 @@ $surf: #7cbb9f;
 
 .profile-image {
 	border: 6px solid white;
+	height: 200;
 	position: absolute;
 	top: -70;
+	width: 200;
+
+	@media screen and (max-width: $break-large) {
+		height: 160;
+		top: -70;
+		width: 160;
+	}
 }
 
 .main-navigation {
@@ -28,6 +40,10 @@ $surf: #7cbb9f;
 	margin-top: 6rem;
 	padding-bottom: 2rem;
 	padding-top: 2rem;
+
+	@media screen and (max-width: $break-large) {
+		margin-top: 3rem;
+	}
 }
 
 .text-surf {
