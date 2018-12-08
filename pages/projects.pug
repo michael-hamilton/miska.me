@@ -3,8 +3,12 @@ block content
 	
 	div.container.text-center
 		h1.display-4 Projects
-		
+	
 		hr
+
+		p.text-muted Below are some of the projects that I'm able to share with the world.  Most are just hobby projects that were playgrounds for new technologies that I wanted to learn.
+
+		br
 
 		div.card-group
 			div.card
@@ -12,21 +16,26 @@ block content
 					img(src="./projects/hamblestone/card-img.png" alt="Hamblestone").card-img-top
 					h5.card-title Hamblestone
 					p.card-text You're looking at it!  Open source, feel free to use it!  Just don't pretend to be me...
-					a(href="https://github.com/michael-hamilton/hamblestone").btn.btn-primary View Repo
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/hamblestone").btn.btn-info View Repo
 
 			div.card
 				div.card-body
 					img(src="./projects/liveslide/card-img.png" alt="LiveSlide").card-img-top
 					h5.card-title LiveSlide
-					p.card-text A realtime presentation application.  It's just an MVP, but I am in the process of 1.0!
-					a(href="http://www.liveslide.xyz/").btn.btn-primary Go to LiveSlide
+					p.card-text A realtime presentation application.  It's just an MVP, but I am in the process of 1.0!  It's a simple app, but I'm proud of the code.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="http://www.liveslide.xyz/").btn.btn-secondary Go to LiveSlide
+						a(href="https://github.com/michael-hamilton/liveslide").btn.btn-info View Repo
 
 			div.card
 				div.card-body
 					img(src="./projects/quartz/card-img.png" alt="Quartz").card-img-top
 					h5.card-title Quartz
 					p.card-text A super simple library for responsive, front-end development.  It's a little outdated.
-					a(href="http://michael-hamilton.github.io/Quartz/").btn.btn-primary View Site
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="http://michael-hamilton.github.io/Quartz/").btn.btn-secondary View Site
+						a(href="https://github.com/michael-hamilton/Quartz").btn.btn-info View Repo
 
 		br
 
@@ -36,21 +45,72 @@ block content
 					img(src="./projects/smb/card-img.png" alt="SMB1-1").card-img-top
 					h5.card-title SMB 1-1
 					p.card-text A (kinda wonky) recreation of SMB 1-1 using impactJS.  I was new to JS...
-					a(href="https://github.com/michael-hamilton/smb1").btn.btn-primary View Repo
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/smb1").btn.btn-info View Repo
 
 			div.card
 				div.card-body
-					img(src="./projects/churchnativity/card-img.png" alt="Hamblestone").card-img-top
+					img(src="./projects/churchnativity/card-img.png" alt="churchnativity.com").card-img-top
 					h5.card-title churchnativity.com
 					p.card-text An (award winning) Wordpress site, designed and developed by yours truly.
-					a(href="https://www.churchnativity.com/").btn.btn-primary View Site
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://www.churchnativity.com/").btn.btn-secondary View Site
 
 			div.card
 				div.card-body
 					img(src="./projects/webvr-demo/card-img.png" alt="WebVR Demo").card-img-top
 					h5.card-title WebVR Demo
-					p.card-text Baby's first WebVR experience.  
-					a(href="https://github.com/michael-hamilton/webvrdemo").btn.btn-primary View Repo
+					p.card-text Baby's first WebVR experience.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/webvrdemo").btn.btn-info View Repo
+
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/webvr-interaction-demo/card-img.png" alt="WebVR Interaction Demo").card-img-top
+					h5.card-title WebVR Interaction Demo
+					p.card-text A simple experiment with "look based" interactions in WebVR.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/WebVR-Interaction-Demo").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/canvas-gravity-demo/card-img.png" alt="Canvas Gravity Demo").card-img-top
+					h5.card-title Canvas Gravity Demo
+					p.card-text A canvas experiment with rudimentary gravity.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="/projects/canvas-gravity-demo/index.html").btn.btn-secondary View Demo
+						a(href="https://github.com/michael-hamilton/canvas-gravity-demo").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/socketio-presenter-demo/card-img.png" alt="socket.io Presenter Demo").card-img-top
+					h5.card-title socket.io Presenter Demo
+					p.card-text A really simple proof of concept of a presentation interface that can update a client in realtime.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/socket.io-Presenter-Demo").btn.btn-info View Repo
+
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/life/card-img.png" alt="Conway's Game of Life").card-img-top
+					h5.card-title Conway's Game of Life
+					p.card-text Another canvas experiment, this time implementing Conway's Game of Life.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="/projects/life/index.html").btn.btn-secondary Play Life
+						a(href="https://github.com/michael-hamilton/life").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/homebrew-z80/card-img.png" alt="Canvas Gravity Demo").card-img-top
+					h5.card-title Homebrew Z80 Computer 
+					p.card-text A passion project I've been working on here and there over the course of the past decade.  Lots of notes that I am compiling and will share!
+
+			div.card
 
 		br
 
