@@ -1,5 +1,5 @@
 .header {
-  background-image: url("header.6be7909e.jpg");
+  background-image: url("/header.6be7909e.jpg");
   background-size: cover;
   background-attachment: scroll;
   background-position: center;
@@ -61,3 +61,5 @@
 .skills-list li i {
   font-size: 3rem;
 }
+
+/*# sourceMappingURL=/site.7196c9cb.css.map */

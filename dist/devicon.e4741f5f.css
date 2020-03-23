@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'devicon';
-	src:url('devicon.862db5f5.eot?-hdf3wh');
-	src:url('devicon.862db5f5.eot?#iefix-hdf3wh') format('embedded-opentype'),
-		url('devicon.c1cec255.woff?-hdf3wh') format('woff'),
-		url('devicon.a4bbf5fd.ttf?-hdf3wh') format('truetype'),
-		url('devicon.4de68cf9.svg?-hdf3wh#devicon') format('svg');
+	src:url('/devicon.862db5f5.eot?-hdf3wh');
+	src:url('/devicon.862db5f5.eot?#iefix-hdf3wh') format('embedded-opentype'),
+		url('/devicon.c1cec255.woff?-hdf3wh') format('woff'),
+		url('/devicon.a4bbf5fd.ttf?-hdf3wh') format('truetype'),
+		url('/devicon.4de68cf9.svg?-hdf3wh#devicon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -628,3 +628,6 @@
 .devicon-zend-plain:before {
 	content: "\ec04";
 }
+
+
+/*# sourceMappingURL=/devicon.e4741f5f.css.map */
