@@ -13,7 +13,25 @@ $break-large: "992px";
 	margin-bottom: 0;
 
 	.header-title {
-		text-shadow: 0px 0px 6px $gray;
+		text-align: center;
+		text-shadow: 0px 0px 5px $gray;
+
+		@media screen and (max-width: $break-large) {
+			font-size: 54px;
+		}
+	}
+
+	.header-sub-title {
+		font-weight: 200;
+		text-shadow: 0px 0px 3px black;
+
+		@media screen and (max-width: $break-large) {
+			font-size: 22px;
+		}
+	}
+
+	@media screen and (max-width: $break-large) {
+		padding: 70px;
 	}
 }
 
@@ -26,9 +44,9 @@ $break-large: "992px";
 	width: 200;
 
 	@media screen and (max-width: $break-large) {
-		height: 160;
+		height: 150;
 		top: -70;
-		width: 160;
+		width: 140;
 	}
 }
 
@@ -48,6 +66,11 @@ $break-large: "992px";
 			&:hover {
 				color: white;
 				transition: color 0.125s;
+			}
+
+			@media screen and (max-width: $break-large) {
+				font-size: 20px;
+				font-weight: 300;
 			}
 		}
 	}
