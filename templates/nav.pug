@@ -1,16 +1,16 @@
 mixin navItem(url, title, active = "")
-			li.nav-item
-				a.nav-link.text-center(href=`${url}` class=`${active}`) #{title}
+	li.nav-item
+		a.nav-link.text-center(href=`${url}` class=`${active}`) #{title}
 
-nav.navbar.navbar-light.bg-light.navbar-expand-lg.justify-content-space-between.main-navigation
+nav.navbar.navbar-light.navbar-expand-lg.justify-content-space-between.main-navigation
 	div.col-4
 		ul.navbar-nav.d-flex.justify-content-around
-			+navItem("/", "Home")
-			+navItem("/bio.pug", "Bio")
+			+navItem("/", "About")
+
 	div.col-4
 		p.d-flex.justify-content-center
-			img(src="../images/mike.jpg").rounded-circle.profile-image.shadow
+			img(src="../images/mike.jpg").rounded-circle.shadow.profile-image
+
 	div.col-4
 		ul.navbar-nav.d-flex.justify-content-around
-			+navItem("/projects.pug", "Projects")
-			+navItem("/professional.pug", "Professional")
+			+navItem("/work.pug", "Work")

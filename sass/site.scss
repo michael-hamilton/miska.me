@@ -5,10 +5,11 @@ $break-small: "576px";
 $break-large: "992px";
 
 .header {
-	background-image: url('../images/header.jpg');
+	background-image: url('../images/pumpkins.jpg');
 	background-size: cover;
 	background-attachment: scroll;
-	background-position: center;
+	background-position: top;
+	padding: 100px;
 	margin-bottom: 0;
 
 	.header-title {
@@ -18,9 +19,10 @@ $break-large: "992px";
 
 .profile-image {
 	border: 6px solid white;
-	height: 200;
+	height: 220;
+	overflow: hidden;
 	position: absolute;
-	top: -70;
+	top: -90px;
 	width: 200;
 
 	@media screen and (max-width: $break-large) {
@@ -31,8 +33,24 @@ $break-large: "992px";
 }
 
 .main-navigation {
+	background-color: $gray;
 	padding-bottom: 1rem;
 	padding-top: 1rem;
+
+	.nav-item {
+		.nav-link {
+			color: $surf;
+			font-size: 28px;
+			font-weight: 200;
+			text-transform: uppercase;
+			transition: color 0.125s;
+
+			&:hover {
+				color: white;
+				transition: color 0.125s;
+			}
+		}
+	}
 }
 
 .main-content-wrapper {
@@ -46,11 +64,26 @@ $break-large: "992px";
 	}
 }
 
-.text-surf {
-	color: $surf;
+.footer-link-item {
+	color: #6c757d;
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 32px;
+	transition: 0.125s;
 
 	&:hover {
 		color: darken($surf, 25%);
+		transition: color 0.125s;
+	}
+}
+
+.text-surf {
+	color: $surf;
+	transition: color 0.125s;
+
+	&:hover {
+		color: darken($surf, 25%);
+		transition: color 0.125s;
 	}
 }
 
@@ -70,5 +103,41 @@ $break-large: "992px";
 		i {
 			font-size: 3rem;
 		}
+	}
+}
+
+.content-section {
+	margin-bottom: 100px;
+}
+
+.text-muted {
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.thin {
+	font-weight: 300;
+}
+
+.card {
+
+	.card-title {
+		font-weight: 500;
+	}
+
+	.card-text {
+		color: $gray;
+		font-weight: 300;
+		font-size: 18px;
+		line-height: 24px;	
+	}
+
+	.card-img-top {
+		max-height: 300px;
+	}
+
+	.btn {
+		font-weight: 300;
 	}
 }

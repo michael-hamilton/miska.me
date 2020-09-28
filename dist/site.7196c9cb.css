@@ -1,8 +1,9 @@
 .header {
-  background-image: url("/header.6be7909e.jpg");
+  background-image: url("/pumpkins.d0ccf18c.jpg");
   background-size: cover;
   background-attachment: scroll;
-  background-position: center;
+  background-position: top;
+  padding: 100px;
   margin-bottom: 0;
 }
 .header .header-title {
@@ -11,9 +12,10 @@
 
 .profile-image {
   border: 6px solid white;
-  height: 200;
+  height: 220;
+  overflow: hidden;
   position: absolute;
-  top: -70;
+  top: -90px;
   width: 200;
 }
 @media screen and (max-width: 992px) {
@@ -25,8 +27,20 @@
 }
 
 .main-navigation {
+  background-color: #373737;
   padding-bottom: 1rem;
   padding-top: 1rem;
+}
+.main-navigation .nav-item .nav-link {
+  color: #7cbb9f;
+  font-size: 28px;
+  font-weight: 200;
+  text-transform: uppercase;
+  transition: color 0.125s;
+}
+.main-navigation .nav-item .nav-link:hover {
+  color: white;
+  transition: color 0.125s;
 }
 
 .main-content-wrapper {
@@ -41,11 +55,25 @@
   }
 }
 
+.footer-link-item {
+  color: #6c757d;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 32px;
+  transition: 0.125s;
+}
+.footer-link-item:hover {
+  color: #3f795f;
+  transition: color 0.125s;
+}
+
 .text-surf {
   color: #7cbb9f;
+  transition: color 0.125s;
 }
 .text-surf:hover {
   color: #3f795f;
+  transition: color 0.125s;
 }
 
 .skills-list li {
@@ -60,6 +88,36 @@
 }
 .skills-list li i {
   font-size: 3rem;
+}
+
+.content-section {
+  margin-bottom: 100px;
+}
+
+.text-muted {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.card .card-title {
+  font-weight: 500;
+}
+.card .card-text {
+  color: #373737;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+}
+.card .card-img-top {
+  max-height: 300px;
+}
+.card .btn {
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=/site.7196c9cb.css.map */
