@@ -1,20 +1,23 @@
 $gray: #373737;
+$light-gray: #999999;
 $surf: #7cbb9f;
 
 $break-small: "576px";
 $break-large: "992px";
 
 .header {
-	background-image: url('../images/pumpkins.jpg');
-	background-size: cover;
-	background-attachment: scroll;
-	background-position: top;
+	// background-image: url('../images/pumpkins.jpg');
+	// background-size: cover;
+	// background-attachment: scroll;
+	// background-position: top;
+	background: rgb(124,187,159);
+	background: linear-gradient(0deg, rgba(124,187,159,1) 0%, rgba(180,235,234,1) 100%);
 	padding: 100px;
 	margin-bottom: 0;
 
 	.header-title {
 		text-align: center;
-		text-shadow: 0px 0px 5px $gray;
+		text-shadow: 0px 0px 4px $light-gray;
 
 		@media screen and (max-width: $break-large) {
 			font-size: 54px;
@@ -22,8 +25,9 @@ $break-large: "992px";
 	}
 
 	.header-sub-title {
+		font-size: 30px;
 		font-weight: 200;
-		text-shadow: 0px 0px 3px black;
+		text-shadow: 0px 0px 3px $light-gray;
 
 		@media screen and (max-width: $break-large) {
 			font-size: 22px;
@@ -36,6 +40,7 @@ $break-large: "992px";
 }
 
 .profile-image {
+	background-color: white;
 	border: 6px solid white;
 	height: 220;
 	overflow: hidden;
@@ -88,7 +93,7 @@ $break-large: "992px";
 }
 
 .footer-link-item {
-	color: #6c757d;
+	color: $surf;
 	font-weight: 300;
 	font-size: 20px;
 	line-height: 32px;

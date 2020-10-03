@@ -1,0 +1,4036 @@
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  var error;
+  for (var i = 0; i < entry.length; i++) {
+    try {
+      newRequire(entry[i]);
+    } catch (e) {
+      // Save first error but execute all entries
+      if (!error) {
+        error = e;
+      }
+    }
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === "object" && typeof module !== "undefined") {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  parcelRequire = newRequire;
+
+  if (error) {
+    // throw error from earlier, _after updating parcelRequire_
+    throw error;
+  }
+
+  return newRequire;
+})({"projects/smb/game.min.js":[function(require,module,exports) {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*! Built with IMPACT - impactjs.com */
+(function (window) {
+  "use strict";
+
+  Number.prototype.map = function (istart, istop, ostart, ostop) {
+    return ostart + (ostop - ostart) * ((this - istart) / (istop - istart));
+  };
+
+  Number.prototype.limit = function (min, max) {
+    return Math.min(max, Math.max(min, this));
+  };
+
+  Number.prototype.round = function (precision) {
+    precision = Math.pow(10, precision || 0);
+    return Math.round(this * precision) / precision;
+  };
+
+  Number.prototype.floor = function () {
+    return Math.floor(this);
+  };
+
+  Number.prototype.ceil = function () {
+    return Math.ceil(this);
+  };
+
+  Number.prototype.toInt = function () {
+    return this | 0;
+  };
+
+  Number.prototype.toRad = function () {
+    return this / 180 * Math.PI;
+  };
+
+  Number.prototype.toDeg = function () {
+    return this * 180 / Math.PI;
+  };
+
+  Array.prototype.erase = function (item) {
+    for (var i = this.length; i--;) {
+      if (this[i] === item) {
+        this.splice(i, 1);
+      }
+    }
+
+    return this;
+  };
+
+  Array.prototype.random = function () {
+    return this[Math.floor(Math.random() * this.length)];
+  };
+
+  Function.prototype.bind = Function.prototype.bind || function (oThis) {
+    if (typeof this !== "function") {
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP = function fNOP() {},
+        fBound = function fBound() {
+      return fToBind.apply(this instanceof fNOP && oThis ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+    };
+
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+    return fBound;
+  };
+
+  window.ig = {
+    game: null,
+    debug: null,
+    version: '1.22',
+    global: window,
+    modules: {},
+    resources: [],
+    ready: false,
+    baked: false,
+    nocache: '',
+    ua: {},
+    prefix: window.ImpactPrefix || '',
+    lib: 'lib/',
+    _current: null,
+    _loadQueue: [],
+    _waitForOnload: 0,
+    $: function $(selector) {
+      return selector.charAt(0) == '#' ? document.getElementById(selector.substr(1)) : document.getElementsByTagName(selector);
+    },
+    $new: function $new(name) {
+      return document.createElement(name);
+    },
+    copy: function copy(object) {
+      if (!object || _typeof(object) != 'object' || object instanceof HTMLElement || object instanceof ig.Class) {
+        return object;
+      } else if (object instanceof Array) {
+        var c = [];
+
+        for (var i = 0, l = object.length; i < l; i++) {
+          c[i] = ig.copy(object[i]);
+        }
+
+        return c;
+      } else {
+        var c = {};
+
+        for (var i in object) {
+          c[i] = ig.copy(object[i]);
+        }
+
+        return c;
+      }
+    },
+    merge: function merge(original, extended) {
+      for (var key in extended) {
+        var ext = extended[key];
+
+        if (_typeof(ext) != 'object' || ext instanceof HTMLElement || ext instanceof ig.Class) {
+          original[key] = ext;
+        } else {
+          if (!original[key] || _typeof(original[key]) != 'object') {
+            original[key] = ext instanceof Array ? [] : {};
+          }
+
+          ig.merge(original[key], ext);
+        }
+      }
+
+      return original;
+    },
+    ksort: function ksort(obj) {
+      if (!obj || _typeof(obj) != 'object') {
+        return [];
+      }
+
+      var keys = [],
+          values = [];
+
+      for (var i in obj) {
+        keys.push(i);
+      }
+
+      keys.sort();
+
+      for (var i = 0; i < keys.length; i++) {
+        values.push(obj[keys[i]]);
+      }
+
+      return values;
+    },
+    setVendorAttribute: function setVendorAttribute(el, attr, val) {
+      var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
+      el[attr] = el['ms' + uc] = el['moz' + uc] = el['webkit' + uc] = el['o' + uc] = val;
+    },
+    getVendorAttribute: function getVendorAttribute(el, attr) {
+      var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
+      return el[attr] || el['ms' + uc] || el['moz' + uc] || el['webkit' + uc] || el['o' + uc];
+    },
+    normalizeVendorAttribute: function normalizeVendorAttribute(el, attr) {
+      var prefixedVal = ig.getVendorAttribute(el, attr);
+
+      if (!el[attr] && prefixedVal) {
+        el[attr] = prefixedVal;
+      }
+    },
+    getImagePixels: function getImagePixels(image, x, y, width, height) {
+      var canvas = ig.$new('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      var ctx = canvas.getContext('2d');
+      ig.System.SCALE.CRISP(canvas, ctx);
+      var ratio = ig.getVendorAttribute(ctx, 'backingStorePixelRatio') || 1;
+      ig.normalizeVendorAttribute(ctx, 'getImageDataHD');
+      var realWidth = image.width / ratio,
+          realHeight = image.height / ratio;
+      canvas.width = Math.ceil(realWidth);
+      canvas.height = Math.ceil(realHeight);
+      ctx.drawImage(image, 0, 0, realWidth, realHeight);
+      return ratio === 1 ? ctx.getImageData(x, y, width, height) : ctx.getImageDataHD(x, y, width, height);
+    },
+    module: function module(name) {
+      if (ig._current) {
+        throw "Module '" + ig._current.name + "' defines nothing";
+      }
+
+      if (ig.modules[name] && ig.modules[name].body) {
+        throw "Module '" + name + "' is already defined";
+      }
+
+      ig._current = {
+        name: name,
+        requires: [],
+        loaded: false,
+        body: null
+      };
+      ig.modules[name] = ig._current;
+
+      ig._loadQueue.push(ig._current);
+
+      return ig;
+    },
+    requires: function requires() {
+      ig._current.requires = Array.prototype.slice.call(arguments);
+      return ig;
+    },
+    defines: function defines(body) {
+      ig._current.body = body;
+      ig._current = null;
+
+      ig._initDOMReady();
+    },
+    addResource: function addResource(resource) {
+      ig.resources.push(resource);
+    },
+    setNocache: function setNocache(set) {
+      ig.nocache = set ? '?' + Date.now() : '';
+    },
+    log: function log() {},
+    assert: function assert(condition, msg) {},
+    show: function show(name, number) {},
+    mark: function mark(msg, color) {},
+    _loadScript: function _loadScript(name, requiredFrom) {
+      ig.modules[name] = {
+        name: name,
+        requires: [],
+        loaded: false,
+        body: null
+      };
+      ig._waitForOnload++;
+      var path = ig.prefix + ig.lib + name.replace(/\./g, '/') + '.js' + ig.nocache;
+      var script = ig.$new('script');
+      script.type = 'text/javascript';
+      script.src = path;
+
+      script.onload = function () {
+        ig._waitForOnload--;
+
+        ig._execModules();
+      };
+
+      script.onerror = function () {
+        throw 'Failed to load module ' + name + ' at ' + path + ' ' + 'required from ' + requiredFrom;
+      };
+
+      ig.$('head')[0].appendChild(script);
+    },
+    _execModules: function _execModules() {
+      var modulesLoaded = false;
+
+      for (var i = 0; i < ig._loadQueue.length; i++) {
+        var m = ig._loadQueue[i];
+        var dependenciesLoaded = true;
+
+        for (var j = 0; j < m.requires.length; j++) {
+          var name = m.requires[j];
+
+          if (!ig.modules[name]) {
+            dependenciesLoaded = false;
+
+            ig._loadScript(name, m.name);
+          } else if (!ig.modules[name].loaded) {
+            dependenciesLoaded = false;
+          }
+        }
+
+        if (dependenciesLoaded && m.body) {
+          ig._loadQueue.splice(i, 1);
+
+          m.loaded = true;
+          m.body();
+          modulesLoaded = true;
+          i--;
+        }
+      }
+
+      if (modulesLoaded) {
+        ig._execModules();
+      } else if (!ig.baked && ig._waitForOnload == 0 && ig._loadQueue.length != 0) {
+        var unresolved = [];
+
+        for (var i = 0; i < ig._loadQueue.length; i++) {
+          var unloaded = [];
+          var requires = ig._loadQueue[i].requires;
+
+          for (var j = 0; j < requires.length; j++) {
+            var m = ig.modules[requires[j]];
+
+            if (!m || !m.loaded) {
+              unloaded.push(requires[j]);
+            }
+          }
+
+          unresolved.push(ig._loadQueue[i].name + ' (requires: ' + unloaded.join(', ') + ')');
+        }
+
+        throw 'Unresolved (circular?) dependencies. ' + "Most likely there's a name/path mismatch for one of the listed modules:\n" + unresolved.join('\n');
+      }
+    },
+    _DOMReady: function _DOMReady() {
+      if (!ig.modules['dom.ready'].loaded) {
+        if (!document.body) {
+          return setTimeout(ig._DOMReady, 13);
+        }
+
+        ig.modules['dom.ready'].loaded = true;
+        ig._waitForOnload--;
+
+        ig._execModules();
+      }
+
+      return 0;
+    },
+    _boot: function _boot() {
+      if (document.location.href.match(/\?nocache/)) {
+        ig.setNocache(true);
+      }
+
+      ig.ua.pixelRatio = window.devicePixelRatio || 1;
+      ig.ua.viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+      ig.ua.screen = {
+        width: window.screen.availWidth * ig.ua.pixelRatio,
+        height: window.screen.availHeight * ig.ua.pixelRatio
+      };
+      ig.ua.iPhone = /iPhone/i.test(navigator.userAgent);
+      ig.ua.iPhone4 = ig.ua.iPhone && ig.ua.pixelRatio == 2;
+      ig.ua.iPad = /iPad/i.test(navigator.userAgent);
+      ig.ua.android = /android/i.test(navigator.userAgent);
+      ig.ua.winPhone = /Windows Phone/i.test(navigator.userAgent);
+      ig.ua.iOS = ig.ua.iPhone || ig.ua.iPad;
+      ig.ua.mobile = ig.ua.iOS || ig.ua.android || ig.ua.winPhone;
+      ig.ua.touchDevice = 'ontouchstart' in window || window.navigator.msMaxTouchPoints;
+    },
+    _initDOMReady: function _initDOMReady() {
+      if (ig.modules['dom.ready']) {
+        ig._execModules();
+
+        return;
+      }
+
+      ig._boot();
+
+      ig.modules['dom.ready'] = {
+        requires: [],
+        loaded: false,
+        body: null
+      };
+      ig._waitForOnload++;
+
+      if (document.readyState === 'complete') {
+        ig._DOMReady();
+      } else {
+        document.addEventListener('DOMContentLoaded', ig._DOMReady, false);
+        window.addEventListener('load', ig._DOMReady, false);
+      }
+    }
+  };
+  ig.normalizeVendorAttribute(window, 'requestAnimationFrame');
+
+  if (window.requestAnimationFrame) {
+    var next = 1,
+        anims = {};
+
+    window.ig.setAnimation = function (callback, element) {
+      var current = next++;
+      anims[current] = true;
+
+      var animate = function animate() {
+        if (!anims[current]) {
+          return;
+        }
+
+        window.requestAnimationFrame(animate, element);
+        callback();
+      };
+
+      window.requestAnimationFrame(animate, element);
+      return current;
+    };
+
+    window.ig.clearAnimation = function (id) {
+      delete anims[id];
+    };
+  } else {
+    window.ig.setAnimation = function (callback, element) {
+      return window.setInterval(callback, 1000 / 60);
+    };
+
+    window.ig.clearAnimation = function (id) {
+      window.clearInterval(id);
+    };
+  }
+
+  var initializing = false,
+      fnTest = /xyz/.test(function () {
+    xyz;
+  }) ? /\bparent\b/ : /.*/;
+
+  window.ig.Class = function () {};
+
+  var inject = function inject(prop) {
+    var proto = this.prototype;
+    var parent = {};
+
+    for (var name in prop) {
+      if (typeof prop[name] == "function" && typeof proto[name] == "function" && fnTest.test(prop[name])) {
+        parent[name] = proto[name];
+
+        proto[name] = function (name, fn) {
+          return function () {
+            var tmp = this.parent;
+            this.parent = parent[name];
+            var ret = fn.apply(this, arguments);
+            this.parent = tmp;
+            return ret;
+          };
+        }(name, prop[name]);
+      } else {
+        proto[name] = prop[name];
+      }
+    }
+  };
+
+  window.ig.Class.extend = function (prop) {
+    var parent = this.prototype;
+    initializing = true;
+    var prototype = new this();
+    initializing = false;
+
+    for (var name in prop) {
+      if (typeof prop[name] == "function" && typeof parent[name] == "function" && fnTest.test(prop[name])) {
+        prototype[name] = function (name, fn) {
+          return function () {
+            var tmp = this.parent;
+            this.parent = parent[name];
+            var ret = fn.apply(this, arguments);
+            this.parent = tmp;
+            return ret;
+          };
+        }(name, prop[name]);
+      } else {
+        prototype[name] = prop[name];
+      }
+    }
+
+    function Class() {
+      if (!initializing) {
+        if (this.staticInstantiate) {
+          var obj = this.staticInstantiate.apply(this, arguments);
+
+          if (obj) {
+            return obj;
+          }
+        }
+
+        for (var p in this) {
+          if (_typeof(this[p]) == 'object') {
+            this[p] = ig.copy(this[p]);
+          }
+        }
+
+        if (this.init) {
+          this.init.apply(this, arguments);
+        }
+      }
+
+      return this;
+    }
+
+    Class.prototype = prototype;
+    Class.prototype.constructor = Class;
+    Class.extend = window.ig.Class.extend;
+    Class.inject = inject;
+    return Class;
+  };
+
+  if (window.ImpactMixin) {
+    ig.merge(ig, window.ImpactMixin);
+  }
+})(window); // lib/impact/image.js
+
+
+ig.baked = true;
+ig.module('impact.image').defines(function () {
+  "use strict";
+
+  ig.Image = ig.Class.extend({
+    data: null,
+    width: 0,
+    height: 0,
+    loaded: false,
+    failed: false,
+    loadCallback: null,
+    path: '',
+    staticInstantiate: function staticInstantiate(path) {
+      return ig.Image.cache[path] || null;
+    },
+    init: function init(path) {
+      this.path = path;
+      this.load();
+    },
+    load: function load(loadCallback) {
+      if (this.loaded) {
+        if (loadCallback) {
+          loadCallback(this.path, true);
+        }
+
+        return;
+      } else if (!this.loaded && ig.ready) {
+        this.loadCallback = loadCallback || null;
+        this.data = new Image();
+        this.data.onload = this.onload.bind(this);
+        this.data.onerror = this.onerror.bind(this);
+        this.data.src = ig.prefix + this.path + ig.nocache;
+      } else {
+        ig.addResource(this);
+      }
+
+      ig.Image.cache[this.path] = this;
+    },
+    reload: function reload() {
+      this.loaded = false;
+      this.data = new Image();
+      this.data.onload = this.onload.bind(this);
+      this.data.src = this.path + '?' + Date.now();
+    },
+    onload: function onload(event) {
+      this.width = this.data.width;
+      this.height = this.data.height;
+      this.loaded = true;
+
+      if (ig.system.scale != 1) {
+        this.resize(ig.system.scale);
+      }
+
+      if (this.loadCallback) {
+        this.loadCallback(this.path, true);
+      }
+    },
+    onerror: function onerror(event) {
+      this.failed = true;
+
+      if (this.loadCallback) {
+        this.loadCallback(this.path, false);
+      }
+    },
+    resize: function resize(scale) {
+      var origPixels = ig.getImagePixels(this.data, 0, 0, this.width, this.height);
+      var widthScaled = this.width * scale;
+      var heightScaled = this.height * scale;
+      var scaled = ig.$new('canvas');
+      scaled.width = widthScaled;
+      scaled.height = heightScaled;
+      var scaledCtx = scaled.getContext('2d');
+      var scaledPixels = scaledCtx.getImageData(0, 0, widthScaled, heightScaled);
+
+      for (var y = 0; y < heightScaled; y++) {
+        for (var x = 0; x < widthScaled; x++) {
+          var index = (Math.floor(y / scale) * this.width + Math.floor(x / scale)) * 4;
+          var indexScaled = (y * widthScaled + x) * 4;
+          scaledPixels.data[indexScaled] = origPixels.data[index];
+          scaledPixels.data[indexScaled + 1] = origPixels.data[index + 1];
+          scaledPixels.data[indexScaled + 2] = origPixels.data[index + 2];
+          scaledPixels.data[indexScaled + 3] = origPixels.data[index + 3];
+        }
+      }
+
+      scaledCtx.putImageData(scaledPixels, 0, 0);
+      this.data = scaled;
+    },
+    draw: function draw(targetX, targetY, sourceX, sourceY, width, height) {
+      if (!this.loaded) {
+        return;
+      }
+
+      var scale = ig.system.scale;
+      sourceX = sourceX ? sourceX * scale : 0;
+      sourceY = sourceY ? sourceY * scale : 0;
+      width = (width ? width : this.width) * scale;
+      height = (height ? height : this.height) * scale;
+      ig.system.context.drawImage(this.data, sourceX, sourceY, width, height, ig.system.getDrawPos(targetX), ig.system.getDrawPos(targetY), width, height);
+      ig.Image.drawCount++;
+    },
+    drawTile: function drawTile(targetX, targetY, tile, tileWidth, tileHeight, flipX, flipY) {
+      tileHeight = tileHeight ? tileHeight : tileWidth;
+
+      if (!this.loaded || tileWidth > this.width || tileHeight > this.height) {
+        return;
+      }
+
+      var scale = ig.system.scale;
+      var tileWidthScaled = Math.floor(tileWidth * scale);
+      var tileHeightScaled = Math.floor(tileHeight * scale);
+      var scaleX = flipX ? -1 : 1;
+      var scaleY = flipY ? -1 : 1;
+
+      if (flipX || flipY) {
+        ig.system.context.save();
+        ig.system.context.scale(scaleX, scaleY);
+      }
+
+      ig.system.context.drawImage(this.data, Math.floor(tile * tileWidth) % this.width * scale, Math.floor(tile * tileWidth / this.width) * tileHeight * scale, tileWidthScaled, tileHeightScaled, ig.system.getDrawPos(targetX) * scaleX - (flipX ? tileWidthScaled : 0), ig.system.getDrawPos(targetY) * scaleY - (flipY ? tileHeightScaled : 0), tileWidthScaled, tileHeightScaled);
+
+      if (flipX || flipY) {
+        ig.system.context.restore();
+      }
+
+      ig.Image.drawCount++;
+    }
+  });
+  ig.Image.drawCount = 0;
+  ig.Image.cache = {};
+
+  ig.Image.reloadCache = function () {
+    for (var path in ig.Image.cache) {
+      ig.Image.cache[path].reload();
+    }
+  };
+}); // lib/impact/font.js
+
+ig.baked = true;
+ig.module('impact.font').requires('impact.image').defines(function () {
+  "use strict";
+
+  ig.Font = ig.Image.extend({
+    widthMap: [],
+    indices: [],
+    firstChar: 32,
+    alpha: 1,
+    letterSpacing: 1,
+    lineSpacing: 0,
+    onload: function onload(ev) {
+      this._loadMetrics(this.data);
+
+      this.parent(ev);
+    },
+    widthForString: function widthForString(text) {
+      if (text.indexOf('\n') !== -1) {
+        var lines = text.split('\n');
+        var width = 0;
+
+        for (var i = 0; i < lines.length; i++) {
+          width = Math.max(width, this._widthForLine(lines[i]));
+        }
+
+        return width;
+      } else {
+        return this._widthForLine(text);
+      }
+    },
+    _widthForLine: function _widthForLine(text) {
+      var width = 0;
+
+      for (var i = 0; i < text.length; i++) {
+        width += this.widthMap[text.charCodeAt(i) - this.firstChar] + this.letterSpacing;
+      }
+
+      return width;
+    },
+    heightForString: function heightForString(text) {
+      return text.split('\n').length * (this.height + this.lineSpacing);
+    },
+    draw: function draw(text, x, y, align) {
+      if (typeof text != 'string') {
+        text = text.toString();
+      }
+
+      if (text.indexOf('\n') !== -1) {
+        var lines = text.split('\n');
+        var lineHeight = this.height + this.lineSpacing;
+
+        for (var i = 0; i < lines.length; i++) {
+          this.draw(lines[i], x, y + i * lineHeight, align);
+        }
+
+        return;
+      }
+
+      if (align == ig.Font.ALIGN.RIGHT || align == ig.Font.ALIGN.CENTER) {
+        var width = this._widthForLine(text);
+
+        x -= align == ig.Font.ALIGN.CENTER ? width / 2 : width;
+      }
+
+      if (this.alpha !== 1) {
+        ig.system.context.globalAlpha = this.alpha;
+      }
+
+      for (var i = 0; i < text.length; i++) {
+        var c = text.charCodeAt(i);
+        x += this._drawChar(c - this.firstChar, x, y);
+      }
+
+      if (this.alpha !== 1) {
+        ig.system.context.globalAlpha = 1;
+      }
+
+      ig.Image.drawCount += text.length;
+    },
+    _drawChar: function _drawChar(c, targetX, targetY) {
+      if (!this.loaded || c < 0 || c >= this.indices.length) {
+        return 0;
+      }
+
+      var scale = ig.system.scale;
+      var charX = this.indices[c] * scale;
+      var charY = 0;
+      var charWidth = this.widthMap[c] * scale;
+      var charHeight = (this.height - 2) * scale;
+      ig.system.context.drawImage(this.data, charX, charY, charWidth, charHeight, ig.system.getDrawPos(targetX), ig.system.getDrawPos(targetY), charWidth, charHeight);
+      return this.widthMap[c] + this.letterSpacing;
+    },
+    _loadMetrics: function _loadMetrics(image) {
+      this.height = image.height - 1;
+      this.widthMap = [];
+      this.indices = [];
+      var px = ig.getImagePixels(image, 0, image.height - 1, image.width, 1);
+      var currentChar = 0;
+      var currentWidth = 0;
+
+      for (var x = 0; x < image.width; x++) {
+        var index = x * 4 + 3;
+
+        if (px.data[index] > 127) {
+          currentWidth++;
+        } else if (px.data[index] < 128 && currentWidth) {
+          this.widthMap.push(currentWidth);
+          this.indices.push(x - currentWidth);
+          currentChar++;
+          currentWidth = 0;
+        }
+      }
+
+      this.widthMap.push(currentWidth);
+      this.indices.push(x - currentWidth);
+    }
+  });
+  ig.Font.ALIGN = {
+    LEFT: 0,
+    RIGHT: 1,
+    CENTER: 2
+  };
+}); // lib/impact/sound.js
+
+ig.baked = true;
+ig.module('impact.sound').defines(function () {
+  "use strict";
+
+  ig.SoundManager = ig.Class.extend({
+    clips: {},
+    volume: 1,
+    format: null,
+    init: function init() {
+      if (!ig.Sound.enabled || !window.Audio) {
+        ig.Sound.enabled = false;
+        return;
+      }
+
+      var probe = new Audio();
+
+      for (var i = 0; i < ig.Sound.use.length; i++) {
+        var format = ig.Sound.use[i];
+
+        if (probe.canPlayType(format.mime)) {
+          this.format = format;
+          break;
+        }
+      }
+
+      if (!this.format) {
+        ig.Sound.enabled = false;
+      }
+    },
+    load: function load(path, multiChannel, loadCallback) {
+      var realPath = ig.prefix + path.replace(/[^\.]+$/, this.format.ext) + ig.nocache;
+
+      if (this.clips[path]) {
+        if (multiChannel && this.clips[path].length < ig.Sound.channels) {
+          for (var i = this.clips[path].length; i < ig.Sound.channels; i++) {
+            var a = new Audio(realPath);
+            a.load();
+            this.clips[path].push(a);
+          }
+        }
+
+        return this.clips[path][0];
+      }
+
+      var clip = new Audio(realPath);
+
+      if (loadCallback) {
+        clip.addEventListener('canplaythrough', function cb(ev) {
+          clip.removeEventListener('canplaythrough', cb, false);
+          loadCallback(path, true, ev);
+        }, false);
+        clip.addEventListener('error', function (ev) {
+          loadCallback(path, false, ev);
+        }, false);
+      }
+
+      clip.preload = 'auto';
+      clip.load();
+      this.clips[path] = [clip];
+
+      if (multiChannel) {
+        for (var i = 1; i < ig.Sound.channels; i++) {
+          var a = new Audio(realPath);
+          a.load();
+          this.clips[path].push(a);
+        }
+      }
+
+      return clip;
+    },
+    get: function get(path) {
+      var channels = this.clips[path];
+
+      for (var i = 0, clip; clip = channels[i++];) {
+        if (clip.paused || clip.ended) {
+          if (clip.ended) {
+            clip.currentTime = 0;
+          }
+
+          return clip;
+        }
+      }
+
+      channels[0].pause();
+      channels[0].currentTime = 0;
+      return channels[0];
+    }
+  });
+  ig.Music = ig.Class.extend({
+    tracks: [],
+    namedTracks: {},
+    currentTrack: null,
+    currentIndex: 0,
+    random: false,
+    _volume: 1,
+    _loop: false,
+    _fadeInterval: 0,
+    _fadeTimer: null,
+    _endedCallbackBound: null,
+    init: function init() {
+      this._endedCallbackBound = this._endedCallback.bind(this);
+
+      if (Object.defineProperty) {
+        Object.defineProperty(this, "volume", {
+          get: this.getVolume.bind(this),
+          set: this.setVolume.bind(this)
+        });
+        Object.defineProperty(this, "loop", {
+          get: this.getLooping.bind(this),
+          set: this.setLooping.bind(this)
+        });
+      } else if (this.__defineGetter__) {
+        this.__defineGetter__('volume', this.getVolume.bind(this));
+
+        this.__defineSetter__('volume', this.setVolume.bind(this));
+
+        this.__defineGetter__('loop', this.getLooping.bind(this));
+
+        this.__defineSetter__('loop', this.setLooping.bind(this));
+      }
+    },
+    add: function add(music, name) {
+      if (!ig.Sound.enabled) {
+        return;
+      }
+
+      var path = music instanceof ig.Sound ? music.path : music;
+      var track = ig.soundManager.load(path, false);
+      track.loop = this._loop;
+      track.volume = this._volume;
+      track.addEventListener('ended', this._endedCallbackBound, false);
+      this.tracks.push(track);
+
+      if (name) {
+        this.namedTracks[name] = track;
+      }
+
+      if (!this.currentTrack) {
+        this.currentTrack = track;
+      }
+    },
+    next: function next() {
+      if (!this.tracks.length) {
+        return;
+      }
+
+      this.stop();
+      this.currentIndex = this.random ? Math.floor(Math.random() * this.tracks.length) : (this.currentIndex + 1) % this.tracks.length;
+      this.currentTrack = this.tracks[this.currentIndex];
+      this.play();
+    },
+    pause: function pause() {
+      if (!this.currentTrack) {
+        return;
+      }
+
+      this.currentTrack.pause();
+    },
+    stop: function stop() {
+      if (!this.currentTrack) {
+        return;
+      }
+
+      this.currentTrack.pause();
+      this.currentTrack.currentTime = 0;
+    },
+    play: function play(name) {
+      if (name && this.namedTracks[name]) {
+        var newTrack = this.namedTracks[name];
+
+        if (newTrack != this.currentTrack) {
+          this.stop();
+          this.currentTrack = newTrack;
+        }
+      } else if (!this.currentTrack) {
+        return;
+      }
+
+      this.currentTrack.play();
+    },
+    getLooping: function getLooping() {
+      return this._loop;
+    },
+    setLooping: function setLooping(l) {
+      this._loop = l;
+
+      for (var i in this.tracks) {
+        this.tracks[i].loop = l;
+      }
+    },
+    getVolume: function getVolume() {
+      return this._volume;
+    },
+    setVolume: function setVolume(v) {
+      this._volume = v.limit(0, 1);
+
+      for (var i in this.tracks) {
+        this.tracks[i].volume = this._volume;
+      }
+    },
+    fadeOut: function fadeOut(time) {
+      if (!this.currentTrack) {
+        return;
+      }
+
+      clearInterval(this._fadeInterval);
+      this.fadeTimer = new ig.Timer(time);
+      this._fadeInterval = setInterval(this._fadeStep.bind(this), 50);
+    },
+    _fadeStep: function _fadeStep() {
+      var v = this.fadeTimer.delta().map(-this.fadeTimer.target, 0, 1, 0).limit(0, 1) * this._volume;
+
+      if (v <= 0.01) {
+        this.stop();
+        this.currentTrack.volume = this._volume;
+        clearInterval(this._fadeInterval);
+      } else {
+        this.currentTrack.volume = v;
+      }
+    },
+    _endedCallback: function _endedCallback() {
+      if (this._loop) {
+        this.play();
+      } else {
+        this.next();
+      }
+    }
+  });
+  ig.Sound = ig.Class.extend({
+    path: '',
+    volume: 1,
+    currentClip: null,
+    multiChannel: true,
+    init: function init(path, multiChannel) {
+      this.path = path;
+      this.multiChannel = multiChannel !== false;
+      this.load();
+    },
+    load: function load(loadCallback) {
+      if (!ig.Sound.enabled) {
+        if (loadCallback) {
+          loadCallback(this.path, true);
+        }
+
+        return;
+      }
+
+      if (ig.ready) {
+        ig.soundManager.load(this.path, this.multiChannel, loadCallback);
+      } else {
+        ig.addResource(this);
+      }
+    },
+    play: function play() {
+      if (!ig.Sound.enabled) {
+        return;
+      }
+
+      this.currentClip = ig.soundManager.get(this.path);
+      this.currentClip.volume = ig.soundManager.volume * this.volume;
+      this.currentClip.play();
+    },
+    stop: function stop() {
+      if (this.currentClip) {
+        this.currentClip.pause();
+        this.currentClip.currentTime = 0;
+      }
+    }
+  });
+  ig.Sound.FORMAT = {
+    MP3: {
+      ext: 'mp3',
+      mime: 'audio/mpeg'
+    },
+    M4A: {
+      ext: 'm4a',
+      mime: 'audio/mp4; codecs=mp4a'
+    },
+    OGG: {
+      ext: 'ogg',
+      mime: 'audio/ogg; codecs=vorbis'
+    },
+    WEBM: {
+      ext: 'webm',
+      mime: 'audio/webm; codecs=vorbis'
+    },
+    CAF: {
+      ext: 'caf',
+      mime: 'audio/x-caf'
+    }
+  };
+  ig.Sound.use = [ig.Sound.FORMAT.OGG, ig.Sound.FORMAT.MP3];
+  ig.Sound.channels = 4;
+  ig.Sound.enabled = true;
+}); // lib/impact/loader.js
+
+ig.baked = true;
+ig.module('impact.loader').requires('impact.image', 'impact.font', 'impact.sound').defines(function () {
+  "use strict";
+
+  ig.Loader = ig.Class.extend({
+    resources: [],
+    gameClass: null,
+    status: 0,
+    done: false,
+    _unloaded: [],
+    _drawStatus: 0,
+    _intervalId: 0,
+    _loadCallbackBound: null,
+    init: function init(gameClass, resources) {
+      this.gameClass = gameClass;
+      this.resources = resources;
+      this._loadCallbackBound = this._loadCallback.bind(this);
+
+      for (var i = 0; i < this.resources.length; i++) {
+        this._unloaded.push(this.resources[i].path);
+      }
+    },
+    load: function load() {
+      ig.system.clear('#000');
+
+      if (!this.resources.length) {
+        this.end();
+        return;
+      }
+
+      for (var i = 0; i < this.resources.length; i++) {
+        this.loadResource(this.resources[i]);
+      }
+
+      this._intervalId = setInterval(this.draw.bind(this), 16);
+    },
+    loadResource: function loadResource(res) {
+      res.load(this._loadCallbackBound);
+    },
+    end: function end() {
+      if (this.done) {
+        return;
+      }
+
+      this.done = true;
+      clearInterval(this._intervalId);
+      ig.system.setGame(this.gameClass);
+    },
+    draw: function draw() {
+      this._drawStatus += (this.status - this._drawStatus) / 5;
+      var s = ig.system.scale;
+      var w = ig.system.width * 0.6;
+      var h = ig.system.height * 0.1;
+      var x = ig.system.width * 0.5 - w / 2;
+      var y = ig.system.height * 0.5 - h / 2;
+      ig.system.context.fillStyle = '#000';
+      ig.system.context.fillRect(0, 0, 480, 320);
+      ig.system.context.fillStyle = '#fff';
+      ig.system.context.fillRect(x * s, y * s, w * s, h * s);
+      ig.system.context.fillStyle = '#000';
+      ig.system.context.fillRect(x * s + s, y * s + s, w * s - s - s, h * s - s - s);
+      ig.system.context.fillStyle = '#fff';
+      ig.system.context.fillRect(x * s, y * s, w * s * this._drawStatus, h * s);
+    },
+    _loadCallback: function _loadCallback(path, status) {
+      if (status) {
+        this._unloaded.erase(path);
+      } else {
+        throw 'Failed to load resource: ' + path;
+      }
+
+      this.status = 1 - this._unloaded.length / this.resources.length;
+
+      if (this._unloaded.length == 0) {
+        setTimeout(this.end.bind(this), 250);
+      }
+    }
+  });
+}); // lib/impact/timer.js
+
+ig.baked = true;
+ig.module('impact.timer').defines(function () {
+  "use strict";
+
+  ig.Timer = ig.Class.extend({
+    target: 0,
+    base: 0,
+    last: 0,
+    pausedAt: 0,
+    init: function init(seconds) {
+      this.base = ig.Timer.time;
+      this.last = ig.Timer.time;
+      this.target = seconds || 0;
+    },
+    set: function set(seconds) {
+      this.target = seconds || 0;
+      this.base = ig.Timer.time;
+      this.pausedAt = 0;
+    },
+    reset: function reset() {
+      this.base = ig.Timer.time;
+      this.pausedAt = 0;
+    },
+    tick: function tick() {
+      var delta = ig.Timer.time - this.last;
+      this.last = ig.Timer.time;
+      return this.pausedAt ? 0 : delta;
+    },
+    delta: function delta() {
+      return (this.pausedAt || ig.Timer.time) - this.base - this.target;
+    },
+    pause: function pause() {
+      if (!this.pausedAt) {
+        this.pausedAt = ig.Timer.time;
+      }
+    },
+    unpause: function unpause() {
+      if (this.pausedAt) {
+        this.base += ig.Timer.time - this.pausedAt;
+        this.pausedAt = 0;
+      }
+    }
+  });
+  ig.Timer._last = 0;
+  ig.Timer.time = Number.MIN_VALUE;
+  ig.Timer.timeScale = 1;
+  ig.Timer.maxStep = 0.05;
+
+  ig.Timer.step = function () {
+    var current = Date.now();
+    var delta = (current - ig.Timer._last) / 1000;
+    ig.Timer.time += Math.min(delta, ig.Timer.maxStep) * ig.Timer.timeScale;
+    ig.Timer._last = current;
+  };
+}); // lib/impact/system.js
+
+ig.baked = true;
+ig.module('impact.system').requires('impact.timer', 'impact.image').defines(function () {
+  "use strict";
+
+  ig.System = ig.Class.extend({
+    fps: 30,
+    width: 320,
+    height: 240,
+    realWidth: 320,
+    realHeight: 240,
+    scale: 1,
+    tick: 0,
+    animationId: 0,
+    newGameClass: null,
+    running: false,
+    delegate: null,
+    clock: null,
+    canvas: null,
+    context: null,
+    init: function init(canvasId, fps, width, height, scale) {
+      this.fps = fps;
+      this.clock = new ig.Timer();
+      this.canvas = ig.$(canvasId);
+      this.resize(width, height, scale);
+      this.context = this.canvas.getContext('2d');
+      this.getDrawPos = ig.System.drawMode;
+
+      if (this.scale != 1) {
+        ig.System.scaleMode = ig.System.SCALE.CRISP;
+      }
+
+      ig.System.scaleMode(this.canvas, this.context);
+    },
+    resize: function resize(width, height, scale) {
+      this.width = width;
+      this.height = height;
+      this.scale = scale || this.scale;
+      this.realWidth = this.width * this.scale;
+      this.realHeight = this.height * this.scale;
+      this.canvas.width = this.realWidth;
+      this.canvas.height = this.realHeight;
+    },
+    setGame: function setGame(gameClass) {
+      if (this.running) {
+        this.newGameClass = gameClass;
+      } else {
+        this.setGameNow(gameClass);
+      }
+    },
+    setGameNow: function setGameNow(gameClass) {
+      ig.game = new gameClass();
+      ig.system.setDelegate(ig.game);
+    },
+    setDelegate: function setDelegate(object) {
+      if (typeof object.run == 'function') {
+        this.delegate = object;
+        this.startRunLoop();
+      } else {
+        throw 'System.setDelegate: No run() function in object';
+      }
+    },
+    stopRunLoop: function stopRunLoop() {
+      ig.clearAnimation(this.animationId);
+      this.running = false;
+    },
+    startRunLoop: function startRunLoop() {
+      this.stopRunLoop();
+      this.animationId = ig.setAnimation(this.run.bind(this), this.canvas);
+      this.running = true;
+    },
+    clear: function clear(color) {
+      this.context.fillStyle = color;
+      this.context.fillRect(0, 0, this.realWidth, this.realHeight);
+    },
+    run: function run() {
+      ig.Timer.step();
+      this.tick = this.clock.tick();
+      this.delegate.run();
+      ig.input.clearPressed();
+
+      if (this.newGameClass) {
+        this.setGameNow(this.newGameClass);
+        this.newGameClass = null;
+      }
+    },
+    getDrawPos: null
+  });
+  ig.System.DRAW = {
+    AUTHENTIC: function AUTHENTIC(p) {
+      return Math.round(p) * this.scale;
+    },
+    SMOOTH: function SMOOTH(p) {
+      return Math.round(p * this.scale);
+    },
+    SUBPIXEL: function SUBPIXEL(p) {
+      return p * this.scale;
+    }
+  };
+  ig.System.drawMode = ig.System.DRAW.SMOOTH;
+  ig.System.SCALE = {
+    CRISP: function CRISP(canvas, context) {
+      ig.setVendorAttribute(context, 'imageSmoothingEnabled', false);
+      canvas.style.imageRendering = '-moz-crisp-edges';
+      canvas.style.imageRendering = '-o-crisp-edges';
+      canvas.style.imageRendering = '-webkit-optimize-contrast';
+      canvas.style.imageRendering = 'crisp-edges';
+      canvas.style.msInterpolationMode = 'nearest-neighbor';
+    },
+    SMOOTH: function SMOOTH(canvas, context) {
+      ig.setVendorAttribute(context, 'imageSmoothingEnabled', true);
+      canvas.style.imageRendering = '';
+      canvas.style.msInterpolationMode = '';
+    }
+  };
+  ig.System.scaleMode = ig.System.SCALE.SMOOTH;
+}); // lib/impact/input.js
+
+ig.baked = true;
+ig.module('impact.input').defines(function () {
+  "use strict";
+
+  ig.KEY = {
+    'MOUSE1': -1,
+    'MOUSE2': -3,
+    'MWHEEL_UP': -4,
+    'MWHEEL_DOWN': -5,
+    'BACKSPACE': 8,
+    'TAB': 9,
+    'ENTER': 13,
+    'PAUSE': 19,
+    'CAPS': 20,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGE_UP': 33,
+    'PAGE_DOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT_ARROW': 37,
+    'UP_ARROW': 38,
+    'RIGHT_ARROW': 39,
+    'DOWN_ARROW': 40,
+    'INSERT': 45,
+    'DELETE': 46,
+    '_0': 48,
+    '_1': 49,
+    '_2': 50,
+    '_3': 51,
+    '_4': 52,
+    '_5': 53,
+    '_6': 54,
+    '_7': 55,
+    '_8': 56,
+    '_9': 57,
+    'A': 65,
+    'B': 66,
+    'C': 67,
+    'D': 68,
+    'E': 69,
+    'F': 70,
+    'G': 71,
+    'H': 72,
+    'I': 73,
+    'J': 74,
+    'K': 75,
+    'L': 76,
+    'M': 77,
+    'N': 78,
+    'O': 79,
+    'P': 80,
+    'Q': 81,
+    'R': 82,
+    'S': 83,
+    'T': 84,
+    'U': 85,
+    'V': 86,
+    'W': 87,
+    'X': 88,
+    'Y': 89,
+    'Z': 90,
+    'NUMPAD_0': 96,
+    'NUMPAD_1': 97,
+    'NUMPAD_2': 98,
+    'NUMPAD_3': 99,
+    'NUMPAD_4': 100,
+    'NUMPAD_5': 101,
+    'NUMPAD_6': 102,
+    'NUMPAD_7': 103,
+    'NUMPAD_8': 104,
+    'NUMPAD_9': 105,
+    'MULTIPLY': 106,
+    'ADD': 107,
+    'SUBSTRACT': 109,
+    'DECIMAL': 110,
+    'DIVIDE': 111,
+    'F1': 112,
+    'F2': 113,
+    'F3': 114,
+    'F4': 115,
+    'F5': 116,
+    'F6': 117,
+    'F7': 118,
+    'F8': 119,
+    'F9': 120,
+    'F10': 121,
+    'F11': 122,
+    'F12': 123,
+    'SHIFT': 16,
+    'CTRL': 17,
+    'ALT': 18,
+    'PLUS': 187,
+    'COMMA': 188,
+    'MINUS': 189,
+    'PERIOD': 190
+  };
+  ig.Input = ig.Class.extend({
+    bindings: {},
+    actions: {},
+    presses: {},
+    locks: {},
+    delayedKeyup: {},
+    isUsingMouse: false,
+    isUsingKeyboard: false,
+    isUsingAccelerometer: false,
+    mouse: {
+      x: 0,
+      y: 0
+    },
+    accel: {
+      x: 0,
+      y: 0,
+      z: 0
+    },
+    initMouse: function initMouse() {
+      if (this.isUsingMouse) {
+        return;
+      }
+
+      this.isUsingMouse = true;
+      var mouseWheelBound = this.mousewheel.bind(this);
+      ig.system.canvas.addEventListener('mousewheel', mouseWheelBound, false);
+      ig.system.canvas.addEventListener('DOMMouseScroll', mouseWheelBound, false);
+      ig.system.canvas.addEventListener('contextmenu', this.contextmenu.bind(this), false);
+      ig.system.canvas.addEventListener('mousedown', this.keydown.bind(this), false);
+      ig.system.canvas.addEventListener('mouseup', this.keyup.bind(this), false);
+      ig.system.canvas.addEventListener('mousemove', this.mousemove.bind(this), false);
+
+      if (ig.ua.touchDevice) {
+        ig.system.canvas.addEventListener('touchstart', this.keydown.bind(this), false);
+        ig.system.canvas.addEventListener('touchend', this.keyup.bind(this), false);
+        ig.system.canvas.addEventListener('touchmove', this.mousemove.bind(this), false);
+        ig.system.canvas.addEventListener('MSPointerDown', this.keydown.bind(this), false);
+        ig.system.canvas.addEventListener('MSPointerUp', this.keyup.bind(this), false);
+        ig.system.canvas.addEventListener('MSPointerMove', this.mousemove.bind(this), false);
+        ig.system.canvas.style.msTouchAction = 'none';
+      }
+    },
+    initKeyboard: function initKeyboard() {
+      if (this.isUsingKeyboard) {
+        return;
+      }
+
+      this.isUsingKeyboard = true;
+      window.addEventListener('keydown', this.keydown.bind(this), false);
+      window.addEventListener('keyup', this.keyup.bind(this), false);
+    },
+    initAccelerometer: function initAccelerometer() {
+      if (this.isUsingAccelerometer) {
+        return;
+      }
+
+      window.addEventListener('devicemotion', this.devicemotion.bind(this), false);
+    },
+    mousewheel: function mousewheel(event) {
+      var delta = event.wheelDelta ? event.wheelDelta : event.detail * -1;
+      var code = delta > 0 ? ig.KEY.MWHEEL_UP : ig.KEY.MWHEEL_DOWN;
+      var action = this.bindings[code];
+
+      if (action) {
+        this.actions[action] = true;
+        this.presses[action] = true;
+        this.delayedKeyup[action] = true;
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    },
+    mousemove: function mousemove(event) {
+      var internalWidth = parseInt(ig.system.canvas.offsetWidth) || ig.system.realWidth;
+      var scale = ig.system.scale * (internalWidth / ig.system.realWidth);
+      var pos = {
+        left: 0,
+        top: 0
+      };
+
+      if (ig.system.canvas.getBoundingClientRect) {
+        pos = ig.system.canvas.getBoundingClientRect();
+      }
+
+      var ev = event.touches ? event.touches[0] : event;
+      this.mouse.x = (ev.clientX - pos.left) / scale;
+      this.mouse.y = (ev.clientY - pos.top) / scale;
+    },
+    contextmenu: function contextmenu(event) {
+      if (this.bindings[ig.KEY.MOUSE2]) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    },
+    keydown: function keydown(event) {
+      var tag = event.target.tagName;
+
+      if (tag == 'INPUT' || tag == 'TEXTAREA') {
+        return;
+      }
+
+      var code = event.type == 'keydown' ? event.keyCode : event.button == 2 ? ig.KEY.MOUSE2 : ig.KEY.MOUSE1;
+
+      if (event.type == 'touchstart' || event.type == 'mousedown') {
+        this.mousemove(event);
+      }
+
+      var action = this.bindings[code];
+
+      if (action) {
+        this.actions[action] = true;
+
+        if (!this.locks[action]) {
+          this.presses[action] = true;
+          this.locks[action] = true;
+        }
+
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    },
+    keyup: function keyup(event) {
+      var tag = event.target.tagName;
+
+      if (tag == 'INPUT' || tag == 'TEXTAREA') {
+        return;
+      }
+
+      var code = event.type == 'keyup' ? event.keyCode : event.button == 2 ? ig.KEY.MOUSE2 : ig.KEY.MOUSE1;
+      var action = this.bindings[code];
+
+      if (action) {
+        this.delayedKeyup[action] = true;
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    },
+    devicemotion: function devicemotion(event) {
+      this.accel = event.accelerationIncludingGravity;
+    },
+    bind: function bind(key, action) {
+      if (key < 0) {
+        this.initMouse();
+      } else if (key > 0) {
+        this.initKeyboard();
+      }
+
+      this.bindings[key] = action;
+    },
+    bindTouch: function bindTouch(selector, action) {
+      var element = ig.$(selector);
+      var that = this;
+      element.addEventListener('touchstart', function (ev) {
+        that.touchStart(ev, action);
+      }, false);
+      element.addEventListener('touchend', function (ev) {
+        that.touchEnd(ev, action);
+      }, false);
+      element.addEventListener('MSPointerDown', function (ev) {
+        that.touchStart(ev, action);
+      }, false);
+      element.addEventListener('MSPointerUp', function (ev) {
+        that.touchEnd(ev, action);
+      }, false);
+    },
+    unbind: function unbind(key) {
+      var action = this.bindings[key];
+      this.delayedKeyup[action] = true;
+      this.bindings[key] = null;
+    },
+    unbindAll: function unbindAll() {
+      this.bindings = {};
+      this.actions = {};
+      this.presses = {};
+      this.locks = {};
+      this.delayedKeyup = {};
+    },
+    state: function state(action) {
+      return this.actions[action];
+    },
+    pressed: function pressed(action) {
+      return this.presses[action];
+    },
+    released: function released(action) {
+      return this.delayedKeyup[action];
+    },
+    clearPressed: function clearPressed() {
+      for (var action in this.delayedKeyup) {
+        this.actions[action] = false;
+        this.locks[action] = false;
+      }
+
+      this.delayedKeyup = {};
+      this.presses = {};
+    },
+    touchStart: function touchStart(event, action) {
+      this.actions[action] = true;
+      this.presses[action] = true;
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    },
+    touchEnd: function touchEnd(event, action) {
+      this.delayedKeyup[action] = true;
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    }
+  });
+}); // lib/impact/impact.js
+
+ig.baked = true;
+ig.module('impact.impact').requires('dom.ready', 'impact.loader', 'impact.system', 'impact.input', 'impact.sound').defines(function () {
+  "use strict";
+
+  ig.main = function (canvasId, gameClass, fps, width, height, scale, loaderClass) {
+    ig.system = new ig.System(canvasId, fps, width, height, scale || 1);
+    ig.input = new ig.Input();
+    ig.soundManager = new ig.SoundManager();
+    ig.music = new ig.Music();
+    ig.ready = true;
+    var loader = new (loaderClass || ig.Loader)(gameClass, ig.resources);
+    loader.load();
+  };
+}); // lib/impact/animation.js
+
+ig.baked = true;
+ig.module('impact.animation').requires('impact.timer', 'impact.image').defines(function () {
+  "use strict";
+
+  ig.AnimationSheet = ig.Class.extend({
+    width: 8,
+    height: 8,
+    image: null,
+    init: function init(path, width, height) {
+      this.width = width;
+      this.height = height;
+      this.image = new ig.Image(path);
+    }
+  });
+  ig.Animation = ig.Class.extend({
+    sheet: null,
+    timer: null,
+    sequence: [],
+    flip: {
+      x: false,
+      y: false
+    },
+    pivot: {
+      x: 0,
+      y: 0
+    },
+    frame: 0,
+    tile: 0,
+    loopCount: 0,
+    alpha: 1,
+    angle: 0,
+    init: function init(sheet, frameTime, sequence, stop) {
+      this.sheet = sheet;
+      this.pivot = {
+        x: sheet.width / 2,
+        y: sheet.height / 2
+      };
+      this.timer = new ig.Timer();
+      this.frameTime = frameTime;
+      this.sequence = sequence;
+      this.stop = !!stop;
+      this.tile = this.sequence[0];
+    },
+    rewind: function rewind() {
+      this.timer.set();
+      this.loopCount = 0;
+      this.tile = this.sequence[0];
+      return this;
+    },
+    gotoFrame: function gotoFrame(f) {
+      this.timer.set(this.frameTime * -f);
+      this.update();
+    },
+    gotoRandomFrame: function gotoRandomFrame() {
+      this.gotoFrame(Math.floor(Math.random() * this.sequence.length));
+    },
+    update: function update() {
+      var frameTotal = Math.floor(this.timer.delta() / this.frameTime);
+      this.loopCount = Math.floor(frameTotal / this.sequence.length);
+
+      if (this.stop && this.loopCount > 0) {
+        this.frame = this.sequence.length - 1;
+      } else {
+        this.frame = frameTotal % this.sequence.length;
+      }
+
+      this.tile = this.sequence[this.frame];
+    },
+    draw: function draw(targetX, targetY) {
+      var bbsize = Math.max(this.sheet.width, this.sheet.height);
+
+      if (targetX > ig.system.width || targetY > ig.system.height || targetX + bbsize < 0 || targetY + bbsize < 0) {
+        return;
+      }
+
+      if (this.alpha != 1) {
+        ig.system.context.globalAlpha = this.alpha;
+      }
+
+      if (this.angle == 0) {
+        this.sheet.image.drawTile(targetX, targetY, this.tile, this.sheet.width, this.sheet.height, this.flip.x, this.flip.y);
+      } else {
+        ig.system.context.save();
+        ig.system.context.translate(ig.system.getDrawPos(targetX + this.pivot.x), ig.system.getDrawPos(targetY + this.pivot.y));
+        ig.system.context.rotate(this.angle);
+        this.sheet.image.drawTile(-this.pivot.x, -this.pivot.y, this.tile, this.sheet.width, this.sheet.height, this.flip.x, this.flip.y);
+        ig.system.context.restore();
+      }
+
+      if (this.alpha != 1) {
+        ig.system.context.globalAlpha = 1;
+      }
+    }
+  });
+}); // lib/impact/entity.js
+
+ig.baked = true;
+ig.module('impact.entity').requires('impact.animation', 'impact.impact').defines(function () {
+  "use strict";
+
+  ig.Entity = ig.Class.extend({
+    id: 0,
+    settings: {},
+    size: {
+      x: 16,
+      y: 16
+    },
+    offset: {
+      x: 0,
+      y: 0
+    },
+    pos: {
+      x: 0,
+      y: 0
+    },
+    last: {
+      x: 0,
+      y: 0
+    },
+    vel: {
+      x: 0,
+      y: 0
+    },
+    accel: {
+      x: 0,
+      y: 0
+    },
+    friction: {
+      x: 0,
+      y: 0
+    },
+    maxVel: {
+      x: 100,
+      y: 100
+    },
+    zIndex: 0,
+    gravityFactor: 1,
+    standing: false,
+    bounciness: 0,
+    minBounceVelocity: 40,
+    anims: {},
+    animSheet: null,
+    currentAnim: null,
+    health: 10,
+    type: 0,
+    checkAgainst: 0,
+    collides: 0,
+    _killed: false,
+    slopeStanding: {
+      min: 44 .toRad(),
+      max: 136 .toRad()
+    },
+    init: function init(x, y, settings) {
+      this.id = ++ig.Entity._lastId;
+      this.pos.x = x;
+      this.pos.y = y;
+      ig.merge(this, settings);
+    },
+    addAnim: function addAnim(name, frameTime, sequence, stop) {
+      if (!this.animSheet) {
+        throw 'No animSheet to add the animation ' + name + ' to.';
+      }
+
+      var a = new ig.Animation(this.animSheet, frameTime, sequence, stop);
+      this.anims[name] = a;
+
+      if (!this.currentAnim) {
+        this.currentAnim = a;
+      }
+
+      return a;
+    },
+    update: function update() {
+      this.last.x = this.pos.x;
+      this.last.y = this.pos.y;
+      this.vel.y += ig.game.gravity * ig.system.tick * this.gravityFactor;
+      this.vel.x = this.getNewVelocity(this.vel.x, this.accel.x, this.friction.x, this.maxVel.x);
+      this.vel.y = this.getNewVelocity(this.vel.y, this.accel.y, this.friction.y, this.maxVel.y);
+      var mx = this.vel.x * ig.system.tick;
+      var my = this.vel.y * ig.system.tick;
+      var res = ig.game.collisionMap.trace(this.pos.x, this.pos.y, mx, my, this.size.x, this.size.y);
+      this.handleMovementTrace(res);
+
+      if (this.currentAnim) {
+        this.currentAnim.update();
+      }
+    },
+    getNewVelocity: function getNewVelocity(vel, accel, friction, max) {
+      if (accel) {
+        return (vel + accel * ig.system.tick).limit(-max, max);
+      } else if (friction) {
+        var delta = friction * ig.system.tick;
+
+        if (vel - delta > 0) {
+          return vel - delta;
+        } else if (vel + delta < 0) {
+          return vel + delta;
+        } else {
+          return 0;
+        }
+      }
+
+      return vel.limit(-max, max);
+    },
+    handleMovementTrace: function handleMovementTrace(res) {
+      this.standing = false;
+
+      if (res.collision.y) {
+        if (this.bounciness > 0 && Math.abs(this.vel.y) > this.minBounceVelocity) {
+          this.vel.y *= -this.bounciness;
+        } else {
+          if (this.vel.y > 0) {
+            this.standing = true;
+          }
+
+          this.vel.y = 0;
+        }
+      }
+
+      if (res.collision.x) {
+        if (this.bounciness > 0 && Math.abs(this.vel.x) > this.minBounceVelocity) {
+          this.vel.x *= -this.bounciness;
+        } else {
+          this.vel.x = 0;
+        }
+      }
+
+      if (res.collision.slope) {
+        var s = res.collision.slope;
+
+        if (this.bounciness > 0) {
+          var proj = this.vel.x * s.nx + this.vel.y * s.ny;
+          this.vel.x = (this.vel.x - s.nx * proj * 2) * this.bounciness;
+          this.vel.y = (this.vel.y - s.ny * proj * 2) * this.bounciness;
+        } else {
+          var lengthSquared = s.x * s.x + s.y * s.y;
+          var dot = (this.vel.x * s.x + this.vel.y * s.y) / lengthSquared;
+          this.vel.x = s.x * dot;
+          this.vel.y = s.y * dot;
+          var angle = Math.atan2(s.x, s.y);
+
+          if (angle > this.slopeStanding.min && angle < this.slopeStanding.max) {
+            this.standing = true;
+          }
+        }
+      }
+
+      this.pos = res.pos;
+    },
+    draw: function draw() {
+      if (this.currentAnim) {
+        this.currentAnim.draw(this.pos.x - this.offset.x - ig.game._rscreen.x, this.pos.y - this.offset.y - ig.game._rscreen.y);
+      }
+    },
+    kill: function kill() {
+      ig.game.removeEntity(this);
+    },
+    receiveDamage: function receiveDamage(amount, from) {
+      this.health -= amount;
+
+      if (this.health <= 0) {
+        this.kill();
+      }
+    },
+    touches: function touches(other) {
+      return !(this.pos.x >= other.pos.x + other.size.x || this.pos.x + this.size.x <= other.pos.x || this.pos.y >= other.pos.y + other.size.y || this.pos.y + this.size.y <= other.pos.y);
+    },
+    distanceTo: function distanceTo(other) {
+      var xd = this.pos.x + this.size.x / 2 - (other.pos.x + other.size.x / 2);
+      var yd = this.pos.y + this.size.y / 2 - (other.pos.y + other.size.y / 2);
+      return Math.sqrt(xd * xd + yd * yd);
+    },
+    angleTo: function angleTo(other) {
+      return Math.atan2(other.pos.y + other.size.y / 2 - (this.pos.y + this.size.y / 2), other.pos.x + other.size.x / 2 - (this.pos.x + this.size.x / 2));
+    },
+    check: function check(other) {},
+    collideWith: function collideWith(other, axis) {},
+    ready: function ready() {}
+  });
+  ig.Entity._lastId = 0;
+  ig.Entity.COLLIDES = {
+    NEVER: 0,
+    LITE: 1,
+    PASSIVE: 2,
+    ACTIVE: 4,
+    FIXED: 8
+  };
+  ig.Entity.TYPE = {
+    NONE: 0,
+    A: 1,
+    B: 2,
+    BOTH: 3
+  };
+
+  ig.Entity.checkPair = function (a, b) {
+    if (a.checkAgainst & b.type) {
+      a.check(b);
+    }
+
+    if (b.checkAgainst & a.type) {
+      b.check(a);
+    }
+
+    if (a.collides && b.collides && a.collides + b.collides > ig.Entity.COLLIDES.ACTIVE) {
+      ig.Entity.solveCollision(a, b);
+    }
+  };
+
+  ig.Entity.solveCollision = function (a, b) {
+    var weak = null;
+
+    if (a.collides == ig.Entity.COLLIDES.LITE || b.collides == ig.Entity.COLLIDES.FIXED) {
+      weak = a;
+    } else if (b.collides == ig.Entity.COLLIDES.LITE || a.collides == ig.Entity.COLLIDES.FIXED) {
+      weak = b;
+    }
+
+    if (a.last.x + a.size.x > b.last.x && a.last.x < b.last.x + b.size.x) {
+      if (a.last.y < b.last.y) {
+        ig.Entity.seperateOnYAxis(a, b, weak);
+      } else {
+        ig.Entity.seperateOnYAxis(b, a, weak);
+      }
+
+      a.collideWith(b, 'y');
+      b.collideWith(a, 'y');
+    } else if (a.last.y + a.size.y > b.last.y && a.last.y < b.last.y + b.size.y) {
+      if (a.last.x < b.last.x) {
+        ig.Entity.seperateOnXAxis(a, b, weak);
+      } else {
+        ig.Entity.seperateOnXAxis(b, a, weak);
+      }
+
+      a.collideWith(b, 'x');
+      b.collideWith(a, 'x');
+    }
+  };
+
+  ig.Entity.seperateOnXAxis = function (left, right, weak) {
+    var nudge = left.pos.x + left.size.x - right.pos.x;
+
+    if (weak) {
+      var strong = left === weak ? right : left;
+      weak.vel.x = -weak.vel.x * weak.bounciness + strong.vel.x;
+      var resWeak = ig.game.collisionMap.trace(weak.pos.x, weak.pos.y, weak == left ? -nudge : nudge, 0, weak.size.x, weak.size.y);
+      weak.pos.x = resWeak.pos.x;
+    } else {
+      var v2 = (left.vel.x - right.vel.x) / 2;
+      left.vel.x = -v2;
+      right.vel.x = v2;
+      var resLeft = ig.game.collisionMap.trace(left.pos.x, left.pos.y, -nudge / 2, 0, left.size.x, left.size.y);
+      left.pos.x = Math.floor(resLeft.pos.x);
+      var resRight = ig.game.collisionMap.trace(right.pos.x, right.pos.y, nudge / 2, 0, right.size.x, right.size.y);
+      right.pos.x = Math.ceil(resRight.pos.x);
+    }
+  };
+
+  ig.Entity.seperateOnYAxis = function (top, bottom, weak) {
+    var nudge = top.pos.y + top.size.y - bottom.pos.y;
+
+    if (weak) {
+      var strong = top === weak ? bottom : top;
+      weak.vel.y = -weak.vel.y * weak.bounciness + strong.vel.y;
+      var nudgeX = 0;
+
+      if (weak == top && Math.abs(weak.vel.y - strong.vel.y) < weak.minBounceVelocity) {
+        weak.standing = true;
+        nudgeX = strong.vel.x * ig.system.tick;
+      }
+
+      var resWeak = ig.game.collisionMap.trace(weak.pos.x, weak.pos.y, nudgeX, weak == top ? -nudge : nudge, weak.size.x, weak.size.y);
+      weak.pos.y = resWeak.pos.y;
+      weak.pos.x = resWeak.pos.x;
+    } else if (ig.game.gravity && (bottom.standing || top.vel.y > 0)) {
+      var resTop = ig.game.collisionMap.trace(top.pos.x, top.pos.y, 0, -(top.pos.y + top.size.y - bottom.pos.y), top.size.x, top.size.y);
+      top.pos.y = resTop.pos.y;
+
+      if (top.bounciness > 0 && top.vel.y > top.minBounceVelocity) {
+        top.vel.y *= -top.bounciness;
+      } else {
+        top.standing = true;
+        top.vel.y = 0;
+      }
+    } else {
+      var v2 = (top.vel.y - bottom.vel.y) / 2;
+      top.vel.y = -v2;
+      bottom.vel.y = v2;
+      var nudgeX = bottom.vel.x * ig.system.tick;
+      var resTop = ig.game.collisionMap.trace(top.pos.x, top.pos.y, nudgeX, -nudge / 2, top.size.x, top.size.y);
+      top.pos.y = resTop.pos.y;
+      var resBottom = ig.game.collisionMap.trace(bottom.pos.x, bottom.pos.y, 0, nudge / 2, bottom.size.x, bottom.size.y);
+      bottom.pos.y = resBottom.pos.y;
+    }
+  };
+}); // lib/impact/map.js
+
+ig.baked = true;
+ig.module('impact.map').defines(function () {
+  "use strict";
+
+  ig.Map = ig.Class.extend({
+    tilesize: 8,
+    width: 1,
+    height: 1,
+    data: [[]],
+    name: null,
+    init: function init(tilesize, data) {
+      this.tilesize = tilesize;
+      this.data = data;
+      this.height = data.length;
+      this.width = data[0].length;
+    },
+    getTile: function getTile(x, y) {
+      var tx = Math.floor(x / this.tilesize);
+      var ty = Math.floor(y / this.tilesize);
+
+      if (tx >= 0 && tx < this.width && ty >= 0 && ty < this.height) {
+        return this.data[ty][tx];
+      } else {
+        return 0;
+      }
+    },
+    setTile: function setTile(x, y, tile) {
+      var tx = Math.floor(x / this.tilesize);
+      var ty = Math.floor(y / this.tilesize);
+
+      if (tx >= 0 && tx < this.width && ty >= 0 && ty < this.height) {
+        this.data[ty][tx] = tile;
+      }
+    }
+  });
+}); // lib/impact/collision-map.js
+
+ig.baked = true;
+ig.module('impact.collision-map').requires('impact.map').defines(function () {
+  "use strict";
+
+  ig.CollisionMap = ig.Map.extend({
+    lastSlope: 1,
+    tiledef: null,
+    init: function init(tilesize, data, tiledef) {
+      this.parent(tilesize, data);
+      this.tiledef = tiledef || ig.CollisionMap.defaultTileDef;
+
+      for (var t in this.tiledef) {
+        if (t | 0 > this.lastSlope) {
+          this.lastSlope = t | 0;
+        }
+      }
+    },
+    trace: function trace(x, y, vx, vy, objectWidth, objectHeight) {
+      var res = {
+        collision: {
+          x: false,
+          y: false,
+          slope: false
+        },
+        pos: {
+          x: x,
+          y: y
+        },
+        tile: {
+          x: 0,
+          y: 0
+        }
+      };
+      var steps = Math.ceil(Math.max(Math.abs(vx), Math.abs(vy)) / this.tilesize);
+
+      if (steps > 1) {
+        var sx = vx / steps;
+        var sy = vy / steps;
+
+        for (var i = 0; i < steps && (sx || sy); i++) {
+          this._traceStep(res, x, y, sx, sy, objectWidth, objectHeight, vx, vy, i);
+
+          x = res.pos.x;
+          y = res.pos.y;
+
+          if (res.collision.x) {
+            sx = 0;
+            vx = 0;
+          }
+
+          if (res.collision.y) {
+            sy = 0;
+            vy = 0;
+          }
+
+          if (res.collision.slope) {
+            break;
+          }
+        }
+      } else {
+        this._traceStep(res, x, y, vx, vy, objectWidth, objectHeight, vx, vy, 0);
+      }
+
+      return res;
+    },
+    _traceStep: function _traceStep(res, x, y, vx, vy, width, height, rvx, rvy, step) {
+      res.pos.x += vx;
+      res.pos.y += vy;
+      var t = 0;
+
+      if (vx) {
+        var pxOffsetX = vx > 0 ? width : 0;
+        var tileOffsetX = vx < 0 ? this.tilesize : 0;
+        var firstTileY = Math.max(Math.floor(y / this.tilesize), 0);
+        var lastTileY = Math.min(Math.ceil((y + height) / this.tilesize), this.height);
+        var tileX = Math.floor((res.pos.x + pxOffsetX) / this.tilesize);
+        var prevTileX = Math.floor((x + pxOffsetX) / this.tilesize);
+
+        if (step > 0 || tileX == prevTileX || prevTileX < 0 || prevTileX >= this.width) {
+          prevTileX = -1;
+        }
+
+        if (tileX >= 0 && tileX < this.width) {
+          for (var tileY = firstTileY; tileY < lastTileY; tileY++) {
+            if (prevTileX != -1) {
+              t = this.data[tileY][prevTileX];
+
+              if (t > 1 && t <= this.lastSlope && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, prevTileX, tileY)) {
+                break;
+              }
+            }
+
+            t = this.data[tileY][tileX];
+
+            if (t == 1 || t > this.lastSlope || t > 1 && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, tileY)) {
+              if (t > 1 && t <= this.lastSlope && res.collision.slope) {
+                break;
+              }
+
+              res.collision.x = true;
+              res.tile.x = t;
+              x = res.pos.x = tileX * this.tilesize - pxOffsetX + tileOffsetX;
+              rvx = 0;
+              break;
+            }
+          }
+        }
+      }
+
+      if (vy) {
+        var pxOffsetY = vy > 0 ? height : 0;
+        var tileOffsetY = vy < 0 ? this.tilesize : 0;
+        var firstTileX = Math.max(Math.floor(res.pos.x / this.tilesize), 0);
+        var lastTileX = Math.min(Math.ceil((res.pos.x + width) / this.tilesize), this.width);
+        var tileY = Math.floor((res.pos.y + pxOffsetY) / this.tilesize);
+        var prevTileY = Math.floor((y + pxOffsetY) / this.tilesize);
+
+        if (step > 0 || tileY == prevTileY || prevTileY < 0 || prevTileY >= this.height) {
+          prevTileY = -1;
+        }
+
+        if (tileY >= 0 && tileY < this.height) {
+          for (var tileX = firstTileX; tileX < lastTileX; tileX++) {
+            if (prevTileY != -1) {
+              t = this.data[prevTileY][tileX];
+
+              if (t > 1 && t <= this.lastSlope && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, prevTileY)) {
+                break;
+              }
+            }
+
+            t = this.data[tileY][tileX];
+
+            if (t == 1 || t > this.lastSlope || t > 1 && this._checkTileDef(res, t, x, y, rvx, rvy, width, height, tileX, tileY)) {
+              if (t > 1 && t <= this.lastSlope && res.collision.slope) {
+                break;
+              }
+
+              res.collision.y = true;
+              res.tile.y = t;
+              res.pos.y = tileY * this.tilesize - pxOffsetY + tileOffsetY;
+              break;
+            }
+          }
+        }
+      }
+    },
+    _checkTileDef: function _checkTileDef(res, t, x, y, vx, vy, width, height, tileX, tileY) {
+      var def = this.tiledef[t];
+
+      if (!def) {
+        return false;
+      }
+
+      var lx = (tileX + def[0]) * this.tilesize,
+          ly = (tileY + def[1]) * this.tilesize,
+          lvx = (def[2] - def[0]) * this.tilesize,
+          lvy = (def[3] - def[1]) * this.tilesize,
+          solid = def[4];
+      var tx = x + vx + (lvy < 0 ? width : 0) - lx,
+          ty = y + vy + (lvx > 0 ? height : 0) - ly;
+
+      if (lvx * ty - lvy * tx > 0) {
+        if (vx * -lvy + vy * lvx < 0) {
+          return solid;
+        }
+
+        var length = Math.sqrt(lvx * lvx + lvy * lvy);
+        var nx = lvy / length,
+            ny = -lvx / length;
+        var proj = tx * nx + ty * ny;
+        var px = nx * proj,
+            py = ny * proj;
+
+        if (px * px + py * py >= vx * vx + vy * vy) {
+          return solid || lvx * (ty - vy) - lvy * (tx - vx) < 0.5;
+        }
+
+        res.pos.x = x + vx - px;
+        res.pos.y = y + vy - py;
+        res.collision.slope = {
+          x: lvx,
+          y: lvy,
+          nx: nx,
+          ny: ny
+        };
+        return true;
+      }
+
+      return false;
+    }
+  });
+  var H = 1 / 2,
+      N = 1 / 3,
+      M = 2 / 3,
+      SOLID = true,
+      NON_SOLID = false;
+  ig.CollisionMap.defaultTileDef = {
+    5: [0, 1, 1, M, SOLID],
+    6: [0, M, 1, N, SOLID],
+    7: [0, N, 1, 0, SOLID],
+    3: [0, 1, 1, H, SOLID],
+    4: [0, H, 1, 0, SOLID],
+    2: [0, 1, 1, 0, SOLID],
+    10: [H, 1, 1, 0, SOLID],
+    21: [0, 1, H, 0, SOLID],
+    32: [M, 1, 1, 0, SOLID],
+    43: [N, 1, M, 0, SOLID],
+    54: [0, 1, N, 0, SOLID],
+    27: [0, 0, 1, N, SOLID],
+    28: [0, N, 1, M, SOLID],
+    29: [0, M, 1, 1, SOLID],
+    25: [0, 0, 1, H, SOLID],
+    26: [0, H, 1, 1, SOLID],
+    24: [0, 0, 1, 1, SOLID],
+    11: [0, 0, H, 1, SOLID],
+    22: [H, 0, 1, 1, SOLID],
+    33: [0, 0, N, 1, SOLID],
+    44: [N, 0, M, 1, SOLID],
+    55: [M, 0, 1, 1, SOLID],
+    16: [1, N, 0, 0, SOLID],
+    17: [1, M, 0, N, SOLID],
+    18: [1, 1, 0, M, SOLID],
+    14: [1, H, 0, 0, SOLID],
+    15: [1, 1, 0, H, SOLID],
+    13: [1, 1, 0, 0, SOLID],
+    8: [H, 1, 0, 0, SOLID],
+    19: [1, 1, H, 0, SOLID],
+    30: [N, 1, 0, 0, SOLID],
+    41: [M, 1, N, 0, SOLID],
+    52: [1, 1, M, 0, SOLID],
+    38: [1, M, 0, 1, SOLID],
+    39: [1, N, 0, M, SOLID],
+    40: [1, 0, 0, N, SOLID],
+    36: [1, H, 0, 1, SOLID],
+    37: [1, 0, 0, H, SOLID],
+    35: [1, 0, 0, 1, SOLID],
+    9: [1, 0, H, 1, SOLID],
+    20: [H, 0, 0, 1, SOLID],
+    31: [1, 0, M, 1, SOLID],
+    42: [M, 0, N, 1, SOLID],
+    53: [N, 0, 0, 1, SOLID],
+    12: [0, 0, 1, 0, NON_SOLID],
+    23: [1, 1, 0, 1, NON_SOLID],
+    34: [1, 0, 1, 1, NON_SOLID],
+    45: [0, 1, 0, 0, NON_SOLID]
+  };
+  ig.CollisionMap.staticNoCollision = {
+    trace: function trace(x, y, vx, vy) {
+      return {
+        collision: {
+          x: false,
+          y: false,
+          slope: false
+        },
+        pos: {
+          x: x + vx,
+          y: y + vy
+        },
+        tile: {
+          x: 0,
+          y: 0
+        }
+      };
+    }
+  };
+}); // lib/impact/background-map.js
+
+ig.baked = true;
+ig.module('impact.background-map').requires('impact.map', 'impact.image').defines(function () {
+  "use strict";
+
+  ig.BackgroundMap = ig.Map.extend({
+    tiles: null,
+    scroll: {
+      x: 0,
+      y: 0
+    },
+    distance: 1,
+    repeat: false,
+    tilesetName: '',
+    foreground: false,
+    enabled: true,
+    preRender: false,
+    preRenderedChunks: null,
+    chunkSize: 512,
+    debugChunks: false,
+    anims: {},
+    init: function init(tilesize, data, tileset) {
+      this.parent(tilesize, data);
+      this.setTileset(tileset);
+    },
+    setTileset: function setTileset(tileset) {
+      this.tilesetName = tileset instanceof ig.Image ? tileset.path : tileset;
+      this.tiles = new ig.Image(this.tilesetName);
+      this.preRenderedChunks = null;
+    },
+    setScreenPos: function setScreenPos(x, y) {
+      this.scroll.x = x / this.distance;
+      this.scroll.y = y / this.distance;
+    },
+    preRenderMapToChunks: function preRenderMapToChunks() {
+      var totalWidth = this.width * this.tilesize * ig.system.scale,
+          totalHeight = this.height * this.tilesize * ig.system.scale;
+      this.chunkSize = Math.min(Math.max(totalWidth, totalHeight), this.chunkSize);
+      var chunkCols = Math.ceil(totalWidth / this.chunkSize),
+          chunkRows = Math.ceil(totalHeight / this.chunkSize);
+      this.preRenderedChunks = [];
+
+      for (var y = 0; y < chunkRows; y++) {
+        this.preRenderedChunks[y] = [];
+
+        for (var x = 0; x < chunkCols; x++) {
+          var chunkWidth = x == chunkCols - 1 ? totalWidth - x * this.chunkSize : this.chunkSize;
+          var chunkHeight = y == chunkRows - 1 ? totalHeight - y * this.chunkSize : this.chunkSize;
+          this.preRenderedChunks[y][x] = this.preRenderChunk(x, y, chunkWidth, chunkHeight);
+        }
+      }
+    },
+    preRenderChunk: function preRenderChunk(cx, cy, w, h) {
+      var tw = w / this.tilesize / ig.system.scale + 1,
+          th = h / this.tilesize / ig.system.scale + 1;
+      var nx = cx * this.chunkSize / ig.system.scale % this.tilesize,
+          ny = cy * this.chunkSize / ig.system.scale % this.tilesize;
+      var tx = Math.floor(cx * this.chunkSize / this.tilesize / ig.system.scale),
+          ty = Math.floor(cy * this.chunkSize / this.tilesize / ig.system.scale);
+      var chunk = ig.$new('canvas');
+      chunk.width = w;
+      chunk.height = h;
+      var oldContext = ig.system.context;
+      ig.system.context = chunk.getContext("2d");
+
+      for (var x = 0; x < tw; x++) {
+        for (var y = 0; y < th; y++) {
+          if (x + tx < this.width && y + ty < this.height) {
+            var tile = this.data[y + ty][x + tx];
+
+            if (tile) {
+              this.tiles.drawTile(x * this.tilesize - nx, y * this.tilesize - ny, tile - 1, this.tilesize);
+            }
+          }
+        }
+      }
+
+      ig.system.context = oldContext;
+      return chunk;
+    },
+    draw: function draw() {
+      if (!this.tiles.loaded || !this.enabled) {
+        return;
+      }
+
+      if (this.preRender) {
+        this.drawPreRendered();
+      } else {
+        this.drawTiled();
+      }
+    },
+    drawPreRendered: function drawPreRendered() {
+      if (!this.preRenderedChunks) {
+        this.preRenderMapToChunks();
+      }
+
+      var dx = ig.system.getDrawPos(this.scroll.x),
+          dy = ig.system.getDrawPos(this.scroll.y);
+
+      if (this.repeat) {
+        var w = this.width * this.tilesize * ig.system.scale;
+        dx = (dx % w + w) % w;
+        var h = this.height * this.tilesize * ig.system.scale;
+        dy = (dy % h + h) % h;
+      }
+
+      var minChunkX = Math.max(Math.floor(dx / this.chunkSize), 0),
+          minChunkY = Math.max(Math.floor(dy / this.chunkSize), 0),
+          maxChunkX = Math.ceil((dx + ig.system.realWidth) / this.chunkSize),
+          maxChunkY = Math.ceil((dy + ig.system.realHeight) / this.chunkSize),
+          maxRealChunkX = this.preRenderedChunks[0].length,
+          maxRealChunkY = this.preRenderedChunks.length;
+
+      if (!this.repeat) {
+        maxChunkX = Math.min(maxChunkX, maxRealChunkX);
+        maxChunkY = Math.min(maxChunkY, maxRealChunkY);
+      }
+
+      var nudgeY = 0;
+
+      for (var cy = minChunkY; cy < maxChunkY; cy++) {
+        var nudgeX = 0;
+
+        for (var cx = minChunkX; cx < maxChunkX; cx++) {
+          var chunk = this.preRenderedChunks[cy % maxRealChunkY][cx % maxRealChunkX];
+          var x = -dx + cx * this.chunkSize - nudgeX;
+          var y = -dy + cy * this.chunkSize - nudgeY;
+          ig.system.context.drawImage(chunk, x, y);
+          ig.Image.drawCount++;
+
+          if (this.debugChunks) {
+            ig.system.context.strokeStyle = '#f0f';
+            ig.system.context.strokeRect(x, y, this.chunkSize, this.chunkSize);
+          }
+
+          if (this.repeat && chunk.width < this.chunkSize && x + chunk.width < ig.system.realWidth) {
+            nudgeX += this.chunkSize - chunk.width;
+            maxChunkX++;
+          }
+        }
+
+        if (this.repeat && chunk.height < this.chunkSize && y + chunk.height < ig.system.realHeight) {
+          nudgeY += this.chunkSize - chunk.height;
+          maxChunkY++;
+        }
+      }
+    },
+    drawTiled: function drawTiled() {
+      var tile = 0,
+          anim = null,
+          tileOffsetX = (this.scroll.x / this.tilesize).toInt(),
+          tileOffsetY = (this.scroll.y / this.tilesize).toInt(),
+          pxOffsetX = this.scroll.x % this.tilesize,
+          pxOffsetY = this.scroll.y % this.tilesize,
+          pxMinX = -pxOffsetX - this.tilesize,
+          pxMinY = -pxOffsetY - this.tilesize,
+          pxMaxX = ig.system.width + this.tilesize - pxOffsetX,
+          pxMaxY = ig.system.height + this.tilesize - pxOffsetY;
+
+      for (var mapY = -1, pxY = pxMinY; pxY < pxMaxY; mapY++, pxY += this.tilesize) {
+        var tileY = mapY + tileOffsetY;
+
+        if (tileY >= this.height || tileY < 0) {
+          if (!this.repeat) {
+            continue;
+          }
+
+          tileY = (tileY % this.height + this.height) % this.height;
+        }
+
+        for (var mapX = -1, pxX = pxMinX; pxX < pxMaxX; mapX++, pxX += this.tilesize) {
+          var tileX = mapX + tileOffsetX;
+
+          if (tileX >= this.width || tileX < 0) {
+            if (!this.repeat) {
+              continue;
+            }
+
+            tileX = (tileX % this.width + this.width) % this.width;
+          }
+
+          if (tile = this.data[tileY][tileX]) {
+            if (anim = this.anims[tile - 1]) {
+              anim.draw(pxX, pxY);
+            } else {
+              this.tiles.drawTile(pxX, pxY, tile - 1, this.tilesize);
+            }
+          }
+        }
+      }
+    }
+  });
+}); // lib/impact/game.js
+
+ig.baked = true;
+ig.module('impact.game').requires('impact.impact', 'impact.entity', 'impact.collision-map', 'impact.background-map').defines(function () {
+  "use strict";
+
+  ig.Game = ig.Class.extend({
+    clearColor: '#000000',
+    gravity: 0,
+    screen: {
+      x: 0,
+      y: 0
+    },
+    _rscreen: {
+      x: 0,
+      y: 0
+    },
+    entities: [],
+    namedEntities: {},
+    collisionMap: ig.CollisionMap.staticNoCollision,
+    backgroundMaps: [],
+    backgroundAnims: {},
+    autoSort: false,
+    sortBy: null,
+    cellSize: 64,
+    _deferredKill: [],
+    _levelToLoad: null,
+    _doSortEntities: false,
+    staticInstantiate: function staticInstantiate() {
+      this.sortBy = this.sortBy || ig.Game.SORT.Z_INDEX;
+      ig.game = this;
+      return null;
+    },
+    loadLevel: function loadLevel(data) {
+      this.screen = {
+        x: 0,
+        y: 0
+      };
+      this.entities = [];
+      this.namedEntities = {};
+
+      for (var i = 0; i < data.entities.length; i++) {
+        var ent = data.entities[i];
+        this.spawnEntity(ent.type, ent.x, ent.y, ent.settings);
+      }
+
+      this.sortEntities();
+      this.collisionMap = ig.CollisionMap.staticNoCollision;
+      this.backgroundMaps = [];
+
+      for (var i = 0; i < data.layer.length; i++) {
+        var ld = data.layer[i];
+
+        if (ld.name == 'collision') {
+          this.collisionMap = new ig.CollisionMap(ld.tilesize, ld.data);
+        } else {
+          var newMap = new ig.BackgroundMap(ld.tilesize, ld.data, ld.tilesetName);
+          newMap.anims = this.backgroundAnims[ld.tilesetName] || {};
+          newMap.repeat = ld.repeat;
+          newMap.distance = ld.distance;
+          newMap.foreground = !!ld.foreground;
+          newMap.preRender = !!ld.preRender;
+          newMap.name = ld.name;
+          this.backgroundMaps.push(newMap);
+        }
+      }
+
+      for (var i = 0; i < this.entities.length; i++) {
+        this.entities[i].ready();
+      }
+    },
+    loadLevelDeferred: function loadLevelDeferred(data) {
+      this._levelToLoad = data;
+    },
+    getMapByName: function getMapByName(name) {
+      if (name == 'collision') {
+        return this.collisionMap;
+      }
+
+      for (var i = 0; i < this.backgroundMaps.length; i++) {
+        if (this.backgroundMaps[i].name == name) {
+          return this.backgroundMaps[i];
+        }
+      }
+
+      return null;
+    },
+    getEntityByName: function getEntityByName(name) {
+      return this.namedEntities[name];
+    },
+    getEntitiesByType: function getEntitiesByType(type) {
+      var entityClass = typeof type === 'string' ? ig.global[type] : type;
+      var a = [];
+
+      for (var i = 0; i < this.entities.length; i++) {
+        var ent = this.entities[i];
+
+        if (ent instanceof entityClass && !ent._killed) {
+          a.push(ent);
+        }
+      }
+
+      return a;
+    },
+    spawnEntity: function spawnEntity(type, x, y, settings) {
+      var entityClass = typeof type === 'string' ? ig.global[type] : type;
+
+      if (!entityClass) {
+        throw "Can't spawn entity of type " + type;
+      }
+
+      var ent = new entityClass(x, y, settings || {});
+      this.entities.push(ent);
+
+      if (ent.name) {
+        this.namedEntities[ent.name] = ent;
+      }
+
+      return ent;
+    },
+    sortEntities: function sortEntities() {
+      this.entities.sort(this.sortBy);
+    },
+    sortEntitiesDeferred: function sortEntitiesDeferred() {
+      this._doSortEntities = true;
+    },
+    removeEntity: function removeEntity(ent) {
+      if (ent.name) {
+        delete this.namedEntities[ent.name];
+      }
+
+      ent._killed = true;
+      ent.type = ig.Entity.TYPE.NONE;
+      ent.checkAgainst = ig.Entity.TYPE.NONE;
+      ent.collides = ig.Entity.COLLIDES.NEVER;
+
+      this._deferredKill.push(ent);
+    },
+    run: function run() {
+      this.update();
+      this.draw();
+    },
+    update: function update() {
+      if (this._levelToLoad) {
+        this.loadLevel(this._levelToLoad);
+        this._levelToLoad = null;
+      }
+
+      if (this._doSortEntities || this.autoSort) {
+        this.sortEntities();
+        this._doSortEntities = false;
+      }
+
+      this.updateEntities();
+      this.checkEntities();
+
+      for (var i = 0; i < this._deferredKill.length; i++) {
+        this.entities.erase(this._deferredKill[i]);
+      }
+
+      this._deferredKill = [];
+
+      for (var tileset in this.backgroundAnims) {
+        var anims = this.backgroundAnims[tileset];
+
+        for (var a in anims) {
+          anims[a].update();
+        }
+      }
+    },
+    updateEntities: function updateEntities() {
+      for (var i = 0; i < this.entities.length; i++) {
+        var ent = this.entities[i];
+
+        if (!ent._killed) {
+          ent.update();
+        }
+      }
+    },
+    draw: function draw() {
+      if (this.clearColor) {
+        ig.system.clear(this.clearColor);
+      }
+
+      this._rscreen.x = ig.system.getDrawPos(this.screen.x) / ig.system.scale;
+      this._rscreen.y = ig.system.getDrawPos(this.screen.y) / ig.system.scale;
+      var mapIndex;
+
+      for (mapIndex = 0; mapIndex < this.backgroundMaps.length; mapIndex++) {
+        var map = this.backgroundMaps[mapIndex];
+
+        if (map.foreground) {
+          break;
+        }
+
+        map.setScreenPos(this.screen.x, this.screen.y);
+        map.draw();
+      }
+
+      this.drawEntities();
+
+      for (mapIndex; mapIndex < this.backgroundMaps.length; mapIndex++) {
+        var map = this.backgroundMaps[mapIndex];
+        map.setScreenPos(this.screen.x, this.screen.y);
+        map.draw();
+      }
+    },
+    drawEntities: function drawEntities() {
+      for (var i = 0; i < this.entities.length; i++) {
+        this.entities[i].draw();
+      }
+    },
+    checkEntities: function checkEntities() {
+      var hash = {};
+
+      for (var e = 0; e < this.entities.length; e++) {
+        var entity = this.entities[e];
+
+        if (entity.type == ig.Entity.TYPE.NONE && entity.checkAgainst == ig.Entity.TYPE.NONE && entity.collides == ig.Entity.COLLIDES.NEVER) {
+          continue;
+        }
+
+        var checked = {},
+            xmin = Math.floor(entity.pos.x / this.cellSize),
+            ymin = Math.floor(entity.pos.y / this.cellSize),
+            xmax = Math.floor((entity.pos.x + entity.size.x) / this.cellSize) + 1,
+            ymax = Math.floor((entity.pos.y + entity.size.y) / this.cellSize) + 1;
+
+        for (var x = xmin; x < xmax; x++) {
+          for (var y = ymin; y < ymax; y++) {
+            if (!hash[x]) {
+              hash[x] = {};
+              hash[x][y] = [entity];
+            } else if (!hash[x][y]) {
+              hash[x][y] = [entity];
+            } else {
+              var cell = hash[x][y];
+
+              for (var c = 0; c < cell.length; c++) {
+                if (entity.touches(cell[c]) && !checked[cell[c].id]) {
+                  checked[cell[c].id] = true;
+                  ig.Entity.checkPair(entity, cell[c]);
+                }
+              }
+
+              cell.push(entity);
+            }
+          }
+        }
+      }
+    }
+  });
+  ig.Game.SORT = {
+    Z_INDEX: function Z_INDEX(a, b) {
+      return a.zIndex - b.zIndex;
+    },
+    POS_X: function POS_X(a, b) {
+      return a.pos.x + a.size.x - (b.pos.x + b.size.x);
+    },
+    POS_Y: function POS_Y(a, b) {
+      return a.pos.y + a.size.y - (b.pos.y + b.size.y);
+    }
+  };
+}); // lib/game/entities/player.js
+
+ig.baked = true;
+ig.module('game.entities.player').requires('impact.entity').defines(function () {
+  EntityPlayer = ig.Entity.extend({
+    size: {
+      x: 16,
+      y: 16
+    },
+    collides: ig.Entity.COLLIDES.ACTIVE,
+    maxVel: {
+      x: 500,
+      y: 5000
+    },
+    type: ig.Entity.TYPE.A,
+    checkAgainst: ig.Entity.TYPE.B,
+    direction: 1,
+    coins: 0,
+    lives: 1,
+    location: 'overworld',
+    flags: {
+      onpipe: false,
+      targetPipe: {
+        x: 0,
+        y: 0
+      }
+    },
+    update: function update() {
+      if (ig.input.state('left')) {
+        if (ig.input.state('run')) {
+          this.vel.x = -100;
+          this.currentAnim = this.anims.run_left_fast;
+        } else {
+          this.vel.x = -60;
+          this.currentAnim = this.anims.run_left;
+        }
+
+        this.direction = -1;
+      } else if (ig.input.state('right')) {
+        if (ig.input.state('run')) {
+          this.vel.x = 100;
+          this.currentAnim = this.anims.run_right_fast;
+        } else {
+          this.vel.x = 60;
+          this.currentAnim = this.anims.run_right;
+        }
+
+        this.direction = 1;
+      } else {
+        this.vel.x = 0;
+
+        if (this.vel.x == 0 && this.direction < 0) {
+          this.currentAnim = this.anims.idle_left;
+        } else if (this.vel.x == 0 && this.direction > 0) {
+          this.currentAnim = this.anims.idle_right;
+        }
+      }
+
+      if (ig.input.pressed('up') && this.standing) {
+        if (ig.input.state('run')) {
+          this.vel.y = -550;
+          this.accel.y = -1000;
+        } else {
+          this.vel.y = -500;
+          this.accel.y = -1000;
+        }
+
+        var jumpSound = new ig.Sound('./media/mario/sounds/jump.ogg');
+        jumpSound.volume = 0.6;
+        jumpSound.play();
+      }
+
+      if (ig.input.released('up') && this.vel.y < 0) {
+        this.vel.y = 0;
+        this.accel.y = 0;
+      }
+
+      if (!this.standing) {
+        if (this.direction < 0) {
+          this.currentAnim = this.anims.jump_left;
+        }
+
+        if (this.direction > 0) {
+          this.currentAnim = this.anims.jump_right;
+        }
+      }
+
+      if (this.flags.onPipe == true) {
+        if (this.location == 'overworld') {
+          this.location = 'underworld';
+        } else {
+          this.location = 'overworld';
+        }
+
+        this.pos.y = this.flags.targetPipe.y;
+        this.pos.x = this.flags.targetPipe.x;
+        this.flags.onPipe = false;
+      }
+
+      if (this.coins > 99) {
+        this.coins = 0;
+        this.lives++;
+        var oneUpSound = new ig.Sound('./media/mario/sounds/1up.ogg');
+        oneUpSound.play();
+      }
+
+      if (this.lives < 0) {
+        ig.system.setGame(SuperMario);
+      }
+
+      this.parent();
+    }
+  });
+}); // lib/game/entities/mario.js
+
+ig.baked = true;
+ig.module('game.entities.mario').requires('game.entities.player').defines(function () {
+  EntityMario = EntityPlayer.extend({
+    animSheet: new ig.AnimationSheet('./media/mario/mario_small_sprites.png', 16, 16),
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('idle_right', .1, [15]);
+      this.addAnim('run_right', .1, [14, 15, 16]);
+      this.addAnim('run_right_fast', 0.07, [14, 15, 16]);
+      this.addAnim('jump_right', .1, [18]);
+      this.addAnim('idle_left', .1, [1]);
+      this.addAnim('run_left', .1, [0, 1, 2]);
+      this.addAnim('run_left_fast', 0.07, [0, 1, 2]);
+      this.addAnim('jump_left', .1, [4]);
+      this.currentAnim = this.anims.idle;
+      this.gravityFactor = 3;
+    }
+  });
+}); // lib/game/entities/enemy.js
+
+ig.baked = true;
+ig.module('game.entities.enemy').requires('impact.entity').defines(function () {
+  EntityEnemy = ig.Entity.extend(_defineProperty({
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    collides: ig.Entity.COLLIDES.ACTIVE,
+    maxVel: {
+      x: 500,
+      y: 500
+    }
+  }, "type", ig.Entity.TYPE.B));
+}); // lib/game/entities/goomba.js
+
+ig.baked = true;
+ig.module('game.entities.goomba').requires('game.entities.enemy').defines(function () {
+  EntityGoomba = EntityEnemy.extend({
+    animSheet: new ig.AnimationSheet('./media/mario/goombas_overworld_sprites.png', 16, 16),
+    bounciness: 0,
+    size: {
+      x: 16,
+      y: 16
+    },
+    check: function check(other) {
+      if (this.pos.y - other.pos.y > 15 && !other.standing && other.name == "player") {
+        this.kill();
+        other.vel.y = -300;
+        other.accel.y = -1000;
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('move', .2, [0, 1]);
+      this.currentAnim = this.anims.move;
+      this.gravityFactor = 1;
+
+      if (this.pos.y > 240) {
+        this.kill();
+      }
+    },
+    update: function update() {
+      this.parent();
+    },
+    minBounceVelocity: 0,
+    vel: {
+      x: 20,
+      y: 0
+    }
+  });
+}); // lib/game/entities/pipe.js
+
+ig.baked = true;
+ig.module('game.entities.pipe').requires('impact.entity').defines(function () {
+  EntityPipe = ig.Entity.extend({
+    size: {
+      x: 32,
+      y: 16
+    },
+    animSheet: new ig.AnimationSheet('./media/mario/tileset.png', 32, 16),
+    collides: ig.Entity.COLLIDES.FIXED,
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    direction: 'up',
+    check: function check(other) {
+      if (this.direction == 'left') {
+        if (ig.input.pressed('right')) {
+          for (var t in this.target) {
+            var tar = ig.game.getEntityByName(this.target[t]);
+
+            if (tar && tar instanceof EntityPipe) {
+              var offset = other.pos.x - this.pos.x;
+              other.flags.targetPipe.x = tar.pos.x + offset;
+              other.flags.targetPipe.y = tar.pos.y - tar.size.y;
+              other.flags.onPipe = true;
+            }
+          }
+        }
+      } else {
+        if (ig.input.pressed('down')) {
+          for (var t in this.target) {
+            var tar = ig.game.getEntityByName(this.target[t]);
+
+            if (tar && tar instanceof EntityPipe) {
+              var offset = other.pos.x - this.pos.x;
+              other.flags.targetPipe.x = tar.pos.x + offset;
+              other.flags.targetPipe.y = tar.pos.y - tar.size.y;
+              other.flags.onPipe = true;
+            }
+          }
+        }
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+
+      if (this.direction == 'up') {
+        this.addAnim('up', .5, [132]);
+        this.currentAnim = this.anims.up;
+      }
+
+      if (this.direction == 'left') {
+        this.animSheet = new ig.AnimationSheet('./media/mario/tileset.png', 16, 32);
+        this.size.x = 16;
+        this.size.y = 32;
+        this.addAnim('left', .5, [134]);
+        this.currentAnim = this.anims.left;
+      }
+
+      if (this.direction == 'down') {
+        this.size.x = 0;
+        this.size.y = 0;
+      }
+
+      this.gravityFactor = 0;
+    },
+    update: function update() {
+      this.parent();
+    }
+  });
+}); // lib/game/entities/coin.js
+
+ig.baked = true;
+ig.module('game.entities.coin').requires('impact.entity').defines(function () {
+  EntityCoin = ig.Entity.extend({
+    size: {
+      x: 16,
+      y: 16
+    },
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    check: function check(other) {
+      this.kill();
+      var coinSound = new ig.Sound('./media/mario/sounds/coin.ogg');
+      coinSound.volume = 0.5;
+      coinSound.play();
+      other.coins++;
+    },
+    animSheet: new ig.AnimationSheet('./media/mario/tileset.png', 16, 16),
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.gravityFactor = 0;
+      this.addAnim('idle', .1, [57, 58, 59, 59, 58, 57]);
+      this.currentAnim = this.anims.idle;
+    },
+    update: function update() {
+      this.parent();
+    }
+  });
+}); // lib/game/entities/coinblock.js
+
+ig.baked = true;
+ig.module('game.entities.coinblock').requires('impact.entity').defines(function () {
+  EntityCoinblock = ig.Entity.extend({
+    size: {
+      x: 16,
+      y: 16
+    },
+    animSheet: new ig.AnimationSheet('./media/mario/tileset.png', 16, 16),
+    collides: ig.Entity.COLLIDES.FIXED,
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    coins: 1,
+    check: function check(other) {
+      var offset = 0;
+
+      if (other.pos.y - (this.pos.y + this.size.y) > -6.5 && this.pos.x - (other.pos.x + other.size.x / 2) < this.size.x + offset && this.pos.x + this.size.x - (other.pos.x + other.size.x / 2) > -offset) {
+        if (this.coins > 0) {
+          this.coins--;
+          other.coins++;
+          var coinSound = new ig.Sound('./media/mario/sounds/coin.ogg');
+          coinSound.volume = 0.5;
+          coinSound.play();
+        }
+
+        if (this.coins == 0) {
+          this.currentAnim = this.anims.broken;
+        }
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('idle', 0.2, [24, 25, 26, 26, 25, 24]);
+      this.addAnim('broken', 0.2, [27]);
+      this.gravityFactor = 0;
+    }
+  });
+}); // lib/game/entities/itemblock.js
+
+ig.baked = true;
+ig.module('game.entities.itemblock').requires('impact.entity').defines(function () {
+  EntityItemblock = ig.Entity.extend({
+    size: {
+      x: 16,
+      y: 16
+    },
+    animSheet: new ig.AnimationSheet('./media/mario/tileset.png', 16, 16),
+    collides: ig.Entity.COLLIDES.FIXED,
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    items: 1,
+    contains: null,
+    check: function check(other) {
+      var offset = 0;
+
+      if (other.pos.y - (this.pos.y + this.size.y) > -6.5 && this.pos.x - (other.pos.x + other.size.x / 2) < this.size.x + offset && this.pos.x + this.size.x - (other.pos.x + other.size.x / 2) > -offset) {
+        if (this.items > 0) {
+          this.items--;
+          ig.game.spawnEntity(this.contains, this.pos.x, this.pos.y - 16, {
+            vel: {
+              x: 35,
+              y: 0
+            }
+          });
+        }
+
+        if (this.items == 0) {
+          this.currentAnim = this.anims.broken;
+        }
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('idle', 0.2, [24, 25, 26, 26, 25, 24]);
+      this.addAnim('broken', 0.2, [27]);
+      this.gravityFactor = 0;
+    }
+  });
+}); // lib/game/entities/block.js
+
+ig.baked = true;
+ig.module('game.entities.block').requires('impact.entity').defines(function () {
+  EntityBlock = ig.Entity.extend({
+    size: {
+      x: 16,
+      y: 16
+    },
+    animSheet: new ig.AnimationSheet('./media/mario/tileset.png', 16, 16),
+    collides: ig.Entity.COLLIDES.FIXED,
+    type: ig.Entity.TYPE.B,
+    checkAgainst: ig.Entity.TYPE.A,
+    items: 1,
+    contains: null,
+    check: function check(other) {
+      console.log(this.pos.x - (other.pos.x + other.size.x / 2));
+      console.log(this.pos.x + this.size.x - (other.pos.x + other.size.x / 2));
+      var offset = 0;
+
+      if (other.pos.y - (this.pos.y + this.size.y) > -6.5 && this.pos.x - (other.pos.x + other.size.x / 2) < this.size.x + offset && this.pos.x + this.size.x - (other.pos.x + other.size.x / 2) > -offset) {
+        if (this.contains == null) {
+          other.vel.y = -other.vel.y / 2;
+          this.kill();
+        } else {
+          if (this.items > 0) {
+            this.items--;
+            ig.game.spawnEntity(this.contains, this.pos.x, this.pos.y - 16, {
+              vel: {
+                x: 35,
+                y: 0
+              }
+            });
+          }
+
+          if (this.items == 0) {
+            this.currentAnim = this.anims.broken;
+          }
+        }
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('idle', .1, [2]);
+      this.addAnim('broken', 0.2, [27]);
+      this.currentAnim = this.anims.idle;
+      this.gravityFactor = 0;
+    }
+  });
+}); // lib/game/entities/koopa.js
+
+ig.baked = true;
+ig.module('game.entities.koopa').requires('game.entities.enemy').defines(function () {
+  EntityKoopa = EntityEnemy.extend({
+    animSheet: new ig.AnimationSheet('./media/mario/koopas.png', 16, 24),
+    bounciness: 1,
+    size: {
+      x: 16,
+      y: 24
+    },
+    direction: 1,
+    check: function check(other) {
+      if (this.pos.y - other.pos.y > 15 && !other.standing) {
+        this.kill();
+        other.vel.y = -300;
+        other.accel.y = -1000;
+      }
+    },
+    init: function init(x, y, settings) {
+      this.parent(x, y, settings);
+      this.addAnim('move', .2, [0, 1]);
+      this.currentAnim = this.anims.move;
+      this.gravityFactor = 1;
+
+      if (this.pos.y > 240) {
+        this.kill();
+      }
+    },
+    update: function update() {
+      if (this.vel.x < 0) {
+        this.direction = -1;
+      }
+
+      if (this.vel.x > 0) {
+        this.direction = 1;
+      }
+
+      if (this.direction < 0) {
+        this.anims.move.flip.x = false;
+      } else {
+        this.anims.move.flip.x = true;
+      }
+
+      this.parent();
+    },
+    minBounceVelocity: 0,
+    vel: {
+      x: 20,
+      y: 0
+    }
+  });
+}); // lib/game/levels/level1_1.js
+
+ig.baked = true;
+ig.module('game.levels.level1_1').requires('impact.image', 'game.entities.pipe', 'game.entities.coin', 'game.entities.coinblock', 'game.entities.itemblock', 'game.entities.block', 'game.entities.goomba', 'game.entities.koopa').defines(function () {
+  LevelLevel1_1 = {
+    "entities": [{
+      "type": "EntityPipe",
+      "x": 896,
+      "y": 160,
+      "settings": {
+        "target": {
+          "1": "pipe1"
+        }
+      }
+    }, {
+      "type": "EntityPipe",
+      "x": 2592,
+      "y": 192,
+      "settings": {
+        "name": "pipe2"
+      }
+    }, {
+      "type": "EntityPipe",
+      "x": 856,
+      "y": 256,
+      "settings": {
+        "name": "pipe1",
+        "direction": "down"
+      }
+    }, {
+      "type": "EntityPipe",
+      "x": 1040,
+      "y": 416,
+      "settings": {
+        "target": {
+          "2": "pipe2"
+        },
+        "direction": "left"
+      }
+    }, {
+      "type": "EntityCoin",
+      "x": 960,
+      "y": 320
+    }, {
+      "type": "EntityCoin",
+      "x": 896,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 912,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 976,
+      "y": 320
+    }, {
+      "type": "EntityCoin",
+      "x": 944,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 960,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 896,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 912,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 928,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 960,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 976,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 992,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 928,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 944,
+      "y": 384
+    }, {
+      "type": "EntityCoin",
+      "x": 912,
+      "y": 320
+    }, {
+      "type": "EntityCoin",
+      "x": 928,
+      "y": 320
+    }, {
+      "type": "EntityCoin",
+      "x": 944,
+      "y": 320
+    }, {
+      "type": "EntityCoin",
+      "x": 976,
+      "y": 352
+    }, {
+      "type": "EntityCoin",
+      "x": 992,
+      "y": 352
+    }, {
+      "type": "EntityCoinblock",
+      "x": 256,
+      "y": 160
+    }, {
+      "type": "EntityItemblock",
+      "x": 336,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 384,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 320,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 352,
+      "y": 160
+    }, {
+      "type": "EntityCoinblock",
+      "x": 368,
+      "y": 160
+    }, {
+      "type": "EntityGoomba",
+      "x": 332,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 656,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 840,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 864,
+      "y": 208
+    }, {
+      "type": "EntityBlock",
+      "x": 1248,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 1216,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 1312,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1264,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1280,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1296,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1328,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1360,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1344,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1376,
+      "y": 96
+    }, {
+      "type": "EntityGoomba",
+      "x": 1276,
+      "y": 80
+    }, {
+      "type": "EntityGoomba",
+      "x": 1328,
+      "y": 80
+    }, {
+      "type": "EntityBlock",
+      "x": 1440,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1456,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1472,
+      "y": 96
+    }, {
+      "type": "EntityCoinblock",
+      "x": 1488,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1488,
+      "y": 160
+    }, {
+      "type": "EntityGoomba",
+      "x": 1500,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 1524,
+      "y": 208
+    }, {
+      "type": "EntityBlock",
+      "x": 1584,
+      "y": 160
+    }, {
+      "type": "EntityItemblock",
+      "x": 1600,
+      "y": 160
+    }, {
+      "type": "EntityCoinblock",
+      "x": 1680,
+      "y": 160
+    }, {
+      "type": "EntityKoopa",
+      "x": 1676,
+      "y": 200
+    }, {
+      "type": "EntityCoinblock",
+      "x": 1728,
+      "y": 160
+    }, {
+      "type": "EntityCoinblock",
+      "x": 1776,
+      "y": 160
+    }, {
+      "type": "EntityItemblock",
+      "x": 1728,
+      "y": 96
+    }, {
+      "type": "EntityBlock",
+      "x": 1872,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 1904,
+      "y": 100
+    }, {
+      "type": "EntityBlock",
+      "x": 1920,
+      "y": 100
+    }, {
+      "type": "EntityBlock",
+      "x": 1936,
+      "y": 100
+    }, {
+      "type": "EntityBlock",
+      "x": 2016,
+      "y": 100
+    }, {
+      "type": "EntityBlock",
+      "x": 2064,
+      "y": 100
+    }, {
+      "type": "EntityCoinblock",
+      "x": 2032,
+      "y": 100
+    }, {
+      "type": "EntityCoinblock",
+      "x": 2048,
+      "y": 100
+    }, {
+      "type": "EntityBlock",
+      "x": 2048,
+      "y": 156
+    }, {
+      "type": "EntityBlock",
+      "x": 2032,
+      "y": 156
+    }, {
+      "type": "EntityBlock",
+      "x": 2672,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 2720,
+      "y": 160
+    }, {
+      "type": "EntityBlock",
+      "x": 2688,
+      "y": 160
+    }, {
+      "type": "EntityCoinblock",
+      "x": 2704,
+      "y": 160
+    }, {
+      "type": "EntityGoomba",
+      "x": 2752,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 2776,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 1984,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 2008,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 2036,
+      "y": 208
+    }, {
+      "type": "EntityGoomba",
+      "x": 2060,
+      "y": 208
+    }, {
+      "type": "EntityCoinblock",
+      "x": 352,
+      "y": 96
+    }],
+    "layer": [{
+      "name": "background",
+      "width": 1,
+      "height": 1,
+      "linkWithCollision": false,
+      "visible": 0,
+      "tilesetName": "./media/mario/backgrounds.png",
+      "repeat": true,
+      "preRender": false,
+      "distance": "1",
+      "tilesize": 16,
+      "foreground": false,
+      "data": [[1]]
+    }, {
+      "name": "underworld_background",
+      "width": 1,
+      "height": 32,
+      "linkWithCollision": false,
+      "visible": 0,
+      "tilesetName": "./media/mario/backgrounds.png",
+      "repeat": true,
+      "preRender": false,
+      "distance": "1",
+      "tilesize": 16,
+      "foreground": false,
+      "data": [[0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [0], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2], [2]]
+    }, {
+      "name": "collision",
+      "width": 211,
+      "height": 30,
+      "linkWithCollision": false,
+      "visible": 1,
+      "tilesetName": "",
+      "repeat": false,
+      "preRender": false,
+      "distance": 1,
+      "tilesize": 16,
+      "foreground": false,
+      "data": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    }, {
+      "name": "level",
+      "width": 211,
+      "height": 30,
+      "linkWithCollision": false,
+      "visible": 1,
+      "tilesetName": "./media/mario/tileset.png",
+      "repeat": false,
+      "preRender": false,
+      "distance": "1",
+      "tilesize": 16,
+      "foreground": false,
+      "data": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 281, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 20, 20, 20, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 0, 21, 22, 23, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 265, 266, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 0, 0, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 0, 0, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 34, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 314, 0, 0, 0, 20, 53, 53, 53, 20, 0, 0, 0, 0, 0], [0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 265, 266, 0, 0, 0, 0, 0, 0, 298, 299, 0, 0, 274, 0, 0, 0, 0, 0, 298, 299, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 0, 0, 34, 34, 0, 0, 0, 0, 274, 0, 0, 0, 34, 34, 34, 0, 0, 34, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 34, 34, 34, 34, 0, 0, 0, 0, 274, 0, 0, 0, 314, 0, 0, 0, 22, 22, 22, 22, 22, 0, 0, 0, 0, 0], [0, 273, 306, 275, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 265, 266, 0, 0, 0, 0, 0, 0, 0, 0, 298, 299, 0, 0, 0, 0, 0, 0, 298, 299, 0, 273, 306, 275, 0, 0, 0, 0, 298, 299, 0, 0, 0, 0, 0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 273, 306, 275, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 0, 0, 34, 34, 34, 0, 0, 273, 306, 275, 0, 34, 34, 34, 34, 0, 0, 34, 34, 34, 0, 0, 0, 274, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 265, 266, 0, 34, 34, 34, 34, 34, 34, 34, 34, 0, 0, 0, 273, 306, 275, 0, 0, 314, 0, 0, 0, 22, 22, 54, 22, 22, 0, 0, 274, 0, 0], [273, 306, 307, 308, 275, 0, 0, 0, 0, 0, 0, 309, 310, 310, 310, 311, 273, 372, 341, 0, 0, 0, 0, 309, 310, 311, 0, 0, 298, 299, 0, 0, 0, 0, 0, 0, 0, 0, 298, 299, 0, 309, 310, 310, 311, 0, 298, 299, 273, 306, 307, 308, 275, 0, 0, 0, 298, 299, 309, 310, 310, 310, 311, 273, 306, 275, 0, 0, 0, 0, 309, 310, 311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 309, 310, 310, 311, 0, 0, 0, 273, 306, 307, 308, 275, 0, 0, 0, 0, 0, 0, 309, 310, 310, 310, 311, 273, 306, 275, 0, 0, 0, 0, 309, 310, 311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 34, 34, 34, 310, 310, 34, 34, 34, 34, 273, 306, 307, 308, 34, 34, 34, 34, 34, 0, 0, 34, 34, 34, 34, 311, 273, 306, 275, 298, 299, 0, 0, 309, 310, 311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 299, 34, 34, 34, 34, 34, 34, 34, 34, 34, 0, 0, 273, 306, 307, 308, 275, 0, 34, 0, 0, 0, 22, 22, 55, 22, 22, 311, 273, 306, 275, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 69, 69, 69, 69, 69, 69, 69, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 69, 69, 69, 69, 69, 69, 69, 0, 0, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 69, 69, 69, 69, 69, 69, 69, 0, 0, 0, 268, 269, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 69, 0, 0, 0, 69, 69, 69, 69, 69, 69, 69, 0, 0, 0, 301, 302, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    }]
+  };
+  LevelLevel1_1Resources = [new ig.Image('./media/mario/backgrounds.png'), new ig.Image('./media/mario/backgrounds.png'), new ig.Image('./media/mario/tileset.png')];
+}); // lib/game/main.js
+
+ig.baked = true;
+ig.module('game.main').requires('impact.game', 'impact.font', 'game.entities.mario', 'game.entities.goomba', 'game.levels.level1_1').defines(function () {
+  SuperMario = ig.Game.extend({
+    font: new ig.Font('./media/04b03.font.png'),
+    location: 'overworld',
+    init: function init() {
+      ig.input.bind(ig.KEY.C, 'up');
+      ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
+      ig.input.bind(ig.KEY.LEFT_ARROW, 'left');
+      ig.input.bind(ig.KEY.RIGHT_ARROW, 'right');
+      ig.input.bind(ig.KEY.X, 'run');
+      ig.input.bind(ig.KEY.D, 'debug');
+      ig.input.bind(ig.KEY.L, 'lives');
+      ig.input.bind(ig.KEY.M, 'spawn');
+      ig.input.bind(ig.KEY.N, 'reset');
+      ig.input.bind(ig.KEY.O, 'coins');
+      ig.input.bind(ig.KEY.P, 'pos');
+      this.loadLevel(LevelLevel1_1);
+      this.spawnEntity(EntityMario, 40, 208, {
+        name: "player"
+      });
+      this.gravity = 900;
+    },
+    update: function update() {
+      var player = this.getEntityByName("player");
+      this.location = player.location;
+
+      if (player.pos.x > 120 && player.pos.x < 3264) {
+        this.screen.x = player.pos.x - 120;
+      }
+
+      if (this.location == 'underworld') {
+        ig.music.add('./media/mario/music/underworld.ogg', 'underworld');
+        ig.music.play('underworld');
+        this.screen.y = 256;
+      }
+
+      if (this.location == 'overworld') {
+        if (player.pos.y > 240) {
+          this.lives--;
+          this.init();
+        } else {
+          ig.music.add('./media/mario/music/overworld.ogg', 'overworld');
+          ig.music.play('overworld');
+          this.screen.y = 0;
+        }
+      }
+
+      if (ig.input.state('debug')) {
+        if (ig.input.pressed('pos')) {
+          console.log("mario [pos{x:" + player.pos.x + ", y:" + player.pos.y + "}]");
+        }
+
+        if (ig.input.pressed('spawn')) {
+          ig.game.spawnEntity(EntityMario, player.pos.x, 0);
+        }
+
+        if (ig.input.pressed('reset')) {
+          ig.system.setGame(SuperMario);
+        }
+      }
+
+      this.parent();
+    },
+    draw: function draw() {
+      var player = this.getEntityByName("player");
+      this.parent();
+      this.font.draw("coins: " + player.coins, 10, 10);
+      this.font.draw("lives: " + player.lives, 80, 10);
+    }
+  });
+  ig.main('#canvas', SuperMario, 60, 256, 245, 2);
+});
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49631" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","projects/smb/game.min.js"], null)
+//# sourceMappingURL=/game.min.c364af8e.js.map

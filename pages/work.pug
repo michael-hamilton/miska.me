@@ -3,30 +3,88 @@ extends ../templates/layout
 block content
 
 	div.container.text-center.content-section
-		h1.display-4 Professional
+		h1.display-4 Work
 
 		hr
 
-		p.text-muted I have worked in some capactiy as a software engineer for most of the past decade. While I've touched many sorts of tech, my focus has been in web technologies. I am presently employed as a software engineer with <a href="https://msquarehealthcare.com/" class="text-surf">MSquare Healthcare</a> in Baltimore, MD, USA. Here I am responsible for developing a platform to equip therapists with easy to use tools to aid in the delivery of a world class digital therapy video game. I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' class="text-surf">Kata Design Studio</a> at Johns Hopkins Medical Institue where we design innovate ways to improve patient care and therapist experiences.
+		p.text-muted I have worked in some capactiy as a software engineer for most of the past decade. While I've touched many sorts of tech, my focus has been with web technologies. I am presently employed as a software engineer at <a href="https://msquarehealthcare.com/" class="text-surf">MSquare Healthcare</a> in Baltimore, MD, USA. Here I am responsible for developing a platform to equip therapists with easy to use tools to aid in the delivery of a world class digital therapy video game. I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' class="text-surf">Kata Design Studio</a> at Johns Hopkins Medical Institue where we design innovate ways to improve patient care and therapist experiences.
 
-		p.text-muted My career history is diverse working with both commercial and non-profit organizations, as well as independently as a freelancer. My various roles have given me unique opportunities to work extensively with audio visual technology in both live and studio production environments. I've also some professional experience working in music, IT, and building construction projects.
+		p.text-muted My career history is diverse working with both commercial and non-profit organizations, as well as independently as a freelancer. My various roles have given me unique opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments. I've also some professional experience working in music, IT, and building construction projects.
 
-		p.text-muted I'm relatively technology agnostic but as I mentioned, most of my expertise is related to web technologies. I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node. Of course, I've also got strong web fundamentals with HTML, and CSS. See my <a href="../files/resume.pdf" class="text-surf">resum&eacute;</a> if you want to know more.
+		p.text-muted When it comes to software engineering - While I'm relatively technology agnostic, most of my expertise is related to web technologies. I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node. Of course, I've also got strong web fundamentals with HTML, and CSS. 
 
-	
+		p.text-muted See my <a href="../files/resume.pdf" class="text-surf">resum&eacute;</a> if you want to know more.
+
+
 	div.container.text-center.content-section
-		h1.display-4 Projects
+		h1.display-4 Professional Projects
 	
 		hr
 
-		p.text-muted Below are a few misc projects, some more exciting than others. Most are just hobby projects or playgrounds for new technologies that I wanted to learn.
+		p.text-muted These are a just a few projects I've worked on over my career. 
 
 		br
 
 		div.card-group
 			div.card
 				div.card-body
-					img(src="./projects/dmxus/dmxus.png" alt="dmxus").card-img-top
+					img(src="./projects/mindpod/card-img.png" alt="MindPod").card-img-top
+					h5.card-title MindPod
+					p.card-text Digital therapy platform Electron app with companion React Native tablet application.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://msquarehealthcare.com/").btn.btn-secondary View MindPod (M2H)
+
+			div.card
+				div.card-body
+					img(src="./projects/maestro/card-img.png" alt="Maestro").card-img-top
+					h5.card-title Maestro
+					p.card-text A React Native application for controlling the MindPod digital thereputic platform.
+					div.btn-group(role="group" aria-label="Actions")
+
+			div.card
+				div.card-body
+					img(src="./projects/stepwise/card-img.png" alt="StepWise").card-img-top
+					h5.card-title Stepwise
+					p.card-text A React Native MVP app for providing post-stroke patients with personalized resources and exercises.
+					div.btn-group(role="group" aria-label="Actions")
+		
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/churchnativity/card-img.png" alt="churchnativity.com").card-img-top
+					h5.card-title churchnativity.com
+					p.card-text An (award winning) Wordpress site, designed and developed by yours truly.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://www.churchnativity.com/").btn.btn-secondary View Site
+
+			div.card
+				div.card-body
+					img(src="./projects/clipboard/card-img.png" alt="Clipboard").card-img-top
+					h5.card-title Clipboard
+					p.card-text An internal project management tool written entirely in vanilla js. One of my first forays into JS!
+					div.btn-group(role="group" aria-label="Actions")
+
+			div.card
+				div.card-body
+
+		br
+
+	
+	div.container.text-center.content-section
+		h1.display-4 Playground
+	
+		hr
+
+		p.text-muted Here are some misc hobby projects of mine. These projects are in various states - some I revisit to make progress with here and there.
+		
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/dmxus/card-img.png" alt="dmxus").card-img-top
 					h5.card-title dmxus
 					p.card-text A node package for controlling DMX lighting fixtures with Javascript.
 					div.btn-group(role="group" aria-label="Actions")
@@ -34,37 +92,11 @@ block content
 
 			div.card
 				div.card-body
-					img(src="./projects/ohessnine/ohessnine.png" alt="OhEssNine").card-img-top
+					img(src="./projects/ohessnine/card-img.png" alt="OhEssNine").card-img-top
 					h5.card-title OhEssNine
 					p.card-text A Mac OS9 clone made with React. (WIP for my new personal website)
 					div.btn-group(role="group" aria-label="Actions")
 						a(href="https://github.com/michael-hamilton/OhEssNine").btn.btn-info View Repo
-
-			div.card
-				div.card-body
-					img(src="./projects/mindpod/mindpod.png" alt="StepWise").card-img-top
-					h5.card-title MindPod
-					p.card-text Digital therapy platform Electron app with companion React Native tablet application.
-					div.btn-group(role="group" aria-label="Actions")
-						a(href="https://msquarehealthcare.com/").btn.btn-info View MindPod (M2H)
-
-		br
-
-		div.card-group
-			div.card
-				div.card-body
-					img(src="./projects/stepwise/stepwise.png" alt="StepWise").card-img-top
-					h5.card-title Stepwise
-					p.card-text A React Native MVP app for providing post-stroke patients with personalized resources.
-					div.btn-group(role="group" aria-label="Actions")
-
-			div.card
-				div.card-body
-					img(src="./projects/hamblestone/card-img.png" alt="Hamblestone").card-img-top
-					h5.card-title Hamblestone
-					p.card-text You're looking at it!  Open source, feel free to use it!  Just don't pretend to be me...
-					div.btn-group(role="group" aria-label="Actions")
-						a(href="https://github.com/michael-hamilton/hamblestone").btn.btn-info View Repo
 
 			div.card
 				div.card-body
@@ -73,7 +105,62 @@ block content
 					p.card-text A now old MVP of a realtime presentation application. Tested this at scale with past colleagues!
 					div.btn-group(role="group" aria-label="Actions")
 						a(href="http://www.liveslide.xyz/").btn.btn-secondary Go to LiveSlide
-						a(href="https://github.com/michael-hamilton/liveslide").btn.btn-info View Repo
+
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/mdraw/card-img.png" alt="mDraw").card-img-top
+					h5.card-title mDraw
+					p.card-text Experimenting with Apple Pencil support in Javascript.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/mDraw").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/gameboy/card-img.png" alt="Gameboy").card-img-top
+					h5.card-title Gameboy
+					p.card-text Working on Gameboy emulation in JS. Currently an early WIP.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/gameboy").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/z80/card-img.png" alt="z80").card-img-top
+					h5.card-title JS z80 Emulator
+					p.card-text An early WIP JS emulator to make some use of the z80 kmowledge in my head.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/z80").btn.btn-secondary View Repo
+
+		br
+
+		div.card-group
+			div.card
+				div.card-body
+					img(src="./projects/hue/card-img.png" alt="Hue Local").card-img-top
+					h5.card-title Hue Local
+					p.card-text A basic utility to control Hue lights with node.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/hue_local").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/engine/card-img.png" alt="Engine").card-img-top
+					h5.card-title Game Engine
+					p.card-text A start at a Javascript game engine with Electron.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/Engine").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					canvas(height="500" width="500")#static-anim-canvas.card-img-top
+
+					h5.card-title technical difficulties
+					p.card-text ~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-"*,(/|$-~\?[_`||@`'~)]-::.."[1\.]=+@*!!
+		
+					script.
+						var c=document.getElementById("static-anim-canvas"),ctx=c.getContext("2d");function draw(){for(ctx.clearRect(0,0,c.width,c.height),ctx.fillStyle="#000",i=0;i<3e4;i++)ctx.fillRect(Math.random()*c.height,Math.random()*c.width,3,3);requestAnimationFrame(draw)}draw();
 
 		br
 
@@ -93,15 +180,16 @@ block content
 					h5.card-title SMB 1-1
 					p.card-text A (kinda wonky) recreation of SMB 1-1 using impactJS.  I was new to JS...
 					div.btn-group(role="group" aria-label="Actions")
+						a(href="/projects/smb/index.html").btn.btn-secondary Play Mario
 						a(href="https://github.com/michael-hamilton/smb1").btn.btn-info View Repo
 
 			div.card
 				div.card-body
-					img(src="./projects/churchnativity/card-img.png" alt="churchnativity.com").card-img-top
-					h5.card-title churchnativity.com
-					p.card-text An (award winning) Wordpress site, designed and developed by yours truly.
+					img(src="./projects/hamblestone/card-img.png" alt="Hamblestone").card-img-top
+					h5.card-title Hamblestone
+					p.card-text You're looking at it!  Open source, feel free to use it!  Just don't pretend to be me...
 					div.btn-group(role="group" aria-label="Actions")
-						a(href="https://www.churchnativity.com/").btn.btn-secondary View Site
+						a(href="https://github.com/michael-hamilton/hamblestone").btn.btn-info View Repo
 
 		br
 
@@ -156,7 +244,3 @@ block content
 					img(src="./projects/homebrew-z80/card-img.png" alt="Canvas Gravity Demo").card-img-top
 					h5.card-title Homebrew Z80 Computer 
 					p.card-text A passion project I've been working on here and there over the course of the past decade.  Lots of notes that I am compiling and will share!
-
-		br
-
-		p: small.thin Sorry that there's not much to see here yet, still more to add...
