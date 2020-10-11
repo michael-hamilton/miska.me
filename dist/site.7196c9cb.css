@@ -139,9 +139,6 @@
   font-size: 18px;
   line-height: 24px;
 }
-.card .card-img-top {
-  max-height: 300px;
-}
 .card .btn {
   font-weight: 300;
 }
