@@ -1,0 +1,1 @@
+{"version":3,"sources":["gravity.scss"],"names":[],"mappings":"AAAA,MACE,QAAA,CACA,UAGF,UACE","file":"gravity.b14fdc02.css","sourceRoot":"..","sourcesContent":["*, * * {\n  margin: 0;\n  padding: 0;\n}\n\nhtml, body {\n  overflow: hidden;\n}\n"]}
