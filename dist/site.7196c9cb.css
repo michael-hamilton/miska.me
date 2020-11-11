@@ -1,6 +1,11 @@
+html, body {
+  min-width: 500px;
+}
+
 .header {
-  background: #7cbb9f;
-  background: linear-gradient(0deg, #7cbb9f 0%, #b4ebea 100%);
+  background: #45c4b1;
+  background: linear-gradient(0deg, #45c4b1 33%, #6483e8 100%);
+  background-attachment: fixed;
   padding: 100px;
   margin-bottom: 0;
 }
@@ -57,8 +62,9 @@
   font-weight: 200;
   text-transform: uppercase;
   transition: color 0.125s;
+  user-select: none;
 }
-.main-navigation .nav-item .nav-link:hover {
+.main-navigation .nav-item .nav-link:hover, .main-navigation .nav-item .nav-link:active {
   color: white;
   transition: color 0.125s;
 }
@@ -87,6 +93,7 @@
   font-size: 20px;
   line-height: 32px;
   transition: 0.125s;
+  user-select: none;
 }
 .footer-link-item:hover {
   color: #3f795f;
@@ -100,6 +107,14 @@
 .text-surf:hover {
   color: #3f795f;
   transition: color 0.125s;
+}
+
+.rainbow-hover:hover {
+  text-decoration: none;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .skills-list li {

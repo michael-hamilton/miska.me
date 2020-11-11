@@ -5,13 +5,14 @@ $surf: #7cbb9f;
 $break-small: "576px";
 $break-large: "992px";
 
+html, body {
+	min-width: 500px;
+}
+
 .header {
-	// background-image: url('../images/pumpkins.jpg');
-	// background-size: cover;
-	// background-attachment: scroll;
-	// background-position: top;
-	background: rgb(124,187,159);
-	background: linear-gradient(0deg, rgba(124,187,159,1) 0%, rgba(180,235,234,1) 100%);
+	background: rgb(69, 196, 177);
+	background: linear-gradient(0deg, rgb(69, 196, 177) 33%, rgb(100, 131, 232) 100%);
+	background-attachment: fixed;
 	padding: 100px;
 	margin-bottom: 0;
 
@@ -67,8 +68,9 @@ $break-large: "992px";
 			font-weight: 200;
 			text-transform: uppercase;
 			transition: color 0.125s;
+			user-select: none;
 
-			&:hover {
+			&:hover, &:active {
 				color: white;
 				transition: color 0.125s;
 			}
@@ -98,6 +100,7 @@ $break-large: "992px";
 	font-size: 20px;
 	line-height: 32px;
 	transition: 0.125s;
+	user-select: none;
 
 	&:hover {
 		color: darken($surf, 25%);
@@ -112,6 +115,16 @@ $break-large: "992px";
 	&:hover {
 		color: darken($surf, 25%);
 		transition: color 0.125s;
+	}
+}
+
+.rainbow-hover {
+	&:hover {
+		text-decoration: none;
+		background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
 	}
 }
 
