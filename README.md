@@ -1,12 +1,10 @@
-# hamblestone
+# miska.me
 
-My personal website
-
-## Details
-This site was built from scratch with [Parcel](https://parceljs.org/).
+My personal website.
 
 ## Usage
-To run locally, clone the repo, run `npm install`, then `npm start` to spin up the Parcel server.
+To run locally: clone the repo, run `npm install`, then `npm start` to spin up a development server (likely at http://localhost:1234).
+Alternatively, `npm build` will bundle the site and output into `/dist`.
 
 ## Modifications
 Pages are defined in the `/pages` directory as `.pug` files.  Header, Nav, Footer and global Layout templates exist in `/templates`.  Styles are compiled from site.scss in `/sass`.

@@ -1,11 +1,10 @@
 {
-  "name": "hamblestone",
+  "name": "miska.me",
   "version": "1.0.0",
   "description": "personal website",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel pages/index.pug",
+    "dev": "parcel pages/index.pug",
     "build": "parcel build pages/index.pug"
   },
   "author": "",
