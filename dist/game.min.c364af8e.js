@@ -118,10 +118,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"projects/smb/game.min.js":[function(require,module,exports) {
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 /*! Built with IMPACT - impactjs.com */
 (function (window) {
   "use strict";
@@ -213,7 +209,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       return document.createElement(name);
     },
     copy: function copy(object) {
-      if (!object || _typeof(object) != 'object' || object instanceof HTMLElement || object instanceof ig.Class) {
+      if (!object || typeof object != 'object' || object instanceof HTMLElement || object instanceof ig.Class) {
         return object;
       } else if (object instanceof Array) {
         var c = [];
@@ -237,10 +233,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       for (var key in extended) {
         var ext = extended[key];
 
-        if (_typeof(ext) != 'object' || ext instanceof HTMLElement || ext instanceof ig.Class) {
+        if (typeof ext != 'object' || ext instanceof HTMLElement || ext instanceof ig.Class) {
           original[key] = ext;
         } else {
-          if (!original[key] || _typeof(original[key]) != 'object') {
+          if (!original[key] || typeof original[key] != 'object') {
             original[key] = ext instanceof Array ? [] : {};
           }
 
@@ -251,7 +247,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       return original;
     },
     ksort: function ksort(obj) {
-      if (!obj || _typeof(obj) != 'object') {
+      if (!obj || typeof obj != 'object') {
         return [];
       }
 
@@ -578,7 +574,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         for (var p in this) {
-          if (_typeof(this[p]) == 'object') {
+          if (typeof this[p] == 'object') {
             this[p] = ig.copy(this[p]);
           }
         }
@@ -3029,15 +3025,16 @@ ig.module('game.entities.mario').requires('game.entities.player').defines(functi
 
 ig.baked = true;
 ig.module('game.entities.enemy').requires('impact.entity').defines(function () {
-  EntityEnemy = ig.Entity.extend(_defineProperty({
+  EntityEnemy = ig.Entity.extend({
     type: ig.Entity.TYPE.B,
     checkAgainst: ig.Entity.TYPE.A,
     collides: ig.Entity.COLLIDES.ACTIVE,
     maxVel: {
       x: 500,
       y: 500
-    }
-  }, "type", ig.Entity.TYPE.B));
+    },
+    type: ig.Entity.TYPE.B
+  });
 }); // lib/game/entities/goomba.js
 
 ig.baked = true;
@@ -3856,7 +3853,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58668" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62394" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
