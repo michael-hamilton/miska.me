@@ -1,7 +1,3 @@
-html, body {
-  min-width: 500px;
-}
-
 .header {
   background: #45c4b1;
   background: linear-gradient(0deg, #45c4b1 33%, #6483e8 100%);
