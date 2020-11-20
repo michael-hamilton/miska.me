@@ -117,13 +117,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
+})({"projects/ohessnine/dist/style.a08d0c2a.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
 
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./charcoal.ea853a9f.ttf":[["charcoal.ea853a9f.031b186e.ttf","projects/ohessnine/dist/charcoal.ea853a9f.ttf"],"projects/ohessnine/dist/charcoal.ea853a9f.ttf"],"./garamond.cc51a14e.ttf":[["garamond.cc51a14e.a7756dc5.ttf","projects/ohessnine/dist/garamond.cc51a14e.ttf"],"projects/ohessnine/dist/garamond.cc51a14e.ttf"],"./geneva.f6d9d183.ttf":[["geneva.f6d9d183.31e58d4c.ttf","projects/ohessnine/dist/geneva.f6d9d183.ttf"],"projects/ohessnine/dist/geneva.f6d9d183.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -151,7 +150,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58001" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57119" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -467,4 +466,4 @@ module.exports = function loadJSBundle(bundle) {
 },{}],0:[function(require,module,exports) {
 var b=require("../node_modules/parcel-bundler/src/builtins/bundle-loader.js");b.register("js",require("../node_modules/parcel-bundler/src/builtins/loaders/browser/js-loader.js"));b.load([]);
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js",0], null)
-//# sourceMappingURL=/bootstrap.min.c9ac70f5.js.map
+//# sourceMappingURL=/style.a08d0c2a.1bcfa472.js.map

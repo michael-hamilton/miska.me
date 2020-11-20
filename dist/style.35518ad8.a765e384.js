@@ -117,13 +117,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
+})({"projects/ohessnine/dist/style.35518ad8.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
 
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./charcoal.b6f8acb1.ttf":[["charcoal.b6f8acb1.d507b468.ttf","projects/ohessnine/dist/charcoal.b6f8acb1.ttf"],"projects/ohessnine/dist/charcoal.b6f8acb1.ttf"],"./garamond.804827bb.ttf":[["garamond.804827bb.47387586.ttf","projects/ohessnine/dist/garamond.804827bb.ttf"],"projects/ohessnine/dist/garamond.804827bb.ttf"],"./geneva.78206613.ttf":[["geneva.78206613.3992cf8d.ttf","projects/ohessnine/dist/geneva.78206613.ttf"],"projects/ohessnine/dist/geneva.78206613.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -467,4 +466,4 @@ module.exports = function loadJSBundle(bundle) {
 },{}],0:[function(require,module,exports) {
 var b=require("../node_modules/parcel-bundler/src/builtins/bundle-loader.js");b.register("js",require("../node_modules/parcel-bundler/src/builtins/loaders/browser/js-loader.js"));b.load([]);
 },{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js",0], null)
-//# sourceMappingURL=/bootstrap.min.c9ac70f5.js.map
+//# sourceMappingURL=/style.35518ad8.a765e384.js.map
