@@ -113,6 +113,34 @@ block content
 		div.card-group
 			div.card
 				div.card-body
+					img(src="./projects/klav/card-img.png" alt="klav").card-img-top
+					h5.card-title klav
+					p.card-text Playing around with tone.js
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="/projects/klav/klav.html").btn.btn-secondary Play klav
+						a(href="https://github.com/michael-hamilton/klav").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/z80/card-img.png" alt="z80").card-img-top
+					h5.card-title JS z80 Emulator
+					p.card-text An early WIP JS emulator to make some use of the z80 knowledge in my head.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/z80").btn.btn-info View Repo
+
+			div.card
+				div.card-body
+					img(src="./projects/color-ml/card-img.png" alt="z80").card-img-top
+					h5.card-title color-ML
+					p.card-text Playing around with brain.js - a color guesser.
+					div.btn-group(role="group" aria-label="Actions")
+						a(href="https://github.com/michael-hamilton/color-ML").btn.btn-info View Repo
+
+		br
+
+		div.card-group
+			div.card
+				div.card-body
 					img(src="./projects/mdraw/card-img.png" alt="mDraw").card-img-top
 					h5.card-title mDraw
 					p.card-text Experimenting with Apple Pencil support in Javascript.
@@ -129,39 +157,11 @@ block content
 
 			div.card
 				div.card-body
-					img(src="./projects/z80/card-img.png" alt="z80").card-img-top
-					h5.card-title JS z80 Emulator
-					p.card-text An early WIP JS emulator to make some use of the z80 knowledge in my head.
-					div.btn-group(role="group" aria-label="Actions")
-						a(href="https://github.com/michael-hamilton/z80").btn.btn-info View Repo
-
-		br
-
-		div.card-group
-			div.card
-				div.card-body
-					img(src="./projects/klav/card-img.png" alt="klav").card-img-top
-					h5.card-title klav
-					p.card-text Playing around with tone.js
-					div.btn-group(role="group" aria-label="Actions")
-						a(href="/projects/klav/klav.html").btn.btn-secondary Play klav
-						a(href="https://github.com/michael-hamilton/klav").btn.btn-info View Repo
-
-			div.card
-				div.card-body
 					img(src="./projects/gameboy/card-img.png" alt="Gameboy").card-img-top
 					h5.card-title Gameboy
 					p.card-text Working on Gameboy emulation in JS. Currently an early WIP.
 					div.btn-group(role="group" aria-label="Actions")
 						a(href="https://github.com/michael-hamilton/gameboy").btn.btn-info View Repo
-
-			div.card
-				div.card-body
-					img(src="./projects/color-ml/card-img.png" alt="z80").card-img-top
-					h5.card-title color-ML
-					p.card-text Playing around with brain.js - a color guesser.
-					div.btn-group(role="group" aria-label="Actions")
-						a(href="https://github.com/michael-hamilton/color-ML").btn.btn-info View Repo
 
 		br
 
@@ -190,7 +190,7 @@ block content
 					p.card-text ~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-"*,(/|$-~\?[_`||@`'~)]-::.."[1\.]=+@*!!
 
 					script.
-						var c=document.getElementById("static-anim-canvas"),ctx=c.getContext("2d");function draw(){for(ctx.clearRect(0,0,c.width,c.height),ctx.fillStyle="#000",i=0;i<3e4;i++)ctx.fillRect(Math.random()*c.height,Math.random()*c.width,3,3);requestAnimationFrame(draw)}draw();
+						const c=document.getElementById("static-anim-canvas"),ctx=c.getContext("2d");function draw(){for(ctx.clearRect(0,0,c.width,c.height),ctx.fillStyle="#000",i=0;i<3e4;i++)ctx.fillRect(Math.random()*c.height,Math.random()*c.width,3,3);setTimeout(()=>requestAnimationFrame(draw),30)}draw();
 
 		br
 
