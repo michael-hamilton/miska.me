@@ -5,6 +5,15 @@ $surf: #7cbb9f;
 $break-small: "576px";
 $break-large: "992px";
 
+
+body {
+	background-color: rgb(100, 131, 232);
+
+	.content {
+		background-color: white;
+	}
+}
+
 .header {
 	background: rgb(69, 196, 177);
 	background: linear-gradient(0deg, rgb(69, 196, 177) 33%, rgb(100, 131, 232) 100%);
