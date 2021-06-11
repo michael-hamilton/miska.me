@@ -1,2 +1,130 @@
-<!doctype html><html><head><title>Game of Life</title><style>*,* *{margin:0;padding:0}body,html{overflow:hidden}</style></head><body> <canvas id="canvas" width="640" height="480"></canvas> <script>var define;
-var e;parcelRequire=function(t,n,i,r){var o,f="function"==typeof parcelRequire&&parcelRequire,c="function"==typeof require&&require;function a(e,i){if(!n[e]){if(!t[e]){var r="function"==typeof parcelRequire&&parcelRequire;if(!i&&r)return r(e,!0);if(f)return f(e,!0);if(c&&"string"==typeof e)return c(e);var o=new Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}u.resolve=function(n){return t[e][1][n]||n},u.cache={};var l=n[e]=new a.Module(e);t[e][0].call(l.exports,u,l,l.exports,this)}return n[e].exports;function u(e){return a(u.resolve(e))}}a.isParcelRequire=!0,a.Module=function(e){this.id=e,this.bundle=a,this.exports={}},a.modules=t,a.cache=n,a.parent=f,a.register=function(e,n){t[e]=[function(e,t){t.exports=n},{}]};for(var l=0;l<i.length;l++)try{a(i[l])}catch(t){o||(o=t)}if(i.length){var u=a(i[i.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=u:"function"==typeof e&&e.amd&&e(function(){return u})}if(parcelRequire=a,o)throw o;return a}({AP9e:[function(e,t,n){var i=document.getElementById("canvas"),r=i.getContext("2d"),o=[],f=!1,c=!1,a=!1,l=w=12,u=10,d=0,s=function(){for(var e=0;e<i.height/l;e++){o[e]=[];for(var t=0;t<i.width/w;t++)o[e][t]=0}},h=function(){clearTimeout(a),i.height=window.innerHeight,i.width=window.innerWidth,f=!1,c=!1,d=0,s()};i.addEventListener("mousedown",function(e){var t=Math.floor(e.offsetX/w),n=Math.floor(e.offsetY/l);o[n][t]=o[n][t]?0:1}),window.addEventListener("keydown",function(e){switch(e.code){case"Space":f=!f;break;case"KeyR":h();break;case"ArrowUp":u+=1;break;case"ArrowDown":u-=u>0?1:0}}),window.addEventListener("resize",h),i.height=window.innerHeight,i.width=window.innerWidth,s(),function e(){r.clearRect(0,0,i.width,i.height),o.forEach(function(e,t){e.forEach(function(e,n){r.fillStyle=e?"#0a90ff":"#d7d7d7",r.fillRect(n*w+1,t*l+1,w-1,l-1)})}),r.fillStyle="black",r.font="24px sans-serif",r.fillText("Game of Life",10,20),r.font="14px sans-serif",r.fillText("click cells to toggle on and off",10,45),r.fillText("space to play/pause",10,65),r.fillText("up/down to change delay between generations",10,85),r.fillText("R to reset",10,105),r.fillRect(i.width-200,0,i.width,50),r.fillStyle="white",r.font="18px sans-serif",r.fillText("Generation: ".concat(d),i.width-190,18),r.fillText("Delay: ".concat(u),i.width-190,38),f&&!c&&(c=!0,a=setTimeout(function(){var e,t;c=!1,e=[],t=function(e,t){return o[e]&&o[e][t]},o.forEach(function(n,i){e[i]=[],n.forEach(function(n,r){var o=function(e,n){var i=0;return t(e-1,n-1)&&i++,t(e,n-1)&&i++,t(e+1,n-1)&&i++,t(e-1,n)&&i++,t(e+1,n)&&i++,t(e-1,n+1)&&i++,t(e,n+1)&&i++,t(e+1,n+1)&&i++,i}(i,r);e[i][r]=n?2===o||3===o?1:0:3===o?1:0})}),o=[].concat(e),d++},u)),requestAnimationFrame(e)}()},{}]},{},["AP9e"]);</script> </body></html>
+<!doctype html><html><head><title>Game of Life</title><style>*,* *{margin:0;padding:0}body,html{overflow:hidden}
+</style></head><body> <canvas id="canvas" width="640" height="480"></canvas> <script>var define;
+parcelRequire = function (e, r, t, n) {
+  var i,
+      o = "function" == typeof parcelRequire && parcelRequire,
+      u = "function" == typeof require && require;
+
+  function f(t, n) {
+    if (!r[t]) {
+      if (!e[t]) {
+        var i = "function" == typeof parcelRequire && parcelRequire;
+        if (!n && i) return i(t, !0);
+        if (o) return o(t, !0);
+        if (u && "string" == typeof t) return u(t);
+        var c = new Error("Cannot find module '" + t + "'");
+        throw c.code = "MODULE_NOT_FOUND", c;
+      }
+
+      p.resolve = function (r) {
+        return e[t][1][r] || r;
+      }, p.cache = {};
+      var l = r[t] = new f.Module(t);
+      e[t][0].call(l.exports, p, l, l.exports, this);
+    }
+
+    return r[t].exports;
+
+    function p(e) {
+      return f(p.resolve(e));
+    }
+  }
+
+  f.isParcelRequire = !0, f.Module = function (e) {
+    this.id = e, this.bundle = f, this.exports = {};
+  }, f.modules = e, f.cache = r, f.parent = o, f.register = function (r, t) {
+    e[r] = [function (e, r) {
+      r.exports = t;
+    }, {}];
+  };
+
+  for (var c = 0; c < t.length; c++) try {
+    f(t[c]);
+  } catch (e) {
+    i || (i = e);
+  }
+
+  if (t.length) {
+    var l = f(t[t.length - 1]);
+    "object" == typeof exports && "undefined" != typeof module ? module.exports = l : "function" == typeof define && define.amd ? define(function () {
+      return l;
+    }) : n && (this[n] = l);
+  }
+
+  if (parcelRequire = f, i) throw i;
+  return f;
+}({
+  "AP9e": [function (require, module, exports) {
+    var e = document.getElementById("canvas"),
+        t = e.getContext("2d"),
+        n = [],
+        i = !1,
+        o = !1,
+        f = !1,
+        a = w = 12,
+        c = 10,
+        r = 0,
+        l = function l() {
+      for (var t = 0; t < e.height / a; t++) {
+        n[t] = [];
+
+        for (var i = 0; i < e.width / w; i++) n[t][i] = 0;
+      }
+    },
+        d = function d() {
+      var e = [],
+          t = function t(e, _t) {
+        return n[e] && n[e][_t];
+      };
+
+      n.forEach(function (n, i) {
+        e[i] = [], n.forEach(function (n, o) {
+          var f = function (e, n) {
+            var i = 0;
+            return t(e - 1, n - 1) && i++, t(e, n - 1) && i++, t(e + 1, n - 1) && i++, t(e - 1, n) && i++, t(e + 1, n) && i++, t(e - 1, n + 1) && i++, t(e, n + 1) && i++, t(e + 1, n + 1) && i++, i;
+          }(i, o);
+
+          e[i][o] = n ? 2 === f || 3 === f ? 1 : 0 : 3 === f ? 1 : 0;
+        });
+      }), n = [].concat(e);
+    },
+        h = function h() {
+      t.fillStyle = "black", t.font = "24px sans-serif", t.fillText("Game of Life", 10, 20), t.font = "14px sans-serif", t.fillText("click cells to toggle on and off", 10, 45), t.fillText("space to play/pause", 10, 65), t.fillText("up/down to change delay between generations", 10, 85), t.fillText("R to reset", 10, 105), t.fillRect(e.width - 200, 0, e.width, 50), t.fillStyle = "white", t.font = "18px sans-serif", t.fillText("Generation: ".concat(r), e.width - 190, 18), t.fillText("Delay: ".concat(c), e.width - 190, 38);
+    },
+        s = function l() {
+      t.clearRect(0, 0, e.width, e.height), n.forEach(function (e, n) {
+        e.forEach(function (e, i) {
+          t.fillStyle = e ? "#0a90ff" : "#d7d7d7", t.fillRect(i * w + 1, n * a + 1, w - 1, a - 1);
+        });
+      }), h(), i && !o && (o = !0, f = setTimeout(function () {
+        o = !1, d(), r++;
+      }, c)), requestAnimationFrame(l);
+    },
+        u = function u() {
+      clearTimeout(f), e.height = window.innerHeight, e.width = window.innerWidth, i = !1, o = !1, r = 0, l();
+    };
+
+    e.addEventListener("mousedown", function (e) {
+      var t = Math.floor(e.offsetX / w),
+          i = Math.floor(e.offsetY / a);
+      n[i][t] = n[i][t] ? 0 : 1;
+    }), window.addEventListener("keydown", function (e) {
+      switch (e.code) {
+        case "Space":
+          i = !i;
+          break;
+
+        case "KeyR":
+          u();
+          break;
+
+        case "ArrowUp":
+          c += 1;
+          break;
+
+        case "ArrowDown":
+          c -= c > 0 ? 1 : 0;
+      }
+    }), window.addEventListener("resize", u), e.height = window.innerHeight, e.width = window.innerWidth, l(), s();
+  }, {}]
+}, {}, ["AP9e"], null);</script> </body></html>
