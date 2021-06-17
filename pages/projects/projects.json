@@ -13,7 +13,7 @@
         {
           "title": "View Maestro (App Store)",
           "url": "https://apps.apple.com/us/app/mindpod-mobile/id1486862186",
-          "buttonType": "secondary"
+          "type": "secondary"
         }
       ]
     },
@@ -31,7 +31,7 @@
         {
           "title": "View Site",
           "url": "https://www.churchnativity.com/",
-          "buttonType": "secondary"
+          "type": "secondary"
         }
       ]
     },
@@ -52,7 +52,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/dmxus",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -64,12 +64,12 @@
         {
           "title": "Start Mike OS 9",
           "url": "/projects/ohessnine/dist/index.html",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/OhEssNine",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -81,7 +81,7 @@
         {
           "title": "Start Mike OS 9",
           "url": "http://www.liveslide.xyz/",
-          "buttonType": "secondary"
+          "type": "secondary"
         }
       ]
     },
@@ -93,12 +93,12 @@
         {
           "title": "Play klav",
           "url": "/projects/klav/klav.html",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/klav",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -110,7 +110,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/z80",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -122,7 +122,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/color-ML",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -134,7 +134,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/mDraw",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -146,7 +146,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/vidserve",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -158,7 +158,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/gameboy",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -170,7 +170,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/hue_local",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -182,7 +182,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/Engine",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -199,12 +199,12 @@
         {
           "title": "View Site",
           "url": "http://michael-hamilton.github.io/Quartz/",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/Quartz",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -216,12 +216,12 @@
         {
           "title": "Play Mario",
           "url": "/projects/smb/index.html",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/smb1",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -233,7 +233,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/miska.me",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -245,12 +245,12 @@
         {
           "title": "View Demo",
           "url": "/projects/canvas-gravity-demo/gravity.html",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/canvas-gravity-demo",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -262,7 +262,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/WebVR-Interaction-Demo",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -274,12 +274,12 @@
         {
           "title": "View Demo",
           "url": "/projects/life/life.html",
-          "buttonType": "secondary"
+          "type": "secondary"
         },
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/life",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -291,7 +291,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/socket.io-Presenter-Demo",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -303,7 +303,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/webvrdemo",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     },
@@ -315,7 +315,7 @@
         {
           "title": "View Repo",
           "url": "https://github.com/michael-hamilton/webvrdemo",
-          "buttonType": "info"
+          "type": "info"
         }
       ]
     }

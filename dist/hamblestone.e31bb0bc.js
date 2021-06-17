@@ -1038,7 +1038,329 @@ class Home extends _preact.Component {
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js"}],"pages/work.js":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js"}],"pages/projects/projects.json":[function(require,module,exports) {
+module.exports = {
+  "professional": [{
+    "name": "MindPod Dashboard",
+    "description": "A digital therapy platform built using Electron and Node.js.",
+    "image": "./projects/mindpod-dashboard/card-img.png"
+  }, {
+    "name": "Maestro",
+    "description": "A React Native companion application for the MindPod digital therapeutic platform.",
+    "image": "./projects/maestro/card-img.png",
+    "buttons": [{
+      "title": "View Maestro (App Store)",
+      "url": "https://apps.apple.com/us/app/mindpod-mobile/id1486862186",
+      "type": "secondary"
+    }]
+  }, {
+    "name": "Stepwise",
+    "description": "A React Native MVP app for providing post-stroke patients with personalized resources and exercises.",
+    "notes": "Developed for Johns Hopkins Medical Institue.",
+    "image": "./projects/stepwise/card-img.png"
+  }, {
+    "name": "churchnativity.com",
+    "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
+    "image": "./projects/churchnativity/card-img.png",
+    "buttons": [{
+      "title": "View Site",
+      "url": "https://www.churchnativity.com/",
+      "type": "secondary"
+    }]
+  }, {
+    "name": "Clipboard",
+    "description": "An internal project management tool written entirely in vanilla js. One of my first forays into JS!",
+    "image": "./projects/clipboard/card-img.png"
+  }, {}],
+  "playground": [{
+    "name": "dmxus",
+    "description": "A node package for controlling DMX lighting fixtures with Javascript.",
+    "image": "./projects/dmxus/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/dmxus",
+      "type": "info"
+    }]
+  }, {
+    "name": "OhEssNine",
+    "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
+    "image": "./projects/ohessnine/card-img.png",
+    "buttons": [{
+      "title": "Start Mike OS 9",
+      "url": "/projects/ohessnine/dist/index.html",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/OhEssNine",
+      "type": "info"
+    }]
+  }, {
+    "name": "LiveSlide",
+    "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
+    "image": "./projects/liveslide/card-img.png",
+    "buttons": [{
+      "title": "Start Mike OS 9",
+      "url": "http://www.liveslide.xyz/",
+      "type": "secondary"
+    }]
+  }, {
+    "name": "klav",
+    "description": "Playing around with tone.js",
+    "image": "./projects/klav/card-img.png",
+    "buttons": [{
+      "title": "Play klav",
+      "url": "/projects/klav/klav.html",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/klav",
+      "type": "info"
+    }]
+  }, {
+    "name": "JS z80 Emulator",
+    "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
+    "image": "./projects/z80/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/z80",
+      "type": "info"
+    }]
+  }, {
+    "name": "color-ML",
+    "description": "Playing around with brain.js - a color guesser.",
+    "image": "./projects/color-ml/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/color-ML",
+      "type": "info"
+    }]
+  }, {
+    "name": "mDraw",
+    "description": "Experimenting with Apple Pencil support in Javascript.",
+    "image": "./projects/mdraw/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/mDraw",
+      "type": "info"
+    }]
+  }, {
+    "name": "vidserve",
+    "description": "A server and companion PWA to serve personal media over the web.",
+    "image": "./projects/vidserve/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/vidserve",
+      "type": "info"
+    }]
+  }, {
+    "name": "Gameboy",
+    "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
+    "image": "./projects/gameboy/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/gameboy",
+      "type": "info"
+    }]
+  }, {
+    "name": "Hue Local",
+    "description": "A basic Node.js utility to control Hue lights over a local network.",
+    "image": "./projects/hue/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/hue_local",
+      "type": "info"
+    }]
+  }, {
+    "name": "Game Engine",
+    "description": "A start at a Javascript game engine with Electron.",
+    "image": "./projects/engine/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/Engine",
+      "type": "info"
+    }]
+  }, {
+    "name": "technical difficulties",
+    "description": "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!",
+    "image": null
+  }, {
+    "name": "Quartz",
+    "description": "A super simple library for responsive, front-end development. It's a little outdated.",
+    "image": "./projects/quartz/card-img.png",
+    "buttons": [{
+      "title": "View Site",
+      "url": "http://michael-hamilton.github.io/Quartz/",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/Quartz",
+      "type": "info"
+    }]
+  }, {
+    "name": "SMB 1-1",
+    "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
+    "image": "./projects/smb/card-img.png",
+    "buttons": [{
+      "title": "Play Mario",
+      "url": "/projects/smb/index.html",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/smb1",
+      "type": "info"
+    }]
+  }, {
+    "name": "Portfolio Template",
+    "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
+    "image": "./projects/portfolio-template/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/miska.me",
+      "type": "info"
+    }]
+  }, {
+    "name": "Canvas Gravity Demo",
+    "description": "A simple interactive canvas experiment implementing gravity.",
+    "image": "./projects/canvas-gravity-demo/card-img.png",
+    "buttons": [{
+      "title": "View Demo",
+      "url": "/projects/canvas-gravity-demo/gravity.html",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/canvas-gravity-demo",
+      "type": "info"
+    }]
+  }, {
+    "name": "WebVR Interaction Demo",
+    "description": "A simple experiment with gaze interactions in WebVR.",
+    "image": "./projects/webvr-interaction-demo/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/WebVR-Interaction-Demo",
+      "type": "info"
+    }]
+  }, {
+    "name": "Conway's Game of Life",
+    "description": "An interactive canvas experiment implementing Conway's Game of Life.",
+    "image": "./projects/life/card-img.png",
+    "buttons": [{
+      "title": "View Demo",
+      "url": "/projects/life/life.html",
+      "type": "secondary"
+    }, {
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/life",
+      "type": "info"
+    }]
+  }, {
+    "name": "socket.io Presenter Demo",
+    "description": "Proof of concept for a presentation interface that can update a client in realtime.",
+    "image": "./projects/socketio-presenter-demo/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/socket.io-Presenter-Demo",
+      "type": "info"
+    }]
+  }, {
+    "name": "WebVR Demo",
+    "description": "Baby's first WebVR experience.",
+    "image": "./projects/webvr-demo/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/webvrdemo",
+      "type": "info"
+    }]
+  }, {
+    "name": "Homebrew Z80 Computer",
+    "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
+    "image": "./projects/homebrew-z80/card-img.png",
+    "buttons": [{
+      "title": "View Repo",
+      "url": "https://github.com/michael-hamilton/webvrdemo",
+      "type": "info"
+    }]
+  }]
+};
+},{}],"pages/projects/churchnativity/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.292ca587.png";
+},{}],"pages/projects/clipboard/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.718f4863.png";
+},{}],"pages/projects/canvas-gravity-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.855ecceb.png";
+},{}],"pages/projects/color-ml/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.6f8912ec.png";
+},{}],"pages/projects/dmxus/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.bd6d6992.png";
+},{}],"pages/projects/engine/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.5acd0153.png";
+},{}],"pages/projects/gameboy/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.f928c921.png";
+},{}],"pages/projects/homebrew-z80/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.10079324.png";
+},{}],"pages/projects/hue/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.89e9bc10.png";
+},{}],"pages/projects/klav/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.0b635a91.png";
+},{}],"pages/projects/life/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.56c460c4.png";
+},{}],"pages/projects/liveslide/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.193ed097.png";
+},{}],"pages/projects/maestro/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.a5ef6b4c.png";
+},{}],"pages/projects/mdraw/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.3e4848ac.png";
+},{}],"pages/projects/ohessnine/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.ca993bb4.png";
+},{}],"pages/projects/mindpod-dashboard/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.d11d2f30.png";
+},{}],"pages/projects/portfolio-template/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.3ab375ef.png";
+},{}],"pages/projects/quartz/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.fc0ae657.png";
+},{}],"pages/projects/smb/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.16be2ba0.png";
+},{}],"pages/projects/socketio-presenter-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.64625e9f.png";
+},{}],"pages/projects/stepwise/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.a54f3ad9.png";
+},{}],"pages/projects/vidserve/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.eb54b3d0.png";
+},{}],"pages/projects/webvr-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.21aadd99.png";
+},{}],"pages/projects/z80/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.4a553d2f.png";
+},{}],"pages/projects/webvr-interaction-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.b4e94c91.png";
+},{}],"pages/projects/*/card-img.png":[function(require,module,exports) {
+module.exports = {
+  "churchnativity": require("./../churchnativity/card-img.png"),
+  "clipboard": require("./../clipboard/card-img.png"),
+  "canvas-gravity-demo": require("./../canvas-gravity-demo/card-img.png"),
+  "color-ml": require("./../color-ml/card-img.png"),
+  "dmxus": require("./../dmxus/card-img.png"),
+  "engine": require("./../engine/card-img.png"),
+  "gameboy": require("./../gameboy/card-img.png"),
+  "homebrew-z80": require("./../homebrew-z80/card-img.png"),
+  "hue": require("./../hue/card-img.png"),
+  "klav": require("./../klav/card-img.png"),
+  "life": require("./../life/card-img.png"),
+  "liveslide": require("./../liveslide/card-img.png"),
+  "maestro": require("./../maestro/card-img.png"),
+  "mdraw": require("./../mdraw/card-img.png"),
+  "ohessnine": require("./../ohessnine/card-img.png"),
+  "mindpod-dashboard": require("./../mindpod-dashboard/card-img.png"),
+  "portfolio-template": require("./../portfolio-template/card-img.png"),
+  "quartz": require("./../quartz/card-img.png"),
+  "smb": require("./../smb/card-img.png"),
+  "socketio-presenter-demo": require("./../socketio-presenter-demo/card-img.png"),
+  "stepwise": require("./../stepwise/card-img.png"),
+  "vidserve": require("./../vidserve/card-img.png"),
+  "webvr-demo": require("./../webvr-demo/card-img.png"),
+  "z80": require("./../z80/card-img.png"),
+  "webvr-interaction-demo": require("./../webvr-interaction-demo/card-img.png")
+};
+},{"./../churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./../clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./../canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./../color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./../dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./../engine/card-img.png":"pages/projects/engine/card-img.png","./../gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./../homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png","./../hue/card-img.png":"pages/projects/hue/card-img.png","./../klav/card-img.png":"pages/projects/klav/card-img.png","./../life/card-img.png":"pages/projects/life/card-img.png","./../liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./../maestro/card-img.png":"pages/projects/maestro/card-img.png","./../mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./../ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./../mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./../portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./../quartz/card-img.png":"pages/projects/quartz/card-img.png","./../smb/card-img.png":"pages/projects/smb/card-img.png","./../socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./../stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./../vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./../webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./../z80/card-img.png":"pages/projects/z80/card-img.png","./../webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png"}],"pages/work.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1047,6 +1369,37 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _preact = require("preact");
+
+var projects = _interopRequireWildcard(require("./projects/projects.json"));
+
+var _cardImg = _interopRequireDefault(require("./projects/*/card-img.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Card = props => (0, _preact.h)("div", {
+  className: "card"
+}, (0, _preact.h)("div", {
+  className: "card-body"
+}, (0, _preact.h)("img", {
+  className: "card-img-top",
+  src: props.image,
+  alt: props.title
+}), (0, _preact.h)("h5", {
+  className: "card-title"
+}, props.name), (0, _preact.h)("p", {
+  className: "card-text"
+}, props.description), (0, _preact.h)("div", {
+  className: "btn-group",
+  role: "group",
+  "aria-label": "Actions"
+}, props.buttons ? props.buttons.map(button => (0, _preact.h)("a", {
+  className: "btn btn-".concat(button.type),
+  href: button.url
+}, button.title)) : null)));
 
 class Home extends _preact.Component {
   render() {
@@ -1088,101 +1441,22 @@ class Home extends _preact.Component {
       className: "text-muted"
     }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
       className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/mindpod-dashboard/card-img.png",
-      alt: "MindPod"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "MindPod Dashboard"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A digital therapy platform built using Electron and Node.js."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
+    }, (0, _preact.h)(Card, {
+      name: projects.professional[0].name,
+      description: projects.professional[0].description,
+      image: projects.professional[0].image,
+      buttons: projects.professional[0].buttons
+    }), (0, _preact.h)(Card, {
+      name: projects.professional[1].name,
+      description: projects.professional[1].description,
+      image: projects.professional[1].image,
+      buttons: projects.professional[1].buttons
+    }), (0, _preact.h)(Card, {
+      name: projects.professional[2].name,
+      description: projects.professional[2].description,
+      image: projects.professional[2].image,
+      buttons: projects.professional[2].buttons
     }))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/maestro/card-img.png",
-      alt: "Maestro"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Maestro"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A React Native companion application for the MindPod digital therapeutic platform."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "https://apps.apple.com/us/app/mindpod-mobile/id1486862186"
-    }, "View Maestro (App Store)")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/stepwise/card-img.png",
-      alt: "StepWise"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Stepwise"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A React Native MVP app for providing post-stroke patients with personalized resources and exercises."), (0, _preact.h)("i", {
-      className: "card-text"
-    }, "Developed for Johns Hopkins Medical Institue."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    })))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/churchnativity/card-img.png",
-      alt: "churchnativity.com"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "churchnativity.com"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "An (award winning) Wordpress site, designed and developed by yours truly."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "https://www.churchnativity.com/"
-    }, "View Site")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/clipboard/card-img.png",
-      alt: "Clipboard"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Clipboard"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "An internal project management tool written entirely in vanilla js. One of my first forays into JS!"), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }))), (0, _preact.h)("div", {
-      className: "card d-none d-sm-block"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }))), (0, _preact.h)("br", null)), (0, _preact.h)("div", {
       className: "container text-center content-section"
     }, (0, _preact.h)("h1", {
       className: "display-4"
@@ -1250,370 +1524,14 @@ class Home extends _preact.Component {
     }, (0, _preact.h)("a", {
       className: "btn btn-secondary",
       href: "http://www.liveslide.xyz/"
-    }, "Go to LiveSlide"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/klav/card-img.png",
-      alt: "klav"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "klav"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Playing around with tone.js"), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "/projects/klav/klav.html"
-    }, "Play klav"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/klav"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/z80/card-img.png",
-      alt: "z80"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "JS z80 Emulator"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "An early WIP JS emulator to make some use of the z80 knowledge in my head."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/z80"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/color-ml/card-img.png",
-      alt: "z80"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "color-ML"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Playing around with brain.js - a color guesser."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/color-ML"
-    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/mdraw/card-img.png",
-      alt: "mDraw"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "mDraw"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Experimenting with Apple Pencil support in Javascript."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/mDraw"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/vidserve/card-img.png",
-      alt: "vidserve"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "vidserve"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A server and companion PWA to serve personal media over the web."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/vidserve"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/gameboy/card-img.png",
-      alt: "Gameboy"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Gameboy"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Working on Gameboy emulation in JS. Currently an early WIP."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/gameboy"
-    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/hue/card-img.png",
-      alt: "Hue Local"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Hue Local"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A basic utility to control Hue lights with node."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/hue_local"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/engine/card-img.png",
-      alt: "Engine"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Game Engine"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A start at a Javascript game engine with Electron."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/Engine"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("canvas", {
-      className: "card-img-top",
-      height: "500",
-      width: "500",
-      id: "static-anim-canvas"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "technical difficulties"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!")))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/quartz/card-img.png",
-      alt: "Quartz"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Quartz"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A super simple library for responsive, front-end development. It's a little outdated."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "http://michael-hamilton.github.io/Quartz/"
-    }, "View Site"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/Quartz"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/smb/card-img.png",
-      alt: "SMB1-1"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "SMB 1-1"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A (kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS..."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "/projects/smb/index.html"
-    }, "Play Mario"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/smb1"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/portfolio-template/card-img.png",
-      alt: "Portfolio Template"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Portfolio Template"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me..."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/miska.me"
-    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/canvas-gravity-demo/card-img.png",
-      alt: "Canvas Gravity Demo"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Canvas Gravity Demo"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A simple interactive canvas experiment implementing gravity."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "/projects/canvas-gravity-demo/gravity.html"
-    }, "View Demo"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/canvas-gravity-demo"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/webvr-interaction-demo/card-img.png",
-      alt: "WebVR Interaction Demo"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "WebVR Interaction Demo"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A simple experiment with \"look based\" interactions in WebVR."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/WebVR-Interaction-Demo"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/life/card-img.png",
-      alt: "Conway's Game of Life"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Conway's Game of Life"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "An interactive canvas experiment implementing Conway's Game of Life."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "/projects/life/life.html"
-    }, "Play Life"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/life"
-    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/socketio-presenter-demo/card-img.png",
-      alt: "socket.io Presenter Demo"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "socket.io Presenter Demo"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Proof of concept for a presentation interface that can update a client in realtime."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/socket.io-Presenter-Demo"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/webvr-demo/card-img.png",
-      alt: "WebVR Demo"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "WebVR Demo"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "Baby's first WebVR experience."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/webvrdemo"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/homebrew-z80/card-img.png",
-      alt: "Canvas Gravity Demo"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "Homebrew Z80 Computer"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!"))))));
+    }, "Go to LiveSlide")))))));
   }
 
 }
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js"}],"images/profile.jpg":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects.json":"pages/projects/projects.json","./projects/*/card-img.png":"pages/projects/*/card-img.png"}],"images/profile.jpg":[function(require,module,exports) {
 module.exports = "/profile.84faa513.jpg";
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -1749,7 +1667,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64997" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50148" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
