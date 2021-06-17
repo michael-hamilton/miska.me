@@ -1282,12 +1282,12 @@ module.exports = {
     }]
   }]
 };
+},{}],"pages/projects/canvas-gravity-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.855ecceb.png";
 },{}],"pages/projects/churchnativity/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.292ca587.png";
 },{}],"pages/projects/clipboard/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.718f4863.png";
-},{}],"pages/projects/canvas-gravity-demo/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.855ecceb.png";
 },{}],"pages/projects/color-ml/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.6f8912ec.png";
 },{}],"pages/projects/dmxus/card-img.png":[function(require,module,exports) {
@@ -1310,16 +1310,16 @@ module.exports = "/card-img.193ed097.png";
 module.exports = "/card-img.a5ef6b4c.png";
 },{}],"pages/projects/mdraw/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.3e4848ac.png";
-},{}],"pages/projects/ohessnine/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.ca993bb4.png";
 },{}],"pages/projects/mindpod-dashboard/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.d11d2f30.png";
+},{}],"pages/projects/ohessnine/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.ca993bb4.png";
 },{}],"pages/projects/portfolio-template/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.3ab375ef.png";
-},{}],"pages/projects/quartz/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.fc0ae657.png";
 },{}],"pages/projects/smb/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.16be2ba0.png";
+},{}],"pages/projects/quartz/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.fc0ae657.png";
 },{}],"pages/projects/socketio-presenter-demo/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.64625e9f.png";
 },{}],"pages/projects/stepwise/card-img.png":[function(require,module,exports) {
@@ -1328,15 +1328,15 @@ module.exports = "/card-img.a54f3ad9.png";
 module.exports = "/card-img.eb54b3d0.png";
 },{}],"pages/projects/webvr-demo/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.21aadd99.png";
-},{}],"pages/projects/z80/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.4a553d2f.png";
 },{}],"pages/projects/webvr-interaction-demo/card-img.png":[function(require,module,exports) {
 module.exports = "/card-img.b4e94c91.png";
+},{}],"pages/projects/z80/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.4a553d2f.png";
 },{}],"pages/projects/*/card-img.png":[function(require,module,exports) {
 module.exports = {
+  "canvas-gravity-demo": require("./../canvas-gravity-demo/card-img.png"),
   "churchnativity": require("./../churchnativity/card-img.png"),
   "clipboard": require("./../clipboard/card-img.png"),
-  "canvas-gravity-demo": require("./../canvas-gravity-demo/card-img.png"),
   "color-ml": require("./../color-ml/card-img.png"),
   "dmxus": require("./../dmxus/card-img.png"),
   "engine": require("./../engine/card-img.png"),
@@ -1348,19 +1348,19 @@ module.exports = {
   "liveslide": require("./../liveslide/card-img.png"),
   "maestro": require("./../maestro/card-img.png"),
   "mdraw": require("./../mdraw/card-img.png"),
-  "ohessnine": require("./../ohessnine/card-img.png"),
   "mindpod-dashboard": require("./../mindpod-dashboard/card-img.png"),
+  "ohessnine": require("./../ohessnine/card-img.png"),
   "portfolio-template": require("./../portfolio-template/card-img.png"),
-  "quartz": require("./../quartz/card-img.png"),
   "smb": require("./../smb/card-img.png"),
+  "quartz": require("./../quartz/card-img.png"),
   "socketio-presenter-demo": require("./../socketio-presenter-demo/card-img.png"),
   "stepwise": require("./../stepwise/card-img.png"),
   "vidserve": require("./../vidserve/card-img.png"),
   "webvr-demo": require("./../webvr-demo/card-img.png"),
-  "z80": require("./../z80/card-img.png"),
-  "webvr-interaction-demo": require("./../webvr-interaction-demo/card-img.png")
+  "webvr-interaction-demo": require("./../webvr-interaction-demo/card-img.png"),
+  "z80": require("./../z80/card-img.png")
 };
-},{"./../churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./../clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./../canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./../color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./../dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./../engine/card-img.png":"pages/projects/engine/card-img.png","./../gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./../homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png","./../hue/card-img.png":"pages/projects/hue/card-img.png","./../klav/card-img.png":"pages/projects/klav/card-img.png","./../life/card-img.png":"pages/projects/life/card-img.png","./../liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./../maestro/card-img.png":"pages/projects/maestro/card-img.png","./../mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./../ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./../mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./../portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./../quartz/card-img.png":"pages/projects/quartz/card-img.png","./../smb/card-img.png":"pages/projects/smb/card-img.png","./../socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./../stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./../vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./../webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./../z80/card-img.png":"pages/projects/z80/card-img.png","./../webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png"}],"pages/work.js":[function(require,module,exports) {
+},{"./../canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./../churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./../clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./../color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./../dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./../engine/card-img.png":"pages/projects/engine/card-img.png","./../gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./../homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png","./../hue/card-img.png":"pages/projects/hue/card-img.png","./../klav/card-img.png":"pages/projects/klav/card-img.png","./../life/card-img.png":"pages/projects/life/card-img.png","./../liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./../maestro/card-img.png":"pages/projects/maestro/card-img.png","./../mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./../mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./../ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./../portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./../smb/card-img.png":"pages/projects/smb/card-img.png","./../quartz/card-img.png":"pages/projects/quartz/card-img.png","./../socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./../stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./../vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./../webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./../webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./../z80/card-img.png":"pages/projects/z80/card-img.png"}],"pages/work.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1372,9 +1372,7 @@ var _preact = require("preact");
 
 var projects = _interopRequireWildcard(require("./projects/projects.json"));
 
-var _cardImg = _interopRequireDefault(require("./projects/*/card-img.png"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var images = _interopRequireWildcard(require("./projects/*/card-img.png"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -1400,6 +1398,17 @@ const Card = props => (0, _preact.h)("div", {
   className: "btn btn-".concat(button.type),
   href: button.url
 }, button.title)) : null)));
+
+const renderCardsGrid = cards => {
+  return cards.map((project, index) => {
+    return (0, _preact.h)(Card, {
+      name: project.name,
+      description: project.description,
+      image: project.image,
+      buttons: project.buttons
+    });
+  });
+};
 
 class Home extends _preact.Component {
   render() {
@@ -1439,92 +1448,13 @@ class Home extends _preact.Component {
       className: "display-4"
     }, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)(Card, {
-      name: projects.professional[0].name,
-      description: projects.professional[0].description,
-      image: projects.professional[0].image,
-      buttons: projects.professional[0].buttons
-    }), (0, _preact.h)(Card, {
-      name: projects.professional[1].name,
-      description: projects.professional[1].description,
-      image: projects.professional[1].image,
-      buttons: projects.professional[1].buttons
-    }), (0, _preact.h)(Card, {
-      name: projects.professional[2].name,
-      description: projects.professional[2].description,
-      image: projects.professional[2].image,
-      buttons: projects.professional[2].buttons
-    }))), (0, _preact.h)("div", {
+    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), renderCardsGrid(projects.professional)), (0, _preact.h)("div", {
       className: "container text-center content-section"
     }, (0, _preact.h)("h1", {
       className: "display-4"
     }, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
-      className: "card-group"
-    }, (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/dmxus/card-img.png",
-      alt: "dmxus"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "dmxus"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A node package for controlling DMX lighting fixtures with Javascript."), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/dmxus"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/ohessnine/card-img.png",
-      alt: "OhEssNine"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "OhEssNine"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A Mac OS9 clone made with React. (WIP for my new personal website)"), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "/projects/ohessnine/dist/index.html"
-    }, "Start Mike OS 9"), (0, _preact.h)("a", {
-      className: "btn btn-info",
-      href: "https://github.com/michael-hamilton/OhEssNine"
-    }, "View Repo")))), (0, _preact.h)("div", {
-      className: "card"
-    }, (0, _preact.h)("div", {
-      className: "card-body"
-    }, (0, _preact.h)("img", {
-      className: "card-img-top",
-      src: "./projects/liveslide/card-img.png",
-      alt: "LiveSlide"
-    }), (0, _preact.h)("h5", {
-      className: "card-title"
-    }, "LiveSlide"), (0, _preact.h)("p", {
-      className: "card-text"
-    }, "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!"), (0, _preact.h)("div", {
-      className: "btn-group",
-      role: "group",
-      "aria-label": "Actions"
-    }, (0, _preact.h)("a", {
-      className: "btn btn-secondary",
-      href: "http://www.liveslide.xyz/"
-    }, "Go to LiveSlide")))))));
+    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), renderCardsGrid(projects.playground)));
   }
 
 }
@@ -1667,7 +1597,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50148" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56420" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
