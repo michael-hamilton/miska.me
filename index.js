@@ -1,5 +1,10 @@
 import { h, render, Component } from 'preact';
+import Router from 'preact-router';
+import {Link} from 'preact-router/match';
+import Home from './pages/home';
+import Work from './pages/work';
 import img from './images/profile.jpg';
+
 
 class App extends Component {
   render() {
@@ -13,7 +18,7 @@ class App extends Component {
         <nav className="navbar navbar-light navbar-expand-lg justify-content-space-between main-navigation">
           <div className="col-4">
             <ul className="navbar-nav d-flex justify-content-around">
-              <li className="nav-item"><a className="nav-link text-center" href="/">About</a></li>
+              <li className="nav-item"><Link className="nav-link text-center" href="/" activeClassName={'active'}>About</Link></li>
             </ul>
           </div>
           <div className="col-4">
@@ -22,20 +27,16 @@ class App extends Component {
           </div>
           <div className="col-4">
             <ul className="navbar-nav d-flex justify-content-around">
-              <li className="nav-item"><a className="nav-link text-center" href="/work.pug">Work</a></li>
+              <li className="nav-item"><Link className="nav-link text-center" href="/work" activeClassName={'active'}>Work</Link></li>
             </ul>
           </div>
         </nav>
 
         <div className={'main-content-wrapper'}>
-          <div className={'container text-center'}>
-            <h1 className={'display-4'}>Hey!</h1>
-            <hr />
-            <p className={'text-muted'}>I'm Mike, a software engineer based in Baltimore, MD, USA.</p>
-            <p className={'text-muted'}>I'm a blank slate maker; I love bringing ideas to life.</p>
-            <p className={'text-muted'}>I'm much more than an engineer though, and I'd love if you got to know me.</p>
-            <p className={'text-muted'}>If you'd like to speak to me about software, music, computers, or something else, <a href="mailto:michaelhamilton626+hamblestone@gmail.com" class="text-surf">drop me a line</a>!</p>
-          </div>
+          <Router>
+            <Home path={'/'} />
+            <Work path={'/work'} />
+          </Router>
         </div>
 
         <div className="footer container border-top mt-5">
@@ -65,10 +66,9 @@ class App extends Component {
           </div>
         </div>
       </div>
-
-
-  );
+    );
   }
 }
+
 
 render(<App />, document.body);

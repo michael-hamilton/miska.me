@@ -506,12 +506,1127 @@ exports.options = n = {
 }, p.prototype.forceUpdate = function (n) {
   this.__v && (this.__e = !0, n && this.__h.push(n), k(this));
 }, p.prototype.render = y, u = [], i = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, b.__r = 0, o = 0;
-},{}],"images/profile.jpg":[function(require,module,exports) {
+},{}],"node_modules/preact-router/dist/preact-router.es.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getCurrentUrl = getCurrentUrl;
+exports.route = route;
+exports.exec = exec;
+exports.default = exports.Link = exports.Route = exports.Router = exports.subscribers = void 0;
+
+var _preact = require("preact");
+
+var EMPTY$1 = {};
+
+function assign(obj, props) {
+  // eslint-disable-next-line guard-for-in
+  for (var i in props) {
+    obj[i] = props[i];
+  }
+
+  return obj;
+}
+
+function exec(url, route, opts) {
+  var reg = /(?:\?([^#]*))?(#.*)?$/,
+      c = url.match(reg),
+      matches = {},
+      ret;
+
+  if (c && c[1]) {
+    var p = c[1].split('&');
+
+    for (var i = 0; i < p.length; i++) {
+      var r = p[i].split('=');
+      matches[decodeURIComponent(r[0])] = decodeURIComponent(r.slice(1).join('='));
+    }
+  }
+
+  url = segmentize(url.replace(reg, ''));
+  route = segmentize(route || '');
+  var max = Math.max(url.length, route.length);
+
+  for (var i$1 = 0; i$1 < max; i$1++) {
+    if (route[i$1] && route[i$1].charAt(0) === ':') {
+      var param = route[i$1].replace(/(^:|[+*?]+$)/g, ''),
+          flags = (route[i$1].match(/[+*?]+$/) || EMPTY$1)[0] || '',
+          plus = ~flags.indexOf('+'),
+          star = ~flags.indexOf('*'),
+          val = url[i$1] || '';
+
+      if (!val && !star && (flags.indexOf('?') < 0 || plus)) {
+        ret = false;
+        break;
+      }
+
+      matches[param] = decodeURIComponent(val);
+
+      if (plus || star) {
+        matches[param] = url.slice(i$1).map(decodeURIComponent).join('/');
+        break;
+      }
+    } else if (route[i$1] !== url[i$1]) {
+      ret = false;
+      break;
+    }
+  }
+
+  if (opts.default !== true && ret === false) {
+    return false;
+  }
+
+  return matches;
+}
+
+function pathRankSort(a, b) {
+  return a.rank < b.rank ? 1 : a.rank > b.rank ? -1 : a.index - b.index;
+} // filter out VNodes without attributes (which are unrankeable), and add `index`/`rank` properties to be used in sorting.
+
+
+function prepareVNodeForRanking(vnode, index) {
+  vnode.index = index;
+  vnode.rank = rankChild(vnode);
+  return vnode.props;
+}
+
+function segmentize(url) {
+  return url.replace(/(^\/+|\/+$)/g, '').split('/');
+}
+
+function rankSegment(segment) {
+  return segment.charAt(0) == ':' ? 1 + '*+?'.indexOf(segment.charAt(segment.length - 1)) || 4 : 5;
+}
+
+function rank(path) {
+  return segmentize(path).map(rankSegment).join('');
+}
+
+function rankChild(vnode) {
+  return vnode.props.default ? 0 : rank(vnode.props.path);
+}
+
+var customHistory = null;
+var ROUTERS = [];
+var subscribers = [];
+exports.subscribers = subscribers;
+var EMPTY = {};
+
+function setUrl(url, type) {
+  if (type === void 0) type = 'push';
+
+  if (customHistory && customHistory[type]) {
+    customHistory[type](url);
+  } else if (typeof history !== 'undefined' && history[type + 'State']) {
+    history[type + 'State'](null, null, url);
+  }
+}
+
+function getCurrentUrl() {
+  var url;
+
+  if (customHistory && customHistory.location) {
+    url = customHistory.location;
+  } else if (customHistory && customHistory.getCurrentLocation) {
+    url = customHistory.getCurrentLocation();
+  } else {
+    url = typeof location !== 'undefined' ? location : EMPTY;
+  }
+
+  return "" + (url.pathname || '') + (url.search || '');
+}
+
+function route(url, replace) {
+  if (replace === void 0) replace = false;
+
+  if (typeof url !== 'string' && url.url) {
+    replace = url.replace;
+    url = url.url;
+  } // only push URL into history if we can handle it
+
+
+  if (canRoute(url)) {
+    setUrl(url, replace ? 'replace' : 'push');
+  }
+
+  return routeTo(url);
+}
+/** Check if the given URL can be handled by any router instances. */
+
+
+function canRoute(url) {
+  for (var i = ROUTERS.length; i--;) {
+    if (ROUTERS[i].canRoute(url)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+/** Tell all router instances to handle the given URL.  */
+
+
+function routeTo(url) {
+  var didRoute = false;
+
+  for (var i = 0; i < ROUTERS.length; i++) {
+    if (ROUTERS[i].routeTo(url) === true) {
+      didRoute = true;
+    }
+  }
+
+  for (var i$1 = subscribers.length; i$1--;) {
+    subscribers[i$1](url);
+  }
+
+  return didRoute;
+}
+
+function routeFromLink(node) {
+  // only valid elements
+  if (!node || !node.getAttribute) {
+    return;
+  }
+
+  var href = node.getAttribute('href'),
+      target = node.getAttribute('target'); // ignore links with targets and non-path URLs
+
+  if (!href || !href.match(/^\//g) || target && !target.match(/^_?self$/i)) {
+    return;
+  } // attempt to route, if no match simply cede control to browser
+
+
+  return route(href);
+}
+
+function handleLinkClick(e) {
+  if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || e.button !== 0) {
+    return;
+  }
+
+  routeFromLink(e.currentTarget || e.target || this);
+  return prevent(e);
+}
+
+function prevent(e) {
+  if (e) {
+    if (e.stopImmediatePropagation) {
+      e.stopImmediatePropagation();
+    }
+
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    }
+
+    e.preventDefault();
+  }
+
+  return false;
+}
+
+function delegateLinkHandler(e) {
+  // ignore events the browser takes care of already:
+  if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || e.button !== 0) {
+    return;
+  }
+
+  var t = e.target;
+
+  do {
+    if (String(t.nodeName).toUpperCase() === 'A' && t.getAttribute('href')) {
+      if (t.hasAttribute('native')) {
+        return;
+      } // if link is handled by the router, prevent browser defaults
+
+
+      if (routeFromLink(t)) {
+        return prevent(e);
+      }
+    }
+  } while (t = t.parentNode);
+}
+
+var eventListenersInitialized = false;
+
+function initEventListeners() {
+  if (eventListenersInitialized) {
+    return;
+  }
+
+  if (typeof addEventListener === 'function') {
+    if (!customHistory) {
+      addEventListener('popstate', function () {
+        routeTo(getCurrentUrl());
+      });
+    }
+
+    addEventListener('click', delegateLinkHandler);
+  }
+
+  eventListenersInitialized = true;
+}
+
+var Router = function (Component$$1) {
+  function Router(props) {
+    Component$$1.call(this, props);
+
+    if (props.history) {
+      customHistory = props.history;
+    }
+
+    this.state = {
+      url: props.url || getCurrentUrl()
+    };
+    initEventListeners();
+  }
+
+  if (Component$$1) Router.__proto__ = Component$$1;
+  Router.prototype = Object.create(Component$$1 && Component$$1.prototype);
+  Router.prototype.constructor = Router;
+
+  Router.prototype.shouldComponentUpdate = function shouldComponentUpdate(props) {
+    if (props.static !== true) {
+      return true;
+    }
+
+    return props.url !== this.props.url || props.onChange !== this.props.onChange;
+  };
+  /** Check if the given URL can be matched against any children */
+
+
+  Router.prototype.canRoute = function canRoute(url) {
+    var children = (0, _preact.toChildArray)(this.props.children);
+    return this.getMatchingChildren(children, url, false).length > 0;
+  };
+  /** Re-render children with a new URL to match against. */
+
+
+  Router.prototype.routeTo = function routeTo(url) {
+    this.setState({
+      url: url
+    });
+    var didRoute = this.canRoute(url); // trigger a manual re-route if we're not in the middle of an update:
+
+    if (!this.updating) {
+      this.forceUpdate();
+    }
+
+    return didRoute;
+  };
+
+  Router.prototype.componentWillMount = function componentWillMount() {
+    ROUTERS.push(this);
+    this.updating = true;
+  };
+
+  Router.prototype.componentDidMount = function componentDidMount() {
+    var this$1 = this;
+
+    if (customHistory) {
+      this.unlisten = customHistory.listen(function (location) {
+        this$1.routeTo("" + (location.pathname || '') + (location.search || ''));
+      });
+    }
+
+    this.updating = false;
+  };
+
+  Router.prototype.componentWillUnmount = function componentWillUnmount() {
+    if (typeof this.unlisten === 'function') {
+      this.unlisten();
+    }
+
+    ROUTERS.splice(ROUTERS.indexOf(this), 1);
+  };
+
+  Router.prototype.componentWillUpdate = function componentWillUpdate() {
+    this.updating = true;
+  };
+
+  Router.prototype.componentDidUpdate = function componentDidUpdate() {
+    this.updating = false;
+  };
+
+  Router.prototype.getMatchingChildren = function getMatchingChildren(children, url, invoke) {
+    return children.filter(prepareVNodeForRanking).sort(pathRankSort).map(function (vnode) {
+      var matches = exec(url, vnode.props.path, vnode.props);
+
+      if (matches) {
+        if (invoke !== false) {
+          var newProps = {
+            url: url,
+            matches: matches
+          };
+          assign(newProps, matches);
+          delete newProps.ref;
+          delete newProps.key;
+          return (0, _preact.cloneElement)(vnode, newProps);
+        }
+
+        return vnode;
+      }
+    }).filter(Boolean);
+  };
+
+  Router.prototype.render = function render(ref, ref$1) {
+    var children = ref.children;
+    var onChange = ref.onChange;
+    var url = ref$1.url;
+    var active = this.getMatchingChildren((0, _preact.toChildArray)(children), url, true);
+    var current = active[0] || null;
+    var previous = this.previousUrl;
+
+    if (url !== previous) {
+      this.previousUrl = url;
+
+      if (typeof onChange === 'function') {
+        onChange({
+          router: this,
+          url: url,
+          previous: previous,
+          active: active,
+          current: current
+        });
+      }
+    }
+
+    return current;
+  };
+
+  return Router;
+}(_preact.Component);
+
+exports.Router = Router;
+
+var Link = function (props) {
+  return (0, _preact.createElement)('a', assign({
+    onClick: handleLinkClick
+  }, props));
+};
+
+exports.Link = Link;
+
+var Route = function (props) {
+  return (0, _preact.createElement)(props.component, props);
+};
+
+exports.Route = Route;
+Router.subscribers = subscribers;
+Router.getCurrentUrl = getCurrentUrl;
+Router.route = route;
+Router.Router = Router;
+Router.Route = Route;
+Router.Link = Link;
+Router.exec = exec;
+var _default = Router;
+exports.default = _default;
+},{"preact":"node_modules/preact/dist/preact.module.js"}],"node_modules/preact-router/match.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Link = exports.Match = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _preact = require('preact');
+
+var _preactRouter = require('preact-router');
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Match = exports.Match = function (_Component) {
+	_inherits(Match, _Component);
+
+	function Match() {
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, Match);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.update = function (url) {
+			_this.nextUrl = url;
+			_this.setState({});
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	Match.prototype.componentDidMount = function componentDidMount() {
+		_preactRouter.subscribers.push(this.update);
+	};
+
+	Match.prototype.componentWillUnmount = function componentWillUnmount() {
+		_preactRouter.subscribers.splice(_preactRouter.subscribers.indexOf(this.update) >>> 0, 1);
+	};
+
+	Match.prototype.render = function render(props) {
+		var url = this.nextUrl || (0, _preactRouter.getCurrentUrl)(),
+		    path = url.replace(/\?.+$/, '');
+		this.nextUrl = null;
+		return props.children({
+			url: url,
+			path: path,
+			matches: (0, _preactRouter.exec)(path, props.path, {}) !== false
+		});
+	};
+
+	return Match;
+}(_preact.Component);
+
+var Link = function Link(_ref) {
+	var activeClassName = _ref.activeClassName,
+	    path = _ref.path,
+	    props = _objectWithoutProperties(_ref, ['activeClassName', 'path']);
+
+	return (0, _preact.h)(
+		Match,
+		{ path: path || props.href },
+		function (_ref2) {
+			var matches = _ref2.matches;
+			return (0, _preact.h)(_preactRouter.Link, _extends({}, props, { 'class': [props.class || props.className, matches && activeClassName].filter(Boolean).join(' ') }));
+		}
+	);
+};
+
+exports.Link = Link;
+exports.default = Match;
+
+Match.Link = Link;
+
+},{"preact":"node_modules/preact/dist/preact.module.js","preact-router":"node_modules/preact-router/dist/preact-router.es.js"}],"pages/home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _preact = require("preact");
+
+class Home extends _preact.Component {
+  render() {
+    return (0, _preact.h)("div", {
+      className: 'container text-center'
+    }, (0, _preact.h)("h1", {
+      className: 'display-4'
+    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
+      className: 'text-muted'
+    }, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", {
+      className: 'text-muted'
+    }, "I'm a blank slate maker; I love bringing ideas to life."), (0, _preact.h)("p", {
+      className: 'text-muted'
+    }, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", {
+      className: 'text-muted'
+    }, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
+      href: "mailto:michaelhamilton626+hamblestone@gmail.com",
+      className: "text-surf"
+    }, "drop me a line"), "!"));
+  }
+
+}
+
+var _default = Home;
+exports.default = _default;
+},{"preact":"node_modules/preact/dist/preact.module.js"}],"pages/work.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _preact = require("preact");
+
+class Home extends _preact.Component {
+  render() {
+    // const c = document.getElementById("static-anim-canvas"),
+    //   ctx = c.getContext("2d");
+    //
+    // function draw() {
+    //   for (ctx.clearRect(0, 0, c.width, c.height), ctx.fillStyle = "#000", i = 0; i < 3e4; i++) ctx.fillRect(Math.random() * c.height, Math.random() * c.width, 3, 3);
+    //   setTimeout(() => requestAnimationFrame(draw), 30)
+    // }
+    // draw();
+    return (0, _preact.h)("div", null, (0, _preact.h)("div", {
+      className: "container text-center content-section"
+    }, (0, _preact.h)("h1", {
+      className: "display-4"
+    }, "Work"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "I have worked in some professional capacity as a programmer since 2010. While I've touched many sorts of tech during my career, my interest and focus has been with web technologies. Presently, I am a software engineer at ", (0, _preact.h)("a", {
+      href: "https://msquarehealthcare.com/",
+      className: "text-surf"
+    }, "MSquare Healthcare"), " in Baltimore, MD (USA) where we develop a world class digital therapy video game. My specific focus here is on engineering tools which enable effective delivery of this novel therapy using both hardware and software to encourage patients and therapists alike to make the most of the platform. I am also a collaborator with the ", (0, _preact.h)("a", {
+      href: "https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html",
+      className: "text-surf"
+    }, "Kata Design Studio"), " at Johns Hopkins Medical Institue where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences."), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "My career history is diverse working with both commercial and non-profit organizations, and also independently as a freelancer. My various roles have given me unique professional opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments (my particular expertise is in stage lighting). I've also some professional experience working in music, IT, large event coordination, and building design/construction projects."), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it. My passion for the web and it's tech can without a doubt can be attributed to growing up on dial-up, writing CSS for my Myspace page, and finding new ways to connect online. When it comes to software engineering I'm relatively technology agnostic, though most of my expertise is related to web technologies. I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node. Of course, I've also got strong web fundamentals with HTML, and CSS."), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "See my ", (0, _preact.h)("a", {
+      href: "../files/resume.pdf",
+      className: "text-surf",
+      native: true
+    }, "resum\xE9"), " if you want to know more.")), (0, _preact.h)("div", {
+      className: "container text-center content-section"
+    }, (0, _preact.h)("h1", {
+      className: "display-4"
+    }, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/mindpod-dashboard/card-img.png",
+      alt: "MindPod"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "MindPod Dashboard"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A digital therapy platform built using Electron and Node.js."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/maestro/card-img.png",
+      alt: "Maestro"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Maestro"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A React Native companion application for the MindPod digital therapeutic platform."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "https://apps.apple.com/us/app/mindpod-mobile/id1486862186"
+    }, "View Maestro (App Store)")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/stepwise/card-img.png",
+      alt: "StepWise"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Stepwise"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A React Native MVP app for providing post-stroke patients with personalized resources and exercises."), (0, _preact.h)("i", {
+      className: "card-text"
+    }, "Developed for Johns Hopkins Medical Institue."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    })))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/churchnativity/card-img.png",
+      alt: "churchnativity.com"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "churchnativity.com"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "An (award winning) Wordpress site, designed and developed by yours truly."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "https://www.churchnativity.com/"
+    }, "View Site")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/clipboard/card-img.png",
+      alt: "Clipboard"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Clipboard"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "An internal project management tool written entirely in vanilla js. One of my first forays into JS!"), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }))), (0, _preact.h)("div", {
+      className: "card d-none d-sm-block"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }))), (0, _preact.h)("br", null)), (0, _preact.h)("div", {
+      className: "container text-center content-section"
+    }, (0, _preact.h)("h1", {
+      className: "display-4"
+    }, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
+      className: "text-muted"
+    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/dmxus/card-img.png",
+      alt: "dmxus"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "dmxus"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A node package for controlling DMX lighting fixtures with Javascript."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/dmxus"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/ohessnine/card-img.png",
+      alt: "OhEssNine"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "OhEssNine"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A Mac OS9 clone made with React. (WIP for my new personal website)"), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "/projects/ohessnine/dist/index.html"
+    }, "Start Mike OS 9"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/OhEssNine"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/liveslide/card-img.png",
+      alt: "LiveSlide"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "LiveSlide"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!"), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "http://www.liveslide.xyz/"
+    }, "Go to LiveSlide"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/klav/card-img.png",
+      alt: "klav"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "klav"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Playing around with tone.js"), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "/projects/klav/klav.html"
+    }, "Play klav"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/klav"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/z80/card-img.png",
+      alt: "z80"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "JS z80 Emulator"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "An early WIP JS emulator to make some use of the z80 knowledge in my head."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/z80"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/color-ml/card-img.png",
+      alt: "z80"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "color-ML"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Playing around with brain.js - a color guesser."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/color-ML"
+    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/mdraw/card-img.png",
+      alt: "mDraw"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "mDraw"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Experimenting with Apple Pencil support in Javascript."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/mDraw"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/vidserve/card-img.png",
+      alt: "vidserve"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "vidserve"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A server and companion PWA to serve personal media over the web."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/vidserve"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/gameboy/card-img.png",
+      alt: "Gameboy"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Gameboy"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Working on Gameboy emulation in JS. Currently an early WIP."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/gameboy"
+    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/hue/card-img.png",
+      alt: "Hue Local"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Hue Local"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A basic utility to control Hue lights with node."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/hue_local"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/engine/card-img.png",
+      alt: "Engine"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Game Engine"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A start at a Javascript game engine with Electron."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/Engine"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("canvas", {
+      className: "card-img-top",
+      height: "500",
+      width: "500",
+      id: "static-anim-canvas"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "technical difficulties"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!")))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/quartz/card-img.png",
+      alt: "Quartz"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Quartz"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A super simple library for responsive, front-end development. It's a little outdated."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "http://michael-hamilton.github.io/Quartz/"
+    }, "View Site"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/Quartz"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/smb/card-img.png",
+      alt: "SMB1-1"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "SMB 1-1"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A (kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS..."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "/projects/smb/index.html"
+    }, "Play Mario"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/smb1"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/portfolio-template/card-img.png",
+      alt: "Portfolio Template"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Portfolio Template"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me..."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/miska.me"
+    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/canvas-gravity-demo/card-img.png",
+      alt: "Canvas Gravity Demo"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Canvas Gravity Demo"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A simple interactive canvas experiment implementing gravity."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "/projects/canvas-gravity-demo/gravity.html"
+    }, "View Demo"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/canvas-gravity-demo"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/webvr-interaction-demo/card-img.png",
+      alt: "WebVR Interaction Demo"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "WebVR Interaction Demo"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A simple experiment with \"look based\" interactions in WebVR."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/WebVR-Interaction-Demo"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/life/card-img.png",
+      alt: "Conway's Game of Life"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Conway's Game of Life"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "An interactive canvas experiment implementing Conway's Game of Life."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-secondary",
+      href: "/projects/life/life.html"
+    }, "Play Life"), (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/life"
+    }, "View Repo"))))), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-group"
+    }, (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/socketio-presenter-demo/card-img.png",
+      alt: "socket.io Presenter Demo"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "socket.io Presenter Demo"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Proof of concept for a presentation interface that can update a client in realtime."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/socket.io-Presenter-Demo"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/webvr-demo/card-img.png",
+      alt: "WebVR Demo"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "WebVR Demo"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "Baby's first WebVR experience."), (0, _preact.h)("div", {
+      className: "btn-group",
+      role: "group",
+      "aria-label": "Actions"
+    }, (0, _preact.h)("a", {
+      className: "btn btn-info",
+      href: "https://github.com/michael-hamilton/webvrdemo"
+    }, "View Repo")))), (0, _preact.h)("div", {
+      className: "card"
+    }, (0, _preact.h)("div", {
+      className: "card-body"
+    }, (0, _preact.h)("img", {
+      className: "card-img-top",
+      src: "./projects/homebrew-z80/card-img.png",
+      alt: "Canvas Gravity Demo"
+    }), (0, _preact.h)("h5", {
+      className: "card-title"
+    }, "Homebrew Z80 Computer"), (0, _preact.h)("p", {
+      className: "card-text"
+    }, "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!"))))));
+  }
+
+}
+
+var _default = Home;
+exports.default = _default;
+},{"preact":"node_modules/preact/dist/preact.module.js"}],"images/profile.jpg":[function(require,module,exports) {
 module.exports = "/profile.84faa513.jpg";
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _preact = require("preact");
+
+var _preactRouter = _interopRequireDefault(require("preact-router"));
+
+var _match = require("preact-router/match");
+
+var _home = _interopRequireDefault(require("./pages/home"));
+
+var _work = _interopRequireDefault(require("./pages/work"));
 
 var _profile = _interopRequireDefault(require("./images/profile.jpg"));
 
@@ -535,9 +1650,10 @@ class App extends _preact.Component {
       className: "navbar-nav d-flex justify-content-around"
     }, (0, _preact.h)("li", {
       className: "nav-item"
-    }, (0, _preact.h)("a", {
+    }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
-      href: "/"
+      href: "/",
+      activeClassName: 'active'
     }, "About")))), (0, _preact.h)("div", {
       className: "col-4"
     }, (0, _preact.h)("p", {
@@ -551,27 +1667,17 @@ class App extends _preact.Component {
       className: "navbar-nav d-flex justify-content-around"
     }, (0, _preact.h)("li", {
       className: "nav-item"
-    }, (0, _preact.h)("a", {
+    }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
-      href: "/work.pug"
+      href: "/work",
+      activeClassName: 'active'
     }, "Work"))))), (0, _preact.h)("div", {
       className: 'main-content-wrapper'
-    }, (0, _preact.h)("div", {
-      className: 'container text-center'
-    }, (0, _preact.h)("h1", {
-      className: 'display-4'
-    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm a blank slate maker; I love bringing ideas to life."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
-      href: "mailto:michaelhamilton626+hamblestone@gmail.com",
-      class: "text-surf"
-    }, "drop me a line"), "!"))), (0, _preact.h)("div", {
+    }, (0, _preact.h)(_preactRouter.default, null, (0, _preact.h)(_home.default, {
+      path: '/'
+    }), (0, _preact.h)(_work.default, {
+      path: '/work'
+    }))), (0, _preact.h)("div", {
       className: "footer container border-top mt-5"
     }, (0, _preact.h)("div", {
       className: "row"
@@ -615,7 +1721,7 @@ class App extends _preact.Component {
 }
 
 (0, _preact.render)((0, _preact.h)(App, null), document.body);
-},{"preact":"node_modules/preact/dist/preact.module.js","./images/profile.jpg":"images/profile.jpg"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js","preact-router":"node_modules/preact-router/dist/preact-router.es.js","preact-router/match":"node_modules/preact-router/match.js","./pages/home":"pages/home.js","./pages/work":"pages/work.js","./images/profile.jpg":"images/profile.jpg"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -643,7 +1749,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51896" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63524" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

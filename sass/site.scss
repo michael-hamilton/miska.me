@@ -75,9 +75,13 @@ body {
 			transition: color 0.125s;
 			user-select: none;
 
-			&:hover, &:active {
+			&:hover, &:active, &.active {
 				color: white;
 				transition: color 0.125s;
+			}
+
+			&.active {
+				font-weight: 700;
 			}
 
 			@media screen and (max-width: $break-large) {

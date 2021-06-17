@@ -67,9 +67,12 @@ body .content {
   transition: color 0.125s;
   user-select: none;
 }
-.main-navigation .nav-item .nav-link:hover, .main-navigation .nav-item .nav-link:active {
+.main-navigation .nav-item .nav-link:hover, .main-navigation .nav-item .nav-link:active, .main-navigation .nav-item .nav-link.active {
   color: white;
   transition: color 0.125s;
+}
+.main-navigation .nav-item .nav-link.active {
+  font-weight: 700;
 }
 @media screen and (max-width: 992px) {
   .main-navigation .nav-item .nav-link {
