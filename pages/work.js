@@ -39,6 +39,7 @@ class Home extends Component {
           <p className="text-muted">See my <a href="../files/resume.pdf" className="text-surf" native>resum&eacute;</a> if you
             want to know more.</p>
         </div>
+
         <div className="container text-center content-section">
           <h1 className="display-4">Professional Projects</h1>
           <hr/>

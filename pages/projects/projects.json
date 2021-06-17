@@ -1,0 +1,323 @@
+{
+  "professional": [
+    {
+      "name": "MindPod Dashboard",
+      "description": "A digital therapy platform built using Electron and Node.js.",
+      "image": "./projects/mindpod-dashboard/card-img.png"
+    },
+    {
+      "name": "Maestro",
+      "description": "A React Native companion application for the MindPod digital therapeutic platform.",
+      "image": "./projects/maestro/card-img.png",
+      "buttons": [
+        {
+          "title": "View Maestro (App Store)",
+          "url": "https://apps.apple.com/us/app/mindpod-mobile/id1486862186",
+          "buttonType": "secondary"
+        }
+      ]
+    },
+    {
+      "name": "Stepwise",
+      "description": "A React Native MVP app for providing post-stroke patients with personalized resources and exercises.",
+      "notes": "Developed for Johns Hopkins Medical Institue.",
+      "image": "./projects/stepwise/card-img.png"
+    },
+    {
+      "name": "churchnativity.com",
+      "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
+      "image": "./projects/churchnativity/card-img.png",
+      "buttons": [
+        {
+          "title": "View Site",
+          "url": "https://www.churchnativity.com/",
+          "buttonType": "secondary"
+        }
+      ]
+    },
+    {
+      "name": "Clipboard",
+      "description": "An internal project management tool written entirely in vanilla js. One of my first forays into JS!",
+      "image": "./projects/clipboard/card-img.png"
+    },
+    {}
+  ],
+
+  "playground": [
+    {
+      "name": "dmxus",
+      "description": "A node package for controlling DMX lighting fixtures with Javascript.",
+      "image": "./projects/dmxus/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/dmxus",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "OhEssNine",
+      "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
+      "image": "./projects/ohessnine/card-img.png",
+      "buttons": [
+        {
+          "title": "Start Mike OS 9",
+          "url": "/projects/ohessnine/dist/index.html",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/OhEssNine",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "LiveSlide",
+      "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
+      "image": "./projects/liveslide/card-img.png",
+      "buttons": [
+        {
+          "title": "Start Mike OS 9",
+          "url": "http://www.liveslide.xyz/",
+          "buttonType": "secondary"
+        }
+      ]
+    },
+    {
+      "name": "klav",
+      "description": "Playing around with tone.js",
+      "image": "./projects/klav/card-img.png",
+      "buttons": [
+        {
+          "title": "Play klav",
+          "url": "/projects/klav/klav.html",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/klav",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "JS z80 Emulator",
+      "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
+      "image": "./projects/z80/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/z80",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "color-ML",
+      "description": "Playing around with brain.js - a color guesser.",
+      "image": "./projects/color-ml/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/color-ML",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "mDraw",
+      "description": "Experimenting with Apple Pencil support in Javascript.",
+      "image": "./projects/mdraw/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/mDraw",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "vidserve",
+      "description": "A server and companion PWA to serve personal media over the web.",
+      "image": "./projects/vidserve/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/vidserve",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Gameboy",
+      "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
+      "image": "./projects/gameboy/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/gameboy",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Hue Local",
+      "description": "A basic Node.js utility to control Hue lights over a local network.",
+      "image": "./projects/hue/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/hue_local",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Game Engine",
+      "description": "A start at a Javascript game engine with Electron.",
+      "image": "./projects/engine/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/Engine",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "technical difficulties",
+      "description": "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!",
+      "image": null
+    },
+    {
+      "name": "Quartz",
+      "description": "A super simple library for responsive, front-end development. It's a little outdated.",
+      "image": "./projects/quartz/card-img.png",
+      "buttons": [
+        {
+          "title": "View Site",
+          "url": "http://michael-hamilton.github.io/Quartz/",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/Quartz",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "SMB 1-1",
+      "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
+      "image": "./projects/smb/card-img.png",
+      "buttons": [
+        {
+          "title": "Play Mario",
+          "url": "/projects/smb/index.html",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/smb1",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Portfolio Template",
+      "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
+      "image": "./projects/portfolio-template/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/miska.me",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Canvas Gravity Demo",
+      "description": "A simple interactive canvas experiment implementing gravity.",
+      "image": "./projects/canvas-gravity-demo/card-img.png",
+      "buttons": [
+        {
+          "title": "View Demo",
+          "url": "/projects/canvas-gravity-demo/gravity.html",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/canvas-gravity-demo",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "WebVR Interaction Demo",
+      "description": "A simple experiment with gaze interactions in WebVR.",
+      "image": "./projects/webvr-interaction-demo/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/WebVR-Interaction-Demo",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Conway's Game of Life",
+      "description": "An interactive canvas experiment implementing Conway's Game of Life.",
+      "image": "./projects/life/card-img.png",
+      "buttons": [
+        {
+          "title": "View Demo",
+          "url": "/projects/life/life.html",
+          "buttonType": "secondary"
+        },
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/life",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "socket.io Presenter Demo",
+      "description": "Proof of concept for a presentation interface that can update a client in realtime.",
+      "image": "./projects/socketio-presenter-demo/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/socket.io-Presenter-Demo",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "WebVR Demo",
+      "description": "Baby's first WebVR experience.",
+      "image": "./projects/webvr-demo/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/webvrdemo",
+          "buttonType": "info"
+        }
+      ]
+    },
+    {
+      "name": "Homebrew Z80 Computer",
+      "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
+      "image": "./projects/homebrew-z80/card-img.png",
+      "buttons": [
+        {
+          "title": "View Repo",
+          "url": "https://github.com/michael-hamilton/webvrdemo",
+          "buttonType": "info"
+        }
+      ]
+    }
+  ]
+}
