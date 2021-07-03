@@ -1,6 +1,5 @@
 import { h, render, Component } from 'preact';
-import * as projects from './projects/projects.json'
-import * as images from './projects/*/card-img.png';
+import projects from './projects/projects'
 
 const Card = (props) => (
   <div className="card">

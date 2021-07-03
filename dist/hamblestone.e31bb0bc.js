@@ -1038,16 +1038,72 @@ class Home extends _preact.Component {
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js"}],"pages/projects/projects.json":[function(require,module,exports) {
-module.exports = {
+},{"preact":"node_modules/preact/dist/preact.module.js"}],"pages/projects/mindpod-dashboard/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.d11d2f30.png";
+},{}],"pages/projects/maestro/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.a5ef6b4c.png";
+},{}],"pages/projects/stepwise/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.a54f3ad9.png";
+},{}],"pages/projects/churchnativity/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.292ca587.png";
+},{}],"pages/projects/clipboard/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.718f4863.png";
+},{}],"pages/projects/dmxus/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.bd6d6992.png";
+},{}],"pages/projects/ohessnine/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.ca993bb4.png";
+},{}],"pages/projects/liveslide/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.193ed097.png";
+},{}],"pages/projects/klav/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.0b635a91.png";
+},{}],"pages/projects/z80/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.4a553d2f.png";
+},{}],"pages/projects/color-ml/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.6f8912ec.png";
+},{}],"pages/projects/mdraw/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.3e4848ac.png";
+},{}],"pages/projects/vidserve/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.eb54b3d0.png";
+},{}],"pages/projects/gameboy/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.f928c921.png";
+},{}],"pages/projects/hue/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.89e9bc10.png";
+},{}],"pages/projects/engine/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.5acd0153.png";
+},{}],"pages/projects/quartz/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.fc0ae657.png";
+},{}],"pages/projects/smb/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.16be2ba0.png";
+},{}],"pages/projects/portfolio-template/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.3ab375ef.png";
+},{}],"pages/projects/canvas-gravity-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.855ecceb.png";
+},{}],"pages/projects/webvr-interaction-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.b4e94c91.png";
+},{}],"pages/projects/life/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.56c460c4.png";
+},{}],"pages/projects/socketio-presenter-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.64625e9f.png";
+},{}],"pages/projects/webvr-demo/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.21aadd99.png";
+},{}],"pages/projects/homebrew-z80/card-img.png":[function(require,module,exports) {
+module.exports = "/card-img.10079324.png";
+},{}],"pages/projects/projects.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const projects = {
   "professional": [{
     "name": "MindPod Dashboard",
     "description": "A digital therapy platform built using Electron and Node.js.",
-    "image": "./projects/mindpod-dashboard/card-img.png"
+    "image": require("./mindpod-dashboard/card-img.png")
   }, {
     "name": "Maestro",
     "description": "A React Native companion application for the MindPod digital therapeutic platform.",
-    "image": "./projects/maestro/card-img.png",
+    "image": require("./maestro/card-img.png"),
     "buttons": [{
       "title": "View Maestro (App Store)",
       "url": "https://apps.apple.com/us/app/mindpod-mobile/id1486862186",
@@ -1057,11 +1113,11 @@ module.exports = {
     "name": "Stepwise",
     "description": "A React Native MVP app for providing post-stroke patients with personalized resources and exercises.",
     "notes": "Developed for Johns Hopkins Medical Institue.",
-    "image": "./projects/stepwise/card-img.png"
+    "image": require("./stepwise/card-img.png")
   }, {
     "name": "churchnativity.com",
     "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
-    "image": "./projects/churchnativity/card-img.png",
+    "image": require("./churchnativity/card-img.png"),
     "buttons": [{
       "title": "View Site",
       "url": "https://www.churchnativity.com/",
@@ -1070,12 +1126,12 @@ module.exports = {
   }, {
     "name": "Clipboard",
     "description": "An internal project management tool written entirely in vanilla js. One of my first forays into JS!",
-    "image": "./projects/clipboard/card-img.png"
+    "image": require("./clipboard/card-img.png")
   }, {}],
   "playground": [{
     "name": "dmxus",
     "description": "A node package for controlling DMX lighting fixtures with Javascript.",
-    "image": "./projects/dmxus/card-img.png",
+    "image": require("./dmxus/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/dmxus",
@@ -1084,7 +1140,7 @@ module.exports = {
   }, {
     "name": "OhEssNine",
     "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
-    "image": "./projects/ohessnine/card-img.png",
+    "image": require("./ohessnine/card-img.png"),
     "buttons": [{
       "title": "Start Mike OS 9",
       "url": "/projects/ohessnine/dist/index.html",
@@ -1097,7 +1153,7 @@ module.exports = {
   }, {
     "name": "LiveSlide",
     "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
-    "image": "./projects/liveslide/card-img.png",
+    "image": require("./liveslide/card-img.png"),
     "buttons": [{
       "title": "Start Mike OS 9",
       "url": "http://www.liveslide.xyz/",
@@ -1106,7 +1162,7 @@ module.exports = {
   }, {
     "name": "klav",
     "description": "Playing around with tone.js",
-    "image": "./projects/klav/card-img.png",
+    "image": require("./klav/card-img.png"),
     "buttons": [{
       "title": "Play klav",
       "url": "/projects/klav/klav.html",
@@ -1119,7 +1175,7 @@ module.exports = {
   }, {
     "name": "JS z80 Emulator",
     "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
-    "image": "./projects/z80/card-img.png",
+    "image": require("./z80/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/z80",
@@ -1128,7 +1184,7 @@ module.exports = {
   }, {
     "name": "color-ML",
     "description": "Playing around with brain.js - a color guesser.",
-    "image": "./projects/color-ml/card-img.png",
+    "image": require("./color-ml/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/color-ML",
@@ -1137,7 +1193,7 @@ module.exports = {
   }, {
     "name": "mDraw",
     "description": "Experimenting with Apple Pencil support in Javascript.",
-    "image": "./projects/mdraw/card-img.png",
+    "image": require("./mdraw/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/mDraw",
@@ -1146,7 +1202,7 @@ module.exports = {
   }, {
     "name": "vidserve",
     "description": "A server and companion PWA to serve personal media over the web.",
-    "image": "./projects/vidserve/card-img.png",
+    "image": require("./vidserve/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/vidserve",
@@ -1155,7 +1211,7 @@ module.exports = {
   }, {
     "name": "Gameboy",
     "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
-    "image": "./projects/gameboy/card-img.png",
+    "image": require("./gameboy/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/gameboy",
@@ -1164,7 +1220,7 @@ module.exports = {
   }, {
     "name": "Hue Local",
     "description": "A basic Node.js utility to control Hue lights over a local network.",
-    "image": "./projects/hue/card-img.png",
+    "image": require("./hue/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/hue_local",
@@ -1173,7 +1229,7 @@ module.exports = {
   }, {
     "name": "Game Engine",
     "description": "A start at a Javascript game engine with Electron.",
-    "image": "./projects/engine/card-img.png",
+    "image": require("./engine/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/Engine",
@@ -1186,7 +1242,7 @@ module.exports = {
   }, {
     "name": "Quartz",
     "description": "A super simple library for responsive, front-end development. It's a little outdated.",
-    "image": "./projects/quartz/card-img.png",
+    "image": require("./quartz/card-img.png"),
     "buttons": [{
       "title": "View Site",
       "url": "http://michael-hamilton.github.io/Quartz/",
@@ -1199,7 +1255,7 @@ module.exports = {
   }, {
     "name": "SMB 1-1",
     "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
-    "image": "./projects/smb/card-img.png",
+    "image": require("./smb/card-img.png"),
     "buttons": [{
       "title": "Play Mario",
       "url": "/projects/smb/index.html",
@@ -1212,7 +1268,7 @@ module.exports = {
   }, {
     "name": "Portfolio Template",
     "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
-    "image": "./projects/portfolio-template/card-img.png",
+    "image": require("./portfolio-template/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/miska.me",
@@ -1221,7 +1277,7 @@ module.exports = {
   }, {
     "name": "Canvas Gravity Demo",
     "description": "A simple interactive canvas experiment implementing gravity.",
-    "image": "./projects/canvas-gravity-demo/card-img.png",
+    "image": require("./canvas-gravity-demo/card-img.png"),
     "buttons": [{
       "title": "View Demo",
       "url": "/projects/canvas-gravity-demo/gravity.html",
@@ -1234,7 +1290,7 @@ module.exports = {
   }, {
     "name": "WebVR Interaction Demo",
     "description": "A simple experiment with gaze interactions in WebVR.",
-    "image": "./projects/webvr-interaction-demo/card-img.png",
+    "image": require("./webvr-interaction-demo/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/WebVR-Interaction-Demo",
@@ -1243,7 +1299,7 @@ module.exports = {
   }, {
     "name": "Conway's Game of Life",
     "description": "An interactive canvas experiment implementing Conway's Game of Life.",
-    "image": "./projects/life/card-img.png",
+    "image": require("./life/card-img.png"),
     "buttons": [{
       "title": "View Demo",
       "url": "/projects/life/life.html",
@@ -1256,7 +1312,7 @@ module.exports = {
   }, {
     "name": "socket.io Presenter Demo",
     "description": "Proof of concept for a presentation interface that can update a client in realtime.",
-    "image": "./projects/socketio-presenter-demo/card-img.png",
+    "image": require("./socketio-presenter-demo/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/socket.io-Presenter-Demo",
@@ -1265,7 +1321,7 @@ module.exports = {
   }, {
     "name": "WebVR Demo",
     "description": "Baby's first WebVR experience.",
-    "image": "./projects/webvr-demo/card-img.png",
+    "image": require("./webvr-demo/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/webvrdemo",
@@ -1274,7 +1330,7 @@ module.exports = {
   }, {
     "name": "Homebrew Z80 Computer",
     "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
-    "image": "./projects/homebrew-z80/card-img.png",
+    "image": require("./homebrew-z80/card-img.png"),
     "buttons": [{
       "title": "View Repo",
       "url": "https://github.com/michael-hamilton/webvrdemo",
@@ -1282,85 +1338,9 @@ module.exports = {
     }]
   }]
 };
-},{}],"pages/projects/canvas-gravity-demo/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.855ecceb.png";
-},{}],"pages/projects/churchnativity/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.292ca587.png";
-},{}],"pages/projects/clipboard/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.718f4863.png";
-},{}],"pages/projects/color-ml/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.6f8912ec.png";
-},{}],"pages/projects/dmxus/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.bd6d6992.png";
-},{}],"pages/projects/engine/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.5acd0153.png";
-},{}],"pages/projects/gameboy/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.f928c921.png";
-},{}],"pages/projects/homebrew-z80/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.10079324.png";
-},{}],"pages/projects/hue/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.89e9bc10.png";
-},{}],"pages/projects/klav/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.0b635a91.png";
-},{}],"pages/projects/life/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.56c460c4.png";
-},{}],"pages/projects/liveslide/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.193ed097.png";
-},{}],"pages/projects/maestro/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.a5ef6b4c.png";
-},{}],"pages/projects/mdraw/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.3e4848ac.png";
-},{}],"pages/projects/mindpod-dashboard/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.d11d2f30.png";
-},{}],"pages/projects/ohessnine/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.ca993bb4.png";
-},{}],"pages/projects/portfolio-template/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.3ab375ef.png";
-},{}],"pages/projects/smb/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.16be2ba0.png";
-},{}],"pages/projects/quartz/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.fc0ae657.png";
-},{}],"pages/projects/socketio-presenter-demo/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.64625e9f.png";
-},{}],"pages/projects/stepwise/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.a54f3ad9.png";
-},{}],"pages/projects/vidserve/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.eb54b3d0.png";
-},{}],"pages/projects/webvr-demo/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.21aadd99.png";
-},{}],"pages/projects/webvr-interaction-demo/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.b4e94c91.png";
-},{}],"pages/projects/z80/card-img.png":[function(require,module,exports) {
-module.exports = "/card-img.4a553d2f.png";
-},{}],"pages/projects/*/card-img.png":[function(require,module,exports) {
-module.exports = {
-  "canvas-gravity-demo": require("./../canvas-gravity-demo/card-img.png"),
-  "churchnativity": require("./../churchnativity/card-img.png"),
-  "clipboard": require("./../clipboard/card-img.png"),
-  "color-ml": require("./../color-ml/card-img.png"),
-  "dmxus": require("./../dmxus/card-img.png"),
-  "engine": require("./../engine/card-img.png"),
-  "gameboy": require("./../gameboy/card-img.png"),
-  "homebrew-z80": require("./../homebrew-z80/card-img.png"),
-  "hue": require("./../hue/card-img.png"),
-  "klav": require("./../klav/card-img.png"),
-  "life": require("./../life/card-img.png"),
-  "liveslide": require("./../liveslide/card-img.png"),
-  "maestro": require("./../maestro/card-img.png"),
-  "mdraw": require("./../mdraw/card-img.png"),
-  "mindpod-dashboard": require("./../mindpod-dashboard/card-img.png"),
-  "ohessnine": require("./../ohessnine/card-img.png"),
-  "portfolio-template": require("./../portfolio-template/card-img.png"),
-  "smb": require("./../smb/card-img.png"),
-  "quartz": require("./../quartz/card-img.png"),
-  "socketio-presenter-demo": require("./../socketio-presenter-demo/card-img.png"),
-  "stepwise": require("./../stepwise/card-img.png"),
-  "vidserve": require("./../vidserve/card-img.png"),
-  "webvr-demo": require("./../webvr-demo/card-img.png"),
-  "webvr-interaction-demo": require("./../webvr-interaction-demo/card-img.png"),
-  "z80": require("./../z80/card-img.png")
-};
-},{"./../canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./../churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./../clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./../color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./../dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./../engine/card-img.png":"pages/projects/engine/card-img.png","./../gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./../homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png","./../hue/card-img.png":"pages/projects/hue/card-img.png","./../klav/card-img.png":"pages/projects/klav/card-img.png","./../life/card-img.png":"pages/projects/life/card-img.png","./../liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./../maestro/card-img.png":"pages/projects/maestro/card-img.png","./../mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./../mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./../ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./../portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./../smb/card-img.png":"pages/projects/smb/card-img.png","./../quartz/card-img.png":"pages/projects/quartz/card-img.png","./../socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./../stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./../vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./../webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./../webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./../z80/card-img.png":"pages/projects/z80/card-img.png"}],"pages/work.js":[function(require,module,exports) {
+var _default = projects;
+exports.default = _default;
+},{"./mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./maestro/card-img.png":"pages/projects/maestro/card-img.png","./stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./klav/card-img.png":"pages/projects/klav/card-img.png","./z80/card-img.png":"pages/projects/z80/card-img.png","./color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./hue/card-img.png":"pages/projects/hue/card-img.png","./engine/card-img.png":"pages/projects/engine/card-img.png","./quartz/card-img.png":"pages/projects/quartz/card-img.png","./smb/card-img.png":"pages/projects/smb/card-img.png","./portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./life/card-img.png":"pages/projects/life/card-img.png","./socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png"}],"pages/work.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1370,13 +1350,9 @@ exports.default = void 0;
 
 var _preact = require("preact");
 
-var projects = _interopRequireWildcard(require("./projects/projects.json"));
+var _projects = _interopRequireDefault(require("./projects/projects"));
 
-var images = _interopRequireWildcard(require("./projects/*/card-img.png"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const Card = props => (0, _preact.h)("div", {
   className: "card"
@@ -1448,20 +1424,20 @@ class Home extends _preact.Component {
       className: "display-4"
     }, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), renderCardsGrid(projects.professional)), (0, _preact.h)("div", {
+    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), renderCardsGrid(_projects.default.professional)), (0, _preact.h)("div", {
       className: "container text-center content-section"
     }, (0, _preact.h)("h1", {
       className: "display-4"
     }, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), renderCardsGrid(projects.playground)));
+    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), renderCardsGrid(_projects.default.playground)));
   }
 
 }
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects.json":"pages/projects/projects.json","./projects/*/card-img.png":"pages/projects/*/card-img.png"}],"images/profile.jpg":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects":"pages/projects/projects.js"}],"images/profile.jpg":[function(require,module,exports) {
 module.exports = "/profile.84faa513.jpg";
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -1597,7 +1573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56420" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64567" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

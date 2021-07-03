@@ -1,14 +1,14 @@
-{
+const projects = {
   "professional": [
     {
       "name": "MindPod Dashboard",
       "description": "A digital therapy platform built using Electron and Node.js.",
-      "image": "./projects/mindpod-dashboard/card-img.png"
+      "image": require("./mindpod-dashboard/card-img.png")
     },
     {
       "name": "Maestro",
       "description": "A React Native companion application for the MindPod digital therapeutic platform.",
-      "image": "./projects/maestro/card-img.png",
+      "image": require("./maestro/card-img.png"),
       "buttons": [
         {
           "title": "View Maestro (App Store)",
@@ -21,12 +21,12 @@
       "name": "Stepwise",
       "description": "A React Native MVP app for providing post-stroke patients with personalized resources and exercises.",
       "notes": "Developed for Johns Hopkins Medical Institue.",
-      "image": "./projects/stepwise/card-img.png"
+      "image": require("./stepwise/card-img.png")
     },
     {
       "name": "churchnativity.com",
       "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
-      "image": "./projects/churchnativity/card-img.png",
+      "image": require("./churchnativity/card-img.png"),
       "buttons": [
         {
           "title": "View Site",
@@ -38,7 +38,7 @@
     {
       "name": "Clipboard",
       "description": "An internal project management tool written entirely in vanilla js. One of my first forays into JS!",
-      "image": "./projects/clipboard/card-img.png"
+      "image": require("./clipboard/card-img.png")
     },
     {}
   ],
@@ -47,7 +47,7 @@
     {
       "name": "dmxus",
       "description": "A node package for controlling DMX lighting fixtures with Javascript.",
-      "image": "./projects/dmxus/card-img.png",
+      "image": require("./dmxus/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -59,7 +59,7 @@
     {
       "name": "OhEssNine",
       "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
-      "image": "./projects/ohessnine/card-img.png",
+      "image": require("./ohessnine/card-img.png"),
       "buttons": [
         {
           "title": "Start Mike OS 9",
@@ -76,7 +76,7 @@
     {
       "name": "LiveSlide",
       "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
-      "image": "./projects/liveslide/card-img.png",
+      "image": require("./liveslide/card-img.png"),
       "buttons": [
         {
           "title": "Start Mike OS 9",
@@ -88,7 +88,7 @@
     {
       "name": "klav",
       "description": "Playing around with tone.js",
-      "image": "./projects/klav/card-img.png",
+      "image": require("./klav/card-img.png"),
       "buttons": [
         {
           "title": "Play klav",
@@ -105,7 +105,7 @@
     {
       "name": "JS z80 Emulator",
       "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
-      "image": "./projects/z80/card-img.png",
+      "image": require("./z80/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -117,7 +117,7 @@
     {
       "name": "color-ML",
       "description": "Playing around with brain.js - a color guesser.",
-      "image": "./projects/color-ml/card-img.png",
+      "image": require("./color-ml/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -129,7 +129,7 @@
     {
       "name": "mDraw",
       "description": "Experimenting with Apple Pencil support in Javascript.",
-      "image": "./projects/mdraw/card-img.png",
+      "image": require("./mdraw/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -141,7 +141,7 @@
     {
       "name": "vidserve",
       "description": "A server and companion PWA to serve personal media over the web.",
-      "image": "./projects/vidserve/card-img.png",
+      "image": require("./vidserve/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -153,7 +153,7 @@
     {
       "name": "Gameboy",
       "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
-      "image": "./projects/gameboy/card-img.png",
+      "image": require("./gameboy/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -165,7 +165,7 @@
     {
       "name": "Hue Local",
       "description": "A basic Node.js utility to control Hue lights over a local network.",
-      "image": "./projects/hue/card-img.png",
+      "image": require("./hue/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -177,7 +177,7 @@
     {
       "name": "Game Engine",
       "description": "A start at a Javascript game engine with Electron.",
-      "image": "./projects/engine/card-img.png",
+      "image": require("./engine/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -194,7 +194,7 @@
     {
       "name": "Quartz",
       "description": "A super simple library for responsive, front-end development. It's a little outdated.",
-      "image": "./projects/quartz/card-img.png",
+      "image": require("./quartz/card-img.png"),
       "buttons": [
         {
           "title": "View Site",
@@ -211,7 +211,7 @@
     {
       "name": "SMB 1-1",
       "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
-      "image": "./projects/smb/card-img.png",
+      "image": require("./smb/card-img.png"),
       "buttons": [
         {
           "title": "Play Mario",
@@ -228,7 +228,7 @@
     {
       "name": "Portfolio Template",
       "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
-      "image": "./projects/portfolio-template/card-img.png",
+      "image": require("./portfolio-template/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -240,7 +240,7 @@
     {
       "name": "Canvas Gravity Demo",
       "description": "A simple interactive canvas experiment implementing gravity.",
-      "image": "./projects/canvas-gravity-demo/card-img.png",
+      "image": require("./canvas-gravity-demo/card-img.png"),
       "buttons": [
         {
           "title": "View Demo",
@@ -257,7 +257,7 @@
     {
       "name": "WebVR Interaction Demo",
       "description": "A simple experiment with gaze interactions in WebVR.",
-      "image": "./projects/webvr-interaction-demo/card-img.png",
+      "image": require("./webvr-interaction-demo/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -269,7 +269,7 @@
     {
       "name": "Conway's Game of Life",
       "description": "An interactive canvas experiment implementing Conway's Game of Life.",
-      "image": "./projects/life/card-img.png",
+      "image": require("./life/card-img.png"),
       "buttons": [
         {
           "title": "View Demo",
@@ -286,7 +286,7 @@
     {
       "name": "socket.io Presenter Demo",
       "description": "Proof of concept for a presentation interface that can update a client in realtime.",
-      "image": "./projects/socketio-presenter-demo/card-img.png",
+      "image": require("./socketio-presenter-demo/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -298,7 +298,7 @@
     {
       "name": "WebVR Demo",
       "description": "Baby's first WebVR experience.",
-      "image": "./projects/webvr-demo/card-img.png",
+      "image": require("./webvr-demo/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -310,7 +310,7 @@
     {
       "name": "Homebrew Z80 Computer",
       "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
-      "image": "./projects/homebrew-z80/card-img.png",
+      "image": require("./homebrew-z80/card-img.png"),
       "buttons": [
         {
           "title": "View Repo",
@@ -320,4 +320,6 @@
       ]
     }
   ]
-}
+};
+
+export default projects;
