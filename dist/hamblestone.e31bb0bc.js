@@ -1340,79 +1340,7 @@ const projects = {
 };
 var _default = projects;
 exports.default = _default;
-},{"./mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./maestro/card-img.png":"pages/projects/maestro/card-img.png","./stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./klav/card-img.png":"pages/projects/klav/card-img.png","./z80/card-img.png":"pages/projects/z80/card-img.png","./color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./hue/card-img.png":"pages/projects/hue/card-img.png","./engine/card-img.png":"pages/projects/engine/card-img.png","./quartz/card-img.png":"pages/projects/quartz/card-img.png","./smb/card-img.png":"pages/projects/smb/card-img.png","./portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./life/card-img.png":"pages/projects/life/card-img.png","./socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"pages/styles.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"pages/work.js":[function(require,module,exports) {
+},{"./mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./maestro/card-img.png":"pages/projects/maestro/card-img.png","./stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./klav/card-img.png":"pages/projects/klav/card-img.png","./z80/card-img.png":"pages/projects/z80/card-img.png","./color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./hue/card-img.png":"pages/projects/hue/card-img.png","./engine/card-img.png":"pages/projects/engine/card-img.png","./quartz/card-img.png":"pages/projects/quartz/card-img.png","./smb/card-img.png":"pages/projects/smb/card-img.png","./portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./life/card-img.png":"pages/projects/life/card-img.png","./socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png"}],"pages/work.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1423,8 +1351,6 @@ exports.default = void 0;
 var _preact = require("preact");
 
 var _projects = _interopRequireDefault(require("./projects/projects"));
-
-require("./styles.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1515,7 +1441,7 @@ class Home extends _preact.Component {
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects":"pages/projects/projects.js","./styles.scss":"pages/styles.scss"}],"images/profile.jpg":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects":"pages/projects/projects.js"}],"images/profile.jpg":[function(require,module,exports) {
 module.exports = "/profile.84faa513.jpg";
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -1539,85 +1465,54 @@ class App extends _preact.Component {
     return (0, _preact.h)("div", {
       className: 'content'
     }, (0, _preact.h)("div", {
-      className: 'jumbotron header rounded-0'
+      className: 'header'
     }, (0, _preact.h)("h1", {
-      className: 'display-1 text-center text-white header-title'
+      className: 'header-title'
     }, "Mike Hamilton"), (0, _preact.h)("h2", {
-      className: 'lead text-center text-white header-sub-title software engineer'
-    })), (0, _preact.h)("nav", {
-      className: "navbar navbar-light navbar-expand-lg justify-content-space-between main-navigation"
-    }, (0, _preact.h)("div", {
-      className: "col-4"
-    }, (0, _preact.h)("ul", {
-      className: "navbar-nav d-flex justify-content-around"
-    }, (0, _preact.h)("li", {
+      className: 'header-sub-title'
+    }, "software engineer")), (0, _preact.h)("nav", {
+      className: "main-nav"
+    }, (0, _preact.h)("ul", null, (0, _preact.h)("li", {
       className: "nav-item"
     }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
       href: "/",
       activeClassName: 'active'
-    }, "About")))), (0, _preact.h)("div", {
-      className: "col-4"
-    }, (0, _preact.h)("p", {
-      className: "d-flex justify-content-center"
+    }, "About")), (0, _preact.h)("li", {
+      className: "profile-image"
     }, (0, _preact.h)("img", {
-      className: "rounded-circle shadow profile-image",
       src: _profile.default
-    }))), (0, _preact.h)("div", {
-      className: "col-4"
-    }, (0, _preact.h)("ul", {
-      className: "navbar-nav d-flex justify-content-around"
-    }, (0, _preact.h)("li", {
+    })), (0, _preact.h)("li", {
       className: "nav-item"
     }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
       href: "/work",
       activeClassName: 'active'
-    }, "Work"))))), (0, _preact.h)("div", {
+    }, "Work")))), (0, _preact.h)("div", {
       className: 'main-content-wrapper'
     }, (0, _preact.h)(_preactRouter.default, null, (0, _preact.h)(_home.default, {
       path: '/'
     }), (0, _preact.h)(_work.default, {
       path: '/work'
     }))), (0, _preact.h)("div", {
-      className: "footer container border-top mt-5"
-    }, (0, _preact.h)("div", {
-      className: "row"
-    }, (0, _preact.h)("div", {
-      className: "col-md-6"
-    }, (0, _preact.h)("div", {
-      className: "float-sm-left text-center"
-    }, (0, _preact.h)("p", {
+      className: "footer container border-top"
+    }, (0, _preact.h)("div", null, (0, _preact.h)("p", {
       className: "text-muted text-sm-left"
     }, "\xA9 2021\xA0", (0, _preact.h)("a", {
       className: "rainbow-hover text-surf",
-      href: "https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL?si=qmgBdyiORhm4Li_6vLwcnw"
-    }, "Michael Hamilton")))), (0, _preact.h)("div", {
-      className: "col-md-6"
-    }, (0, _preact.h)("div", {
-      className: "float-sm-right"
-    }, (0, _preact.h)("ul", {
-      className: "list-unstyled list-inline text-muted text-sm-right text-center"
-    }, (0, _preact.h)("li", {
-      className: "list-inline-item"
-    }, (0, _preact.h)("a", {
+      href: "https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL"
+    }, "Michael Hamilton"))), (0, _preact.h)("div", null, (0, _preact.h)("ul", {
+      className: "social-links"
+    }, (0, _preact.h)("li", null, (0, _preact.h)("a", {
       className: "footer-link-item",
       href: "https://github.com/michael-hamilton"
-    }, "GitHub")), (0, _preact.h)("li", {
-      className: "list-inline-item"
-    }, "\xB7"), (0, _preact.h)("li", {
-      className: "list-inline-item"
-    }, (0, _preact.h)("a", {
+    }, "GitHub")), (0, _preact.h)("li", null, "\xB7"), (0, _preact.h)("li", null, (0, _preact.h)("a", {
       className: "footer-link-item",
       href: "https://linkedin.com/in/michaelhamilton626"
-    }, "LinkedIn")), (0, _preact.h)("li", {
-      className: "list-inline-item"
-    }, "\xB7"), (0, _preact.h)("li", {
-      className: "list-inline-item"
-    }, (0, _preact.h)("a", {
+    }, "LinkedIn")), (0, _preact.h)("li", null, "\xB7"), (0, _preact.h)("li", null, (0, _preact.h)("a", {
       className: "footer-link-item",
       href: "https://twitter.com/miskahamilton"
-    }, "Twitter"))))))));
+    }, "Twitter"))))));
   }
 
 }
@@ -1651,7 +1546,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58311" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52109" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,14 +3,26 @@ $light-gray: #999999;
 $surf: #7cbb9f;
 
 $break-small: "576px";
-$break-large: "992px";
+$break-med: "992px";
+$break-large: "1200px";
 
+*, * * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
 
 body {
 	background-color: rgb(100, 131, 232);
+	font-family: sans-serif;
 
 	.content {
 		background-color: white;
+	}
+
+	a {
+		text-decoration: none;
 	}
 }
 
@@ -18,10 +30,12 @@ body {
 	background: rgb(69, 196, 177);
 	background: linear-gradient(0deg, rgb(69, 196, 177) 33%, rgb(100, 131, 232) 100%);
 	background-attachment: fixed;
-	padding: 100px;
+	padding: 10rem;
 	margin-bottom: 0;
 
 	.header-title {
+		color: white;
+		font-size: 4rem;
 		text-align: center;
 		text-shadow: 0px 0px 4px $light-gray;
 
@@ -31,8 +45,10 @@ body {
 	}
 
 	.header-sub-title {
-		font-size: 30px;
+		color: white;
+		font-size: 2rem;
 		font-weight: 200;
+		text-align: center;
 		text-shadow: 0px 0px 3px $light-gray;
 
 		@media screen and (max-width: $break-large) {
@@ -45,32 +61,27 @@ body {
 	}
 }
 
-.profile-image {
-	background-color: white;
-	border: 6px solid white;
-	height: 220px;
-	overflow: hidden;
-	position: absolute;
-	top: -90px;
-	width: 200px;
 
-	@media screen and (max-width: $break-large) {
-		height: 150px;
-		top: -70;
-		width: 140px;
-	}
-}
-
-.main-navigation {
+.main-nav {
 	background-color: $gray;
-	padding-bottom: 1rem;
-	padding-top: 1rem;
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+
+	ul {
+		align-items: center;
+		display: flex;
+		justify-content: space-around;
+		list-style: none;
+	}
 
 	.nav-item {
+		margin: 0 6rem;
+
 		.nav-link {
 			color: $surf;
 			font-size: 28px;
 			font-weight: 200;
+			text-decoration: none;
 			text-transform: uppercase;
 			transition: color 0.125s;
 			user-select: none;
@@ -90,6 +101,28 @@ body {
 			}
 		}
 	}
+
+	.profile-image {
+		position: absolute;
+
+		img {
+			background-color: white;
+			border: 6px solid white;
+			border-radius: 100%;
+			height: 220px;
+			overflow: hidden;
+			//position: absolute;
+			//top: -90px;
+			//width: 200px;
+			box-shadow: 0 0 1rem 0 $gray;
+
+			@media screen and (max-width: $break-large) {
+				height: 150px;
+				top: -70;
+				width: 140px;
+			}
+		}
+	}
 }
 
 .main-content-wrapper {
@@ -100,20 +133,6 @@ body {
 
 	@media screen and (max-width: $break-large) {
 		margin-top: 3rem;
-	}
-}
-
-.footer-link-item {
-	color: $surf;
-	font-weight: 300;
-	font-size: 20px;
-	line-height: 32px;
-	transition: 0.125s;
-	user-select: none;
-
-	&:hover {
-		color: darken($surf, 25%);
-		transition: color 0.125s;
 	}
 }
 
@@ -170,23 +189,90 @@ body {
 	font-weight: 300;
 }
 
-.card {
+.card-section-wrapper {
+	display: flex;
+	flex-wrap: wrap;
 
-	.card-title {
-		font-weight: 500;
+	.card {
+		flex: 1 0 28%;
+		margin: 1rem;
+
+		.card-title {
+			font-weight: 500;
+		}
+
+		.card-text {
+			color: $gray;
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 24px;
+		}
+
+		.card-img-top {
+			flex-shrink: 0;
+			width: 100%;
+		}
+
+		.btn {
+			font-weight: 300;
+		}
+	}
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1100px;
+
+	@media screen and (max-width: $break-large) {
+		max-width: 900px;
 	}
 
-	.card-text {
-		color: $gray;
-		font-weight: 300;
-		font-size: 18px;
-		line-height: 24px;
+	@media screen and (max-width: $break-med) {
+		max-width: 500px;
+	}
+}
+
+.border-top {
+	border-top: 0.1rem solid $light-gray;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 1rem;
+
+	ul {
+		list-style: none;
+
+		li {
+			a {
+				color: $surf;
+				font-weight: 300;
+				font-size: 20px;
+				line-height: 32px;
+				transition: 0.125s;
+				user-select: none;
+
+				&:hover {
+					color: darken($surf, 25%);
+					transition: color 0.125s;
+				}
+			}
+		}
 	}
 
-	.card-img-top {
-	}
+	.social-links {
+		align-items: center;
+		display: flex;
+		justify-content: center;
 
-	.btn {
-		font-weight: 300;
+		li {
+			padding: 0 0.5rem;
+		}
 	}
+}
+
+.text-center {
+	text-align: center;
 }

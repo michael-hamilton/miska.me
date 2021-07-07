@@ -1,6 +1,5 @@
 import { h, render, Component } from 'preact';
 import projects from './projects/projects';
-import './styles.scss';
 
 const Card = (props) => (
   <div className="card">
