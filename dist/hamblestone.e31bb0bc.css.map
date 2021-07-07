@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/styles.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;;AAEA;EACE;EACA","file":"hamblestone.e31bb0bc.css","sourceRoot":"..","sourcesContent":[".card-section-wrapper {\n  display: flex;\n  flex-wrap: wrap;\n  flex-grow: 2;\n\n  .card {\n    flex: 1 0 28%;\n    margin: 1rem;\n  }\n}\n"]}

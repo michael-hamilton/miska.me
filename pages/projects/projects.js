@@ -79,7 +79,7 @@ const projects = {
       "image": require("./liveslide/card-img.png"),
       "buttons": [
         {
-          "title": "Start Mike OS 9",
+          "title": "Visit LiveSlide",
           "url": "http://www.liveslide.xyz/",
           "type": "secondary"
         }

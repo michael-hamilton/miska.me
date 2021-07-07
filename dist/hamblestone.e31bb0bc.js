@@ -1155,7 +1155,7 @@ const projects = {
     "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
     "image": require("./liveslide/card-img.png"),
     "buttons": [{
-      "title": "Start Mike OS 9",
+      "title": "Visit LiveSlide",
       "url": "http://www.liveslide.xyz/",
       "type": "secondary"
     }]
@@ -1340,7 +1340,79 @@ const projects = {
 };
 var _default = projects;
 exports.default = _default;
-},{"./mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./maestro/card-img.png":"pages/projects/maestro/card-img.png","./stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./klav/card-img.png":"pages/projects/klav/card-img.png","./z80/card-img.png":"pages/projects/z80/card-img.png","./color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./hue/card-img.png":"pages/projects/hue/card-img.png","./engine/card-img.png":"pages/projects/engine/card-img.png","./quartz/card-img.png":"pages/projects/quartz/card-img.png","./smb/card-img.png":"pages/projects/smb/card-img.png","./portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./life/card-img.png":"pages/projects/life/card-img.png","./socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png"}],"pages/work.js":[function(require,module,exports) {
+},{"./mindpod-dashboard/card-img.png":"pages/projects/mindpod-dashboard/card-img.png","./maestro/card-img.png":"pages/projects/maestro/card-img.png","./stepwise/card-img.png":"pages/projects/stepwise/card-img.png","./churchnativity/card-img.png":"pages/projects/churchnativity/card-img.png","./clipboard/card-img.png":"pages/projects/clipboard/card-img.png","./dmxus/card-img.png":"pages/projects/dmxus/card-img.png","./ohessnine/card-img.png":"pages/projects/ohessnine/card-img.png","./liveslide/card-img.png":"pages/projects/liveslide/card-img.png","./klav/card-img.png":"pages/projects/klav/card-img.png","./z80/card-img.png":"pages/projects/z80/card-img.png","./color-ml/card-img.png":"pages/projects/color-ml/card-img.png","./mdraw/card-img.png":"pages/projects/mdraw/card-img.png","./vidserve/card-img.png":"pages/projects/vidserve/card-img.png","./gameboy/card-img.png":"pages/projects/gameboy/card-img.png","./hue/card-img.png":"pages/projects/hue/card-img.png","./engine/card-img.png":"pages/projects/engine/card-img.png","./quartz/card-img.png":"pages/projects/quartz/card-img.png","./smb/card-img.png":"pages/projects/smb/card-img.png","./portfolio-template/card-img.png":"pages/projects/portfolio-template/card-img.png","./canvas-gravity-demo/card-img.png":"pages/projects/canvas-gravity-demo/card-img.png","./webvr-interaction-demo/card-img.png":"pages/projects/webvr-interaction-demo/card-img.png","./life/card-img.png":"pages/projects/life/card-img.png","./socketio-presenter-demo/card-img.png":"pages/projects/socketio-presenter-demo/card-img.png","./webvr-demo/card-img.png":"pages/projects/webvr-demo/card-img.png","./homebrew-z80/card-img.png":"pages/projects/homebrew-z80/card-img.png"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"pages/styles.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"pages/work.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1351,6 +1423,8 @@ exports.default = void 0;
 var _preact = require("preact");
 
 var _projects = _interopRequireDefault(require("./projects/projects"));
+
+require("./styles.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1424,20 +1498,24 @@ class Home extends _preact.Component {
       className: "display-4"
     }, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), renderCardsGrid(_projects.default.professional)), (0, _preact.h)("div", {
+    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+      className: "card-section-wrapper"
+    }, renderCardsGrid(_projects.default.professional))), (0, _preact.h)("div", {
       className: "container text-center content-section"
     }, (0, _preact.h)("h1", {
       className: "display-4"
     }, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
       className: "text-muted"
-    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), renderCardsGrid(_projects.default.playground)));
+    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), (0, _preact.h)("div", {
+      className: "card-section-wrapper"
+    }, renderCardsGrid(_projects.default.playground))));
   }
 
 }
 
 var _default = Home;
 exports.default = _default;
-},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects":"pages/projects/projects.js"}],"images/profile.jpg":[function(require,module,exports) {
+},{"preact":"node_modules/preact/dist/preact.module.js","./projects/projects":"pages/projects/projects.js","./styles.scss":"pages/styles.scss"}],"images/profile.jpg":[function(require,module,exports) {
 module.exports = "/profile.84faa513.jpg";
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -1573,7 +1651,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64567" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58311" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -5,7 +5,6 @@ import Home from './pages/home';
 import Work from './pages/work';
 import img from './images/profile.jpg';
 
-
 class App extends Component {
   render() {
     return (

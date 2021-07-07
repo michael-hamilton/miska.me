@@ -1,9 +1,11 @@
 import { h, render, Component } from 'preact';
-import projects from './projects/projects'
+import projects from './projects/projects';
+import './styles.scss';
 
 const Card = (props) => (
   <div className="card">
-    <div className="card-body"><img className="card-img-top" src={props.image} alt={props.title}/>
+    <div className="card-body">
+      <img className="card-img-top" src={props.image} alt={props.title}/>
       <h5 className="card-title">{props.name}</h5>
       <p className="card-text">{props.description}</p>
       <div className="btn-group" role="group" aria-label="Actions">
@@ -37,6 +39,7 @@ class Home extends Component {
     //   setTimeout(() => requestAnimationFrame(draw), 30)
     // }
     // draw();
+
     return (
       <div>
         <div className="container text-center content-section">
@@ -80,7 +83,9 @@ class Home extends Component {
 
           <br/>
 
-          {renderCardsGrid(projects.professional)}
+          <div className="card-section-wrapper">
+            {renderCardsGrid(projects.professional)}
+          </div>
         </div>
 
         <div className="container text-center content-section">
@@ -92,7 +97,9 @@ class Home extends Component {
             Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there.
           </p>
 
-          {renderCardsGrid(projects.playground)}
+          <div className="card-section-wrapper">
+            {renderCardsGrid(projects.playground)}
+          </div>
         </div>
 
       </div>
