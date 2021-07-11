@@ -31,7 +31,7 @@ class App extends Component {
 
         <div className="footer container border-top">
           <div>
-            <p className="text-muted text-sm-left">
+            <p className="text-sm-left">
               &copy; 2021&nbsp;
               <a className="rainbow-hover text-surf" href="https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL">Michael Hamilton</a>
             </p>

@@ -1020,15 +1020,7 @@ class Home extends _preact.Component {
       className: 'container text-center'
     }, (0, _preact.h)("h1", {
       className: 'display-4'
-    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm a blank slate maker; I love bringing ideas to life."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", {
-      className: 'text-muted'
-    }, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
+    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", null, "I'm a blank slate maker; I love bringing ideas to life."), (0, _preact.h)("p", null, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", null, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
       href: "mailto:michaelhamilton626+hamblestone@gmail.com",
       className: "text-surf"
     }, "drop me a line"), "!"));
@@ -1366,12 +1358,14 @@ const Card = props => (0, _preact.h)("div", {
   className: "card-title"
 }, props.name), (0, _preact.h)("p", {
   className: "card-text"
-}, props.description), (0, _preact.h)("div", {
-  className: "btn-group",
+}, props.description)), (0, _preact.h)("div", {
+  className: "card-footer"
+}, (0, _preact.h)("div", {
+  className: "card-button-wrapper button-group",
   role: "group",
   "aria-label": "Actions"
 }, props.buttons ? props.buttons.map(button => (0, _preact.h)("a", {
-  className: "btn btn-".concat(button.type),
+  className: "button btn-".concat(button.type),
   href: button.url
 }, button.title)) : null)));
 
@@ -1400,39 +1394,23 @@ class Home extends _preact.Component {
       className: "container text-center content-section"
     }, (0, _preact.h)("h1", {
       className: "display-4"
-    }, "Work"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "I have worked in some professional capacity as a programmer since 2010. While I've touched many sorts of tech during my career, my interest and focus has been with web technologies. Presently, I am a software engineer at ", (0, _preact.h)("a", {
+    }, "Work"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "I have worked in some professional capacity as a programmer since 2010. While I've touched many sorts of tech during my career, my interest and focus has been with web technologies. Presently, I am a software engineer at ", (0, _preact.h)("a", {
       href: "https://msquarehealthcare.com/",
       className: "text-surf"
     }, "MSquare Healthcare"), " in Baltimore, MD (USA) where we develop a world class digital therapy video game. My specific focus here is on engineering tools which enable effective delivery of this novel therapy using both hardware and software to encourage patients and therapists alike to make the most of the platform. I am also a collaborator with the ", (0, _preact.h)("a", {
       href: "https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html",
       className: "text-surf"
-    }, "Kata Design Studio"), " at Johns Hopkins Medical Institue where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences."), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "My career history is diverse working with both commercial and non-profit organizations, and also independently as a freelancer. My various roles have given me unique professional opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments (my particular expertise is in stage lighting). I've also some professional experience working in music, IT, large event coordination, and building design/construction projects."), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it. My passion for the web and it's tech can without a doubt can be attributed to growing up on dial-up, writing CSS for my Myspace page, and finding new ways to connect online. When it comes to software engineering I'm relatively technology agnostic, though most of my expertise is related to web technologies. I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node. Of course, I've also got strong web fundamentals with HTML, and CSS."), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "See my ", (0, _preact.h)("a", {
+    }, "Kata Design Studio"), " at Johns Hopkins Medical Institue where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences."), (0, _preact.h)("p", null, "My career history is diverse working with both commercial and non-profit organizations, and also independently as a freelancer. My various roles have given me unique professional opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments (my particular expertise is in stage lighting). I've also some professional experience working in music, IT, large event coordination, and building design/construction projects."), (0, _preact.h)("p", null, "I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it. My passion for the web and it's tech can without a doubt can be attributed to growing up on dial-up, writing CSS for my Myspace page, and finding new ways to connect online. When it comes to software engineering I'm relatively technology agnostic, though most of my expertise is related to web technologies. I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node. Of course, I've also got strong web fundamentals with HTML, and CSS."), (0, _preact.h)("p", null, "See my ", (0, _preact.h)("a", {
       href: "../files/resume.pdf",
       className: "text-surf",
       native: true
     }, "resum\xE9"), " if you want to know more.")), (0, _preact.h)("div", {
       className: "container text-center content-section"
-    }, (0, _preact.h)("h1", {
-      className: "display-4"
-    }, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
+    }, (0, _preact.h)("h1", null, "Professional Projects"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "I've worked on a number of projects over my career, here are just a few."), (0, _preact.h)("br", null), (0, _preact.h)("div", {
       className: "card-section-wrapper"
     }, renderCardsGrid(_projects.default.professional))), (0, _preact.h)("div", {
       className: "container text-center content-section"
-    }, (0, _preact.h)("h1", {
-      className: "display-4"
-    }, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", {
-      className: "text-muted"
-    }, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), (0, _preact.h)("div", {
+    }, (0, _preact.h)("h1", null, "Playground"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there."), (0, _preact.h)("div", {
       className: "card-section-wrapper"
     }, renderCardsGrid(_projects.default.playground))));
   }
@@ -1497,7 +1475,7 @@ class App extends _preact.Component {
     }))), (0, _preact.h)("div", {
       className: "footer container border-top"
     }, (0, _preact.h)("div", null, (0, _preact.h)("p", {
-      className: "text-muted text-sm-left"
+      className: "text-sm-left"
     }, "\xA9 2021\xA0", (0, _preact.h)("a", {
       className: "rainbow-hover text-surf",
       href: "https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL"
@@ -1546,7 +1524,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52109" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56133" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
