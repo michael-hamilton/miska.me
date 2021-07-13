@@ -16,9 +16,9 @@ class App extends Component {
 
         <nav className="main-nav">
           <ul>
-            <li className="nav-item"><Link className="nav-link text-center" href="/" activeClassName={'active'}>About</Link></li>
+            <li className="nav-item"><Link className="nav-link text-center" title={'about'} href="/" activeClassName={'active'}>About</Link></li>
             <li className="profile-image"><img src={img}/></li>
-            <li className="nav-item"><Link className="nav-link text-center" href="/work" activeClassName={'active'}>Work</Link></li>
+            <li className="nav-item"><Link className="nav-link text-center" title={'work'} href="/work" activeClassName={'active'}>Work</Link></li>
           </ul>
         </nav>
 

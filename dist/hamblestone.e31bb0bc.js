@@ -1020,7 +1020,7 @@ class Home extends _preact.Component {
       className: 'container text-center'
     }, (0, _preact.h)("h1", {
       className: 'display-4'
-    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", null, "I'm a blank slate maker; I love bringing ideas to life."), (0, _preact.h)("p", null, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", null, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
+    }, "Hey!"), (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "I'm Mike, a software engineer based in Baltimore, MD, USA."), (0, _preact.h)("p", null, "I'm a maker who prefers a blank slate - I love bringing new ideas to life!"), (0, _preact.h)("p", null, "I'm much more than an engineer though, and I'd love if you got to know me."), (0, _preact.h)("p", null, "If you'd like to speak to me about software, music, computers, or something else, ", (0, _preact.h)("a", {
       href: "mailto:michaelhamilton626+hamblestone@gmail.com",
       className: "text-surf"
     }, "drop me a line"), "!"));
@@ -1454,6 +1454,7 @@ class App extends _preact.Component {
       className: "nav-item"
     }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
+      title: 'about',
       href: "/",
       activeClassName: 'active'
     }, "About")), (0, _preact.h)("li", {
@@ -1464,6 +1465,7 @@ class App extends _preact.Component {
       className: "nav-item"
     }, (0, _preact.h)(_match.Link, {
       className: "nav-link text-center",
+      title: 'work',
       href: "/work",
       activeClassName: 'active'
     }, "Work")))), (0, _preact.h)("div", {
@@ -1524,7 +1526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56133" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53188" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

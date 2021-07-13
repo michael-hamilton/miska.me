@@ -7,11 +7,13 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
 }
 
 body {
   background-color: #6483e8;
   font-family: sans-serif;
+  height: 100%;
 }
 body p {
   color: #6c757d;
@@ -71,6 +73,7 @@ body .container {
 }
 body .content {
   background-color: #fefefe;
+  min-height: 100%;
 }
 body .header {
   background: #45c4b1;
@@ -116,11 +119,8 @@ body .main-nav {
 body .main-nav ul {
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   list-style: none;
-}
-body .main-nav .nav-item {
-  margin: 0 6rem;
 }
 body .main-nav .nav-item .nav-link {
   color: #7cbb9f;
@@ -138,29 +138,30 @@ body .main-nav .nav-item .nav-link:hover, body .main-nav .nav-item .nav-link:act
 body .main-nav .nav-item .nav-link.active {
   font-weight: 700;
 }
+body .main-nav .nav-item .nav-link::before {
+  content: attr(title);
+  display: block;
+  height: 0;
+  font-weight: 700;
+  overflow: hidden;
+  visibility: hidden;
+}
 @media screen and (max-width: 1200px) {
   body .main-nav .nav-item .nav-link {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 300;
   }
 }
 body .main-nav .profile-image {
-  position: absolute;
+  height: 0;
+  margin-top: -18rem;
 }
 body .main-nav .profile-image img {
   background-color: white;
-  border: 0.6rem solid white;
   border-radius: 100%;
-  height: 22rem;
+  height: 18rem;
   overflow: hidden;
   box-shadow: 0 0 1rem 0 #373737;
-}
-@media screen and (max-width: 1200px) {
-  body .main-nav .profile-image img {
-    height: 15rem;
-    top: -70;
-    width: 14rem;
-  }
 }
 body .main-content-wrapper {
   margin-bottom: 4rem;
@@ -203,6 +204,9 @@ body .card-section-wrapper .card .card-text {
 body .card-section-wrapper .card .card-img-top {
   flex-shrink: 0;
   width: 100%;
+}
+body .card-section-wrapper .card .card-footer {
+  margin-top: 1rem;
 }
 body .card-section-wrapper .card .card-button-wrapper {
   width: 100%;

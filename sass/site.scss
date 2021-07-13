@@ -18,11 +18,13 @@ $break-large: "1200px";
 
 html {
 	font-size: 62.5%;
+	height: 100%;
 }
 
 body {
 	background-color: rgb(100, 131, 232);
 	font-family: sans-serif;
+	height: 100%;
 
 	p {
 		color: $med-gray;
@@ -73,6 +75,7 @@ body {
 
 	.content {
 		background-color: #fefefe;
+		min-height: 100%;
 	}
 
 	.header {
@@ -120,13 +123,11 @@ body {
 		ul {
 			align-items: center;
 			display: flex;
-			justify-content: space-around;
+			justify-content: space-evenly;
 			list-style: none;
 		}
 
 		.nav-item {
-			margin: 0 6rem;
-
 			.nav-link {
 				color: $surf;
 				font-size: 2.8rem;
@@ -145,29 +146,32 @@ body {
 					font-weight: 700;
 				}
 
+				&::before {
+					content: attr(title);
+					display: block;
+					height: 0;
+					font-weight: 700;
+					overflow: hidden;
+					visibility: hidden;
+				}
+
 				@media screen and (max-width: $break-large) {
-					font-size: 2.0rem;
+					font-size: 2.4rem;
 					font-weight: 300;
 				}
 			}
 		}
 
 		.profile-image {
-			position: absolute;
+			height: 0;
+			margin-top: -18rem;
 
 			img {
 				background-color: white;
-				border: 0.6rem solid white;
 				border-radius: 100%;
-				height: 22rem;
+				height: 18rem;
 				overflow: hidden;
 				box-shadow: 0 0 1rem 0 $dark-gray;
-
-				@media screen and (max-width: $break-large) {
-					height: 15rem;
-					top: -70;
-					width: 14rem;
-				}
 			}
 		}
 	}
@@ -217,6 +221,10 @@ body {
 			.card-img-top {
 				flex-shrink: 0;
 				width: 100%;
+			}
+
+			.card-footer {
+				margin-top: 1rem;
 			}
 
 			.card-button-wrapper {
