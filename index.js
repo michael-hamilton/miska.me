@@ -32,7 +32,7 @@ class App extends Component {
         <div className="footer container border-top">
           <div>
             <p className="text-sm-left">
-              &copy; 2021&nbsp;
+              &copy; 2022&nbsp;
               <a className="rainbow-hover text-surf" href="https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL">Michael Hamilton</a>
             </p>
           </div>
@@ -44,10 +44,6 @@ class App extends Component {
               <li>&middot;</li>
               <li>
                 <a className="footer-link-item" href="https://linkedin.com/in/michaelhamilton626">LinkedIn</a>
-              </li>
-              <li>&middot;</li>
-              <li>
-                <a className="footer-link-item" href="https://twitter.com/miskahamilton">Twitter</a>
               </li>
             </ul>
           </div>
