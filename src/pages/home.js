@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className={'container text-center'}>
-        <h1 className='display-4'>Hey!</h1>
+        <h1 className='display-1'>Hey!</h1>
         <hr/>
 
         <div className='column-wrapper-2 width-1-4'>

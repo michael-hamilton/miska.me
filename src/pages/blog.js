@@ -5,7 +5,7 @@ import posts from '../posts';
 
 const Blog = () => (
   <div className={'container'}>
-    <h1 className={'display-4'}>Blog</h1>
+    <h1 className={'display-1'}>Blog</h1>
 
     <hr />
 

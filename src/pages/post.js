@@ -2,7 +2,7 @@
 
 import { Component } from 'preact';
 import hljs from 'highlight.js/lib/common';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/stackoverflow-light.css';
 import Posts from '../posts';
 
 class Post extends Component {

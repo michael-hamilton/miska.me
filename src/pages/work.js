@@ -5,7 +5,7 @@ import projects from '../projects';
 const Home = () => (
   <div>
     <div className="container text-center content-section">
-      <h1 className="display-4">Work</h1>
+      <h1 className="display-1">Work</h1>
 
       <hr/>
 

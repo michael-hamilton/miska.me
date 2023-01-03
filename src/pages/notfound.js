@@ -2,7 +2,7 @@
 
 const NotFound = () => (
   <div className={'container text-center'}>
-    <h1 className='display-4'>Content Not Found</h1>
+    <h1 className='display-1'>Content Not Found</h1>
 
     <hr/>
 
