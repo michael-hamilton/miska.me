@@ -1,7 +1,7 @@
 /*
- * Projects artifacts should exist in a directory inside /projects such as /project/index.html
+ * Project artifacts should exist in a directory inside /projects such as /project/index.html
  * Projects are separated by categorized by top level lists ("professional", "playground", etc)
- * Projects are registered in this file as an object with the format:
+ * Projects are registered in this file as an object with the shape:
  *
  * {
  *    name: 'Project Name',

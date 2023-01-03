@@ -1,6 +1,6 @@
 /*
  * Posts should exist in a directory inside /posts as an MDX file such as /post-1/post.mdx
- * Posts are registered in this file as an object with the format:
+ * Posts are registered in this file as an object with the shape:
  *
  * 'post-id': {
  *    title: 'Post Title',
