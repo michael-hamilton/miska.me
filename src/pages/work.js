@@ -1,9 +1,9 @@
 // Work page
 
-import projects from '../projects';
+import work from '../work';
 import './page.scss';
 
-const Home = () => (
+const Work = () => (
   <div className='container'>
     <div>
       <h1 className='main-heading text-center'>Work</h1>
@@ -55,23 +55,7 @@ const Home = () => (
       <br/>
 
       <div className='card-section-wrapper'>
-        {renderCardsGrid(projects.professional)}
-      </div>
-    </div>
-
-    <br />
-
-    <div>
-      <h1 className='main-heading text-center'>Playground</h1>
-
-      <hr/>
-
-      <p className='text-center'>
-        Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there.
-      </p>
-
-      <div className='card-section-wrapper'>
-        {renderCardsGrid(projects.playground)}
+        {renderCardsGrid(work)}
       </div>
     </div>
   </div>
@@ -107,4 +91,4 @@ const renderCardsGrid = (projects) => {
   });
 };
 
-export default Home;
+export default Work;

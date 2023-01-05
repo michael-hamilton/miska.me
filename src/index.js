@@ -18,6 +18,7 @@ class App extends Component {
           <ul>
             <li className='nav-item'><Link class='nav-link text-center' title='about' href='/' activeClassName='active'>About</Link></li>
             <li className='nav-item'><Link class='nav-link text-center' title='work' href='/work' activeClassName='active'>Work</Link></li>
+            <li className='nav-item'><Link class='nav-link text-center' title='projects' href='/projects' activeClassName='active'>Projects</Link></li>
             <li className='nav-item'>
             <Match path='/blog/:postId'>
               {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='blog' href='/blog' activeClassName='active'>Blog</Link>}
@@ -32,6 +33,10 @@ class App extends Component {
             <AsyncRoute
               path='/work'
               getComponent={() => import('./pages/work').then(module => module.default)}
+            />
+            <AsyncRoute
+              path='/projects'
+              getComponent={() => import('./pages/projects').then(module => module.default)}
             />
             <AsyncRoute
               path='/blog'
