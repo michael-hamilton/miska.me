@@ -1,0 +1,74 @@
+@import './style-vars';
+
+@font-face {
+	font-family: 'Quicksand';
+	src: url('./static/fonts/quicksand/Quicksand-Variable.ttf') format("truetype-variations");
+	font-weight: 1 999;
+}
+
+*, * * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+html {
+	font-size: 62.5%;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: rgb(100, 131, 232);
+	font-family: "Quicksand", sans-serif;
+	height: 100%;
+	width: 100%;
+
+	#root {
+		height: 100%;
+		width: 100%;
+	}
+
+	p {
+		color: $med-gray;
+		font-weight: 300;
+		font-size: 2rem;
+		line-height: 3.6rem;
+		margin-bottom: 1rem;
+	}
+
+	a {
+		font-size: 2rem;
+		text-decoration: none;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 400;
+		margin-bottom: 1rem;
+	}
+
+	h1 { font-size: 4.8rem; }
+	h2 { font-size: 4.0rem; }
+	h3 { font-size: 3.6rem; }
+	h4 { font-size: 2.8rem; }
+	h5 { font-size: 2.4rem; }
+	h6 { font-size: 2.0rem; }
+
+	pre {
+		white-space: pre-wrap;
+		white-space: -moz-pre-wrap;
+		white-space: -o-pre-wrap;
+		word-wrap: break-word;
+
+		code {
+			border-radius: 1rem;
+			font-size: 1.8rem;
+		}
+	}
+
+	hr {
+		border-top: 0.1rem solid rgba(0,0,0,0.1);
+		margin: 1rem;
+	}
+}

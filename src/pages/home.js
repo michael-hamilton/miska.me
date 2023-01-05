@@ -2,12 +2,14 @@
 
 import { Component } from 'preact';
 import img from '../static/images/profile.jpg';
+import './page.scss';
 
 class Home extends Component {
   render() {
     return (
-      <div className={'container text-center'}>
-        <h1 className='display-1'>Hey!</h1>
+      <div className='container'>
+        <h1 className='main-heading text-center'>Hey!</h1>
+
         <hr/>
 
         <div className='column-wrapper-2 width-1-4'>

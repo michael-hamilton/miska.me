@@ -1,8 +1,10 @@
 // Content Not Found page
 
+import './page.scss';
+
 const NotFound = () => (
-  <div className={'container text-center'}>
-    <h1 className='display-1'>Content Not Found</h1>
+  <div className='container text-center'>
+    <h1 className='main-heading'>Content Not Found</h1>
 
     <hr/>
 

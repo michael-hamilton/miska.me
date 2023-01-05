@@ -1,15 +1,16 @@
 // Work page
 
 import projects from '../projects';
+import './page.scss';
 
 const Home = () => (
-  <div>
-    <div className="container text-center content-section">
-      <h1 className="display-1">Work</h1>
+  <div className='container'>
+    <div>
+      <h1 className='main-heading text-center'>Work</h1>
 
       <hr/>
 
-      <p>
+      <p className='text-center'>
         I have worked in some professional capacity as a programmer since 2010.
         While I've touched many sorts of tech during my career, my interest and focus has been with web technologies.
         Presently, I am a software engineer at <a href="https://msquarehealthcare.com/" className="text-surf">MSquare Healthcare</a> in Baltimore, MD (USA) where we develop a world class digital therapy video game.
@@ -17,7 +18,7 @@ const Home = () => (
         I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' className="text-surf">Kata Design Studio</a> at Johns Hopkins Medical Institute, where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences.
       </p>
 
-      <p>
+      <p className='text-center'>
         My career history is diverse working with both commercial and non-profit
         organizations, and also independently as a freelancer. My various roles have given me unique professional
         opportunities beyond software engineering such as working with audio visual technology in both live and studio
@@ -29,7 +30,7 @@ const Home = () => (
         I've also got professional experience working in music, IT, large event coordination, and building design/construction projects.
       </p>
 
-      <p>
+      <p className='text-center'>
         I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it.
         My passion for web tech can without a doubt can be attributed to growing up on dial-up, writing CSS for my Myspace page, and finding new ways to connect online.
         When it comes to software engineering I'm relatively technology agnostic, though most of my expertise is related to web technologies.
@@ -37,35 +38,39 @@ const Home = () => (
         Of course, I've also got strong web fundamentals with HTML, and CSS.
       </p>
 
-      <p>
-        See my <a href="../static/files/resume.pdf" className="text-surf">resum&eacute;</a> if you want to know more.
+      <p className='text-center'>
+        See my <a href='../static/files/resume.pdf' className='text-surf'>resum&eacute;</a> if you want to know more.
       </p>
     </div>
 
-    <div className="container text-center content-section">
-      <h1>Professional Projects</h1>
+    <br />
+
+    <div>
+      <h1 className='main-heading text-center'>Professional Projects</h1>
 
       <hr/>
 
-      <p>I've worked on a number of projects over my career, here are just a few which I'm able to share.</p>
+      <p className='text-center'>I've worked on a number of projects over my career, here are just a few which I'm able to share.</p>
 
       <br/>
 
-      <div className="card-section-wrapper">
+      <div className='card-section-wrapper'>
         {renderCardsGrid(projects.professional)}
       </div>
     </div>
 
-    <div className="container text-center content-section">
-      <h1>Playground</h1>
+    <br />
+
+    <div>
+      <h1 className='main-heading text-center'>Playground</h1>
 
       <hr/>
 
-      <p>
+      <p className='text-center'>
         Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there.
       </p>
 
-      <div className="card-section-wrapper">
+      <div className='card-section-wrapper'>
         {renderCardsGrid(projects.playground)}
       </div>
     </div>
@@ -73,14 +78,14 @@ const Home = () => (
 );
 
 const Card = (props) => (
-  <div className="card">
-    <div className="card-body">
-      <img className="card-img-top" loading='lazy' src={props.image} alt={props.title}/>
-      <h5 className="card-title">{props.name}</h5>
-      <p className="card-text">{props.description}</p>
+  <div className='card text-center'>
+    <div className='card-body'>
+      <img className='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
+      <h5 className='card-title'>{props.name}</h5>
+      <p className='card-text'>{props.description}</p>
     </div>
-    <div className="card-footer">
-      <div className="card-button-wrapper button-group" role="group" aria-label="Actions">
+    <div className='card-footer'>
+      <div className='card-button-wrapper button-group' role='group' aria-label='Actions'>
         {
           props.buttons ?
             props.buttons.map(button => <a className={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
