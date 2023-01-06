@@ -1,5 +1,263 @@
+@import '../style-vars.scss';
+
 .loader-wrapper {
 	align-items: center;
 	display: flex;
 	justify-content: center;
+	padding: 2rem;
+
+	.loading-icon {
+		display: flex;
+		height: 10rem;
+		justify-content: center;
+		position: relative;
+		width: 10rem;
+
+		div {
+			animation: loading 1.25s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+			background: $surf;
+			display: inline-block;
+			position: absolute;
+			width: 1.2rem;
+
+			&:nth-child(1) {
+				animation-delay: -0.25s;
+				left: 1.8rem;
+			}
+
+			&:nth-child(2) {
+				animation-delay: -0.125s;
+				left: 4.4rem;
+			}
+
+			&:nth-child(3) {
+				animation-delay: 0s;
+				left: 7rem;
+			}
+		}
+	}
+
+	@keyframes loading {
+		0% {
+			height: 8rem;
+			top: 1rem;
+		}
+		50%, 100% {
+			height: 4rem;
+			top: 3rem;
+		}
+	}
+}
+
+.card {
+	background-color: white;
+	box-shadow: 0 0 0.4rem 0 $light-gray;
+	display: flex;
+	flex: 1 0 30%;
+	flex-direction: column;
+	margin: 1rem;
+	padding: 1rem;
+	transition: 0.25s;
+
+	.card-body {
+		height: 100%;
+	}
+
+	.card-title {
+		font-size: 2.4rem;
+		font-weight: 500;
+	}
+
+	.card-text {
+		color: $dark-gray;
+		font-size: 1.8rem;
+		font-weight: 100;
+		line-height: 2.4rem;
+	}
+
+	.card-img-top {
+		flex-shrink: 0;
+		width: 100%;
+	}
+
+	.card-footer {
+		margin-top: 1rem;
+	}
+
+	.card-button-wrapper {
+		display: flex;
+		width: 100%;
+
+		.button {
+			align-items: center;
+			display: flex;
+			flex: 1;
+			font-size: 1.4rem;
+			font-weight: 300;
+			justify-content: center;
+			margin: 0;
+
+			&.btn-secondary {
+				background-color: #17a2b8;
+
+				&:hover {
+					background-color: #138496;
+				}
+			}
+
+			&.btn-info {
+				background-color: $med-gray;
+
+				&:hover {
+					background-color: $dark-gray;
+				}
+			}
+
+			&:first-child {
+				border-bottom-left-radius: 0.5rem;
+				border-top-left-radius: 0.5rem;
+			}
+
+			&:last-child {
+				border-bottom-right-radius: 0.5rem;
+				border-top-right-radius: 0.5rem;
+			}
+		}
+	}
+
+	@media screen and (max-width: $break-tiny) {
+		flex: 1 0 50%;
+	}
+
+	@media screen and (max-width: $break-large) {
+		.card-title {
+			font-size: 2rem;
+		}
+
+		.card-text {
+			font-size: 1.4rem;
+			line-height: 2rem;
+		}
+
+		.card-button-wrapper {
+			.button {
+				font-size: 1.4rem;
+				padding: 0.5rem;
+			}
+		}
+	}
+}
+
+.post-list-item {
+	background-color: $light-gray;
+	font-size: 2rem;
+	margin: 1rem 0;
+	transition: 0.25s;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	.post-list-item-link {
+		color: $dark-gray;
+		display: flex;
+		flex-direction: row;
+		padding: 4rem 1rem;
+
+		.left-column {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			flex: 1;
+			max-width: 20rem;
+		}
+
+		.right-column {
+			display: flex;
+			flex: 3;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.post-list-item-timestamp {
+			color: $med-gray;
+			font-size: 2rem;
+			position: absolute;
+			right: 1.4rem;
+			top: 1rem;
+		}
+
+		&:hover {
+			background-color: $light-gray-highlight;
+			cursor: pointer;
+		}
+
+		img {
+			height: 10rem;
+		}
+
+		p {
+			color: $dark-gray;
+			margin-bottom: 1.4rem;
+		}
+	}
+
+	@media screen and (max-width: $break-tiny) {
+		.post-list-item-link {
+			align-items: center;
+			flex-direction: column;
+			padding: 1rem;
+			text-align: center;
+
+			.left-column {
+				align-items: center;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			.right-column {
+				align-items: center;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			.post-list-item-timestamp {
+				color: $med-gray;
+				font-size: 1.6rem;
+				position: relative;
+			}
+
+			.post-list-item-title {
+				font-size: 2.8rem;
+			}
+
+			img {
+				margin: 2rem;
+			}
+
+			p {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+}
+
+.button {
+	background-color: $med-gray;
+	color: white;
+	font-size: 1rem;
+	font-weight: 300;
+	margin: 1rem;
+	padding: 1rem;
+	transition: 0.125s;
+
+	&:hover {
+		background-color: $dark-gray;
+	}
 }

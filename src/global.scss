@@ -24,10 +24,12 @@ html {
 body {
 	background-color: rgb(100, 131, 232);
 	font-family: "Quicksand", sans-serif;
+	overflow: hidden;
 	height: 100%;
 	width: 100%;
 
 	#root {
+		overflow: scroll;
 		height: 100%;
 		width: 100%;
 	}

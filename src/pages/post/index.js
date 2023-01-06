@@ -6,7 +6,7 @@ import 'highlight.js/styles/stackoverflow-light.css';
 import { PostNotFound } from '../../components';
 import { prettyDateFromTimestamp } from '../../utils.js';
 import Posts from '../../posts/index.js';
-import '../page.scss';
+import './style.scss';
 
 class Post extends Component {
   constructor(props) {
@@ -29,9 +29,9 @@ class Post extends Component {
 
       this.setState({content: (
         <>
-          <div className='section-header'>
-            <h1 className='section-title'>{Post.title}</h1>
-            <p className='post-timestamp'>{prettyDateFromTimestamp(Post.timestamp)}</p>
+          <div class='section-header'>
+            <h1 class='section-title'>{Post.title}</h1>
+            <p class='post-timestamp'>{prettyDateFromTimestamp(Post.timestamp)}</p>
           </div>
 
           <PostComponent />
@@ -52,7 +52,7 @@ class Post extends Component {
 
   render() {
     return (
-      <div className='container post-wrapper'>
+      <div class='container post-wrapper'>
         { this.state.content }
       </div>
     );

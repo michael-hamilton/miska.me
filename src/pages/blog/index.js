@@ -2,22 +2,21 @@
 
 import { PostListItem } from '../../components';
 import posts from '../../posts/index.js';
-import '../page.scss';
 
 const Blog = () => (
-  <div className='container'>
-    <div className='section-header'>
-      <h1 className='section-title'>Blog</h1>
+  <div class='container'>
+    <div class='section-header'>
+      <h1 class='section-title'>Blog</h1>
     </div>
 
     <div class='post-list'>
-      { renderPostsList(posts) }
+      { renderPostList(posts) }
     </div>
   </div>
 );
 
 // Accepts a list of post objects and returns a list of PostItem components
-const renderPostsList = (posts) => {
+const renderPostList = (posts) => {
   return Object.keys(posts).map((post, index) => {
     return <PostListItem
       key={posts[post].url}

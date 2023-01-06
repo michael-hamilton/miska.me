@@ -2,20 +2,20 @@
 
 import { Card } from '../../components';
 import projectsList from '../../projects/index.js';
-import '../page.scss';
+import './style.scss';
 
 const Projects = () => (
-  <div className='container'>
+  <div class='container'>
     <div>
-      <div className='section-header'>
-        <h1 className='section-title'>Projects</h1>
+      <div class='section-header'>
+        <h1 class='section-title'>Projects</h1>
       </div>
 
       <p>
         Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there.
       </p>
 
-      <div className='card-section-wrapper'>
+      <div class='card-section-wrapper'>
         { renderCardsGrid(projectsList) }
       </div>
     </div>

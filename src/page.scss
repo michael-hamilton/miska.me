@@ -1,0 +1,233 @@
+@import 'style-vars';
+
+.content {
+	background-color: #fefefe;
+	min-height: 100%;
+
+	.container {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 110rem;
+
+		@media screen and (max-width: $break-large) {
+			max-width: 90rem;
+		}
+
+		@media screen and (max-width: $break-med) {
+			max-width: 70rem;
+		}
+
+		@media screen and (max-width: $break-small) {
+			max-width: 50rem;
+		}
+	}
+
+	.header {
+		background: rgb(69, 196, 177);
+		background: linear-gradient(0deg, rgb(69, 196, 177) 33%, rgb(100, 131, 232) 100%);
+		background-attachment: fixed;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 0;
+		padding: 8rem 10rem 12rem 10rem;
+		text-align: center;
+
+		.header-title {
+			color: white;
+			font-size: 8rem;
+			text-shadow: 0 0 0.4rem $med-gray;
+
+			@media screen and (max-width: $break-small) {
+				font-size: 5rem;
+			}
+		}
+
+		.header-sub-title {
+			color: white;
+			font-size: 2.4rem;
+			font-weight: 200;
+			text-align: center;
+			text-shadow: 0 0 0.4rem $med-gray;
+
+			@media screen and (max-width: $break-small) {
+				font-size: 1.8rem;
+			}
+		}
+
+		@media screen and (max-width: $break-large) {
+			padding: 7rem;
+		}
+	}
+
+	.main-nav {
+		background-color: $dark-gray;
+		padding-bottom: 2rem;
+		padding-top: 2rem;
+		z-index: 999;
+
+		ul {
+			align-items: center;
+			display: flex;
+			justify-content: space-evenly;
+			list-style: none;
+		}
+
+		.nav-item {
+			display: flex;
+			justify-content: center;
+			flex: 1;
+
+			.nav-link {
+				color: $surf;
+				font-size: 2.8rem;
+				font-weight: 200;
+				text-decoration: none;
+				text-transform: uppercase;
+				transition: color 0.125s;
+				user-select: none;
+
+				&:hover, &:active, &.active {
+					color: white;
+					transition: color 0.125s;
+				}
+
+				&.active {
+					font-weight: 700;
+				}
+
+				&::before {
+					content: attr(title);
+					display: block;
+					height: 0;
+					font-weight: 700;
+					overflow: hidden;
+					visibility: hidden;
+				}
+
+				@media screen and (max-width: $break-large) {
+					font-size: 2.4rem;
+					font-weight: 300;
+				}
+
+				@media screen and (max-width: $break-tiny) {
+					font-size: 1.8rem;
+				}
+			}
+		}
+	}
+
+	.main-content-wrapper {
+		margin-top: 3rem;
+		margin-bottom: 1rem;
+		padding: 1rem;
+
+		p, a {
+			line-height: 3rem;
+		}
+
+		.section-header {
+			border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+			margin-bottom: 2rem;
+
+			.section-title {
+				font-size: 4.8rem;
+			}
+
+			@media screen and (max-width: $break-med) {
+				margin-bottom: 1rem;
+
+				.section-title {
+					font-size: 3.6rem;
+				}
+			}
+		}
+
+		@media screen and (max-width: $break-med) {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			padding-bottom: 1rem;
+			padding-top: 1rem;
+
+			p, a {
+				font-size: 1.6rem;
+				line-height: 2.4rem;
+			}
+		}
+	}
+
+	.footer {
+		border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem 0;
+
+		a {
+			color: $surf;
+			font-weight: 300;
+			font-size: 2rem;
+			line-height: 3.2rem;
+			transition: 0.125s;
+			user-select: none;
+
+			&:hover {
+				color: darken($surf, 25%);
+				transition: color 0.125s;
+			}
+		}
+
+		.social-links {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+
+			li {
+				align-items: center;
+				display: flex;
+				line-height: 3.6rem;
+				padding: 0 0.5rem;
+			}
+		}
+
+		@media screen and (max-width: $break-tiny) {
+			margin: 0 1rem;
+		}
+
+		@media screen and (max-width: $break-med) {
+			p, a {
+				font-size: 1.6rem;
+			}
+		}
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-surf {
+	color: $surf;
+	transition: color 0.125s;
+
+	&:hover {
+		color: darken($surf, 25%);
+		transition: color 0.125s;
+	}
+}
+
+.rainbow-hover {
+	&:hover {
+		text-decoration: none;
+		background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+	}
+}

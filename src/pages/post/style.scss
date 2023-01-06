@@ -1,0 +1,30 @@
+@import '../../style-vars';
+
+.post-wrapper {
+	.section-header {
+		align-items: center;
+		border-bottom: 0.1rem solid $light-gray;
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 2rem;
+
+		.post-timestamp {
+			color: $med-gray;
+			margin-bottom: auto;
+			margin-left: auto;
+			margin-top: auto;
+		}
+	}
+
+	code {
+		font-size: 1.8rem;
+
+		@media screen and (max-width: $break-med) {
+			font-size: 1.4rem;
+		}
+
+		@media screen and (max-width: $break-small) {
+			font-size: 1.2rem;
+		}
+	}
+}

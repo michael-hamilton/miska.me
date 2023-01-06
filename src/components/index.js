@@ -5,17 +5,17 @@ import { prettyDateFromTimestamp } from '../utils.js';
 import './style.scss';
 
 export const Card = (props) => (
-	<div className='card text-center'>
-		<div className='card-body'>
-			<img className='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
-			<h5 className='card-title'>{props.name}</h5>
-			<p className='card-text'>{props.description}</p>
+	<div class='card text-center'>
+		<div class='card-body'>
+			<img class='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
+			<h5 class='card-title'>{props.name}</h5>
+			<p class='card-text'>{props.description}</p>
 		</div>
-		<div className='card-footer'>
-			<div className='card-button-wrapper button-group' role='group' aria-label='Actions'>
+		<div class='card-footer'>
+			<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
 				{
 					props.buttons ?
-						props.buttons.map(button => <a className={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
+						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
 				}
 			</div>
 		</div>
@@ -25,7 +25,7 @@ export const Card = (props) => (
 export const PostListItem = (props) => (
 	<div class='post-list-item'>
 		<Link class='post-list-item-link' href={props.url}>
-			<div className='left-column'>
+			<div class='left-column'>
 				<img src={props.image} loading='lazy' />
 			</div>
 
@@ -34,7 +34,7 @@ export const PostListItem = (props) => (
 				<p>{props.description}</p>
 			</div>
 
-			<p className='post-list-item-timestamp'>
+			<p class='post-list-item-timestamp'>
 				<small>
 					{prettyDateFromTimestamp(props.timestamp)}
 				</small>
@@ -45,24 +45,32 @@ export const PostListItem = (props) => (
 
 export const Loader = () => (
 	<div class='loader-wrapper'>
-		Loading
+		<div class='loading-icon'>
+			<div />
+			<div />
+			<div />
+		</div>
 	</div>
 );
 
 export const PageNotFound = () => (
-	<div className='container text-center'>
-		<div className='page-header'>
-			<h1 className='page-title'>Content Not Found</h1>
+	<div class='container text-center'>
+		<div class='section-header'>
+			<h1 class='section-title'>Content Not Found</h1>
 		</div>
 
 		<div>
 			<p>Whatever it is that you were looking for isn't here.</p>
+
+			<p>
+				<pre>¯\_(ツ)_/¯</pre>
+			</p>
 		</div>
 	</div>
 );
 
 export const PostNotFound = () => (
-	<pre className={'text-center'}>
+	<pre class={'text-center'}>
     <code>
       throw new Error('Post not found!');
     </code>
