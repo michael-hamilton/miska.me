@@ -28,7 +28,7 @@ class Post extends Component {
       const { default: PostComponent } = await Post.postFile();
 
       this.setState({content: (
-        <>
+        <section>
           <div class='section-header'>
             <h1 class='section-title'>{ Post.title }</h1>
             <p class='post-timestamp'>{ prettyDateFromTimestamp(Post.timestamp) }</p>
@@ -39,7 +39,7 @@ class Post extends Component {
           </div>
 
           <PostComponent />
-        </>
+        </section>
       )});
     }
     catch(err) {

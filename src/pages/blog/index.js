@@ -5,13 +5,15 @@ import posts from '../../posts/index.js';
 
 const Blog = () => (
   <div class='container'>
-    <div class='section-header'>
-      <h1 class='section-title'>Blog</h1>
-    </div>
+    <section>
+      <div class='section-header'>
+        <h1 class='section-title'>Blog</h1>
+      </div>
 
-    <div class='post-list'>
-      { renderPostList(posts) }
-    </div>
+      <div class='post-list'>
+        { renderPostList(posts) }
+      </div>
+    </section>
   </div>
 );
 

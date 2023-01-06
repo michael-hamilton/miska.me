@@ -6,7 +6,7 @@ import './style.scss';
 
 const Work = () => (
   <div class='container'>
-    <div>
+    <section>
       <div class='section-header'>
         <h1 class='section-title'>Work</h1>
       </div>
@@ -14,9 +14,9 @@ const Work = () => (
       <p>
         I have worked in some professional capacity as a programmer since 2010.
         While I've touched many sorts of tech during my career, my interest and focus has been with web technologies.
-        Presently, I am a software engineer at <a href="https://msquarehealthcare.com/" class="text-surf">MSquare Healthcare</a> in Baltimore, MD (USA) where we develop a world class digital therapy video game.
+        Presently, I am a software engineer at <a href="https://msquarehealthcare.com/" class="link-highlight">MSquare Healthcare</a> in Baltimore, MD (USA) where we develop a world class digital therapy video game.
         My specific focus here is on engineering tools which enable effective delivery of this novel therapy, using both hardware and software to encourage patients and therapists alike to make the most of the platform.
-        I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' class="text-surf">Kata Design Studio</a> at Johns Hopkins Medical Institute, where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences.
+        I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' class="link-highlight">Kata Design Studio</a> at Johns Hopkins Medical Institute, where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences.
       </p>
 
       <p>
@@ -34,13 +34,11 @@ const Work = () => (
       </p>
 
       <p>
-        See my <a href='../../static/files/resume.pdf' class='text-surf'>resum&eacute;</a> if you want to know more.
+        See my <a href='../../static/files/resume.pdf' class='link-highlight'>resum&eacute;</a> if you want to know more.
       </p>
-    </div>
+    </section>
 
-    <br />
-
-    <div>
+    <section>
       <div class='section-header'>
         <h1 class='section-title'>Professional Projects</h1>
       </div>
@@ -52,7 +50,7 @@ const Work = () => (
       <div class='card-section-wrapper'>
         { renderCardsGrid(workProjectsList) }
       </div>
-    </div>
+    </section>
   </div>
 );
 

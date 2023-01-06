@@ -72,10 +72,10 @@
 		color: $dark-gray;
 		font-size: 1.8rem;
 		font-weight: 100;
-		line-height: 2.4rem;
+		line-height: 2.6rem !important;
 	}
 
-	.card-img-top {
+	.card-img {
 		flex-shrink: 0;
 		width: 100%;
 	}
@@ -92,16 +92,16 @@
 			align-items: center;
 			display: flex;
 			flex: 1;
-			font-size: 1.4rem;
+			font-size: 1.6rem;
 			font-weight: 300;
 			justify-content: center;
 			margin: 0;
 
 			&.btn-secondary {
-				background-color: #17a2b8;
+				background-color: $light-blue;
 
 				&:hover {
-					background-color: #138496;
+					background-color: darken($light-blue, 25%);
 				}
 			}
 
@@ -109,7 +109,7 @@
 				background-color: $med-gray;
 
 				&:hover {
-					background-color: $dark-gray;
+					background-color: darken($med-gray, 25%);
 				}
 			}
 
@@ -127,16 +127,22 @@
 
 	@media screen and (max-width: $break-tiny) {
 		flex: 1 0 50%;
+
+		.card-img {
+			width: 25rem;
+		}
+	}
+
+	@media screen and (max-width: $break-small) {
+		.card-text {
+			font-size: 1.4rem !important;
+			line-height: 2rem !important;
+		}
 	}
 
 	@media screen and (max-width: $break-large) {
 		.card-title {
 			font-size: 2rem;
-		}
-
-		.card-text {
-			font-size: 1.4rem;
-			line-height: 2rem;
 		}
 
 		.card-button-wrapper {
@@ -154,15 +160,12 @@
 	margin: 1rem 0;
 	transition: 0.25s;
 
-	&:last-child {
-		margin-bottom: 0;
-	}
-
 	.post-list-item-link {
 		color: $dark-gray;
 		display: flex;
 		flex-direction: row;
 		padding: 4rem 1rem;
+		transition: 0.25s;
 
 		.left-column {
 			align-items: center;
@@ -188,18 +191,44 @@
 			top: 1rem;
 		}
 
-		&:hover {
-			background-color: $light-gray-highlight;
-			cursor: pointer;
-		}
-
 		img {
 			height: 10rem;
 		}
 
 		p {
 			color: $dark-gray;
-			margin-bottom: 1.4rem;
+			margin-bottom: 0;
+			line-height: 2rem;
+			transition: 0.25s;
+		}
+	}
+
+	&:hover {
+		background-color: $light-blue;
+		cursor: pointer;
+
+		.post-list-item-link {
+			color: $white;
+
+			p {
+				color: white;
+			}
+		}
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: $break-small) {
+		.post-list-item-link {
+			img {
+				height: 7rem;
+			}
+
+			.post-list-item-title {
+				font-size: 2.4rem;
+			}
 		}
 	}
 
@@ -282,15 +311,18 @@
 		border: none;
 		border-radius: 2rem;
 		color: $white;
-		font-size: 1.2rem;
+		font-size: 1.4rem !important;
 		line-height: 2.4rem !important;
 		padding: 0 1rem;
 		transition: 0.25s;
 
 		&:hover {
-			background-color: $light-gray;
-			color: $dark-gray;
+			background-color: $light-blue;
 			cursor: pointer;
+		}
+
+		@media screen and (max-width: $break-small) {
+			font-size: 1.2rem !important;
 		}
 	}
 }

@@ -6,7 +6,7 @@ import './style.scss';
 
 const Projects = () => (
   <div class='container'>
-    <div>
+    <section>
       <div class='section-header'>
         <h1 class='section-title'>Projects</h1>
       </div>
@@ -18,7 +18,7 @@ const Projects = () => (
       <div class='card-section-wrapper'>
         { renderCardsGrid(projectsList) }
       </div>
-    </div>
+    </section>
   </div>
 );
 

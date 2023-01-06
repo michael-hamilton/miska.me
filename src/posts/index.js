@@ -14,13 +14,23 @@
  */
 
 const Posts = {
+  'tv-static-2': {
+    title: 'TV Static 2',
+    description: 'A JS snippet which draws a TV static like effect to a canvas.',
+    url: '/blog/tv-static-2',
+    timestamp: '2023-01-06T02:33:48.878Z',
+    image: require('./tv-static/post-image.png'),
+    tags: ['javascript', 'canvas'],
+    postFile: async () => await import(`./tv-static/post.mdx`)
+  },
+
   'tv-static': {
     title: 'TV Static',
     description: 'A JS snippet which draws a TV static like effect to a canvas.',
     url: '/blog/tv-static',
     timestamp: '2023-01-05T02:33:48.878Z',
     image: require('./tv-static/post-image.png'),
-    tags: ['javascript', 'canvas'],
+    tags: ['javascript', 'canvas', 'snippet'],
     postFile: async () => await import(`./tv-static/post.mdx`)
   }
 };

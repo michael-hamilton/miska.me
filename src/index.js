@@ -61,7 +61,7 @@ const Site = () => (
       <div>
         <p class='text-sm-left'>
           &copy; 2023&nbsp;
-          <a class='rainbow-hover text-surf' href='https://miska.me'>Michael Hamilton</a>
+          <a class='rainbow-hover link-highlight' href='https://miska.me'>Michael Hamilton</a>
         </p>
       </div>
       <div>
@@ -69,11 +69,11 @@ const Site = () => (
           <li>
             <a class='footer-link-item' href='https://github.com/michael-hamilton'>GitHub</a>
           </li>
-          <li>&middot;</li>
+          <li class='middot'>&middot;</li>
           <li>
             <a class='footer-link-item' href='https://linkedin.com/in/michaelhamilton626'>LinkedIn</a>
           </li>
-          <li>&middot;</li>
+          <li className='middot'>&middot;</li>
           <li>
             <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL'>&#9835;</a>
           </li>

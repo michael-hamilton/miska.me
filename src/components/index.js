@@ -7,7 +7,7 @@ import './style.scss';
 export const Card = (props) => (
 	<div class='card text-center'>
 		<div class='card-body'>
-			<img class='card-img-top' loading='lazy' src={ props.image } alt={ props.title }/>
+			<img class='card-img' loading='lazy' src={ props.image } alt={ props.title }/>
 			<h5 class='card-title'>{ props.name }</h5>
 			<p class='card-text'>{ props.description }</p>
 		</div>
