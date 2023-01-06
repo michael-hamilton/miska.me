@@ -1,4 +1,4 @@
-@import '../../style-vars';
+@import '../../variables';
 
 .post-wrapper {
 	.section-header {
@@ -6,7 +6,7 @@
 		border-bottom: 0.1rem solid $light-gray;
 		display: flex;
 		flex-direction: row;
-		margin-bottom: 2rem;
+		margin-bottom: 0 !important;
 
 		.post-timestamp {
 			color: $med-gray;
@@ -14,6 +14,12 @@
 			margin-left: auto;
 			margin-top: auto;
 		}
+	}
+
+	.post-tag-list-wrapper {
+		display: flex;
+		margin-bottom: 1rem;
+		padding: 1rem 0;
 	}
 
 	code {

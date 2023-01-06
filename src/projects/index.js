@@ -31,6 +31,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "NeuroCreator",
     "description": "A prototype of an NFT minting tool. Uses three.js for realtime 3D, ethers.js for integration with the Ethereum blockchain, and IPFS for decentralized file storage.",
@@ -43,6 +44,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "OhEssNine",
     "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
@@ -60,6 +62,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "klav",
     "description": "Playing around with tone.js",
@@ -77,6 +80,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "JS z80 Emulator",
     "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
@@ -89,6 +93,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Midimator",
     "description": "A midi automation utility built with Electron and Node.",
@@ -101,6 +106,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "color-ML",
     "description": "Playing around with brain.js - a color guesser.",
@@ -113,6 +119,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "vidserve",
     "description": "A server and companion PWA to serve personal media over the web.",
@@ -125,6 +132,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Gameboy",
     "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
@@ -137,6 +145,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Hue Local",
     "description": "A basic Node.js utility to control Hue lights over a local network.",
@@ -149,6 +158,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "mDraw",
     "description": "Experimenting with Apple Pencil support in Javascript.",
@@ -161,11 +171,13 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "technical difficulties",
     "description": "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!",
     "image": null
   },
+
   {
     "name": "Game Engine",
     "description": "A start at a Javascript game engine with Electron.",
@@ -178,6 +190,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "SMB 1-1",
     "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
@@ -195,6 +208,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Portfolio Template",
     "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
@@ -207,6 +221,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Canvas Gravity Demo",
     "description": "A simple interactive canvas experiment implementing gravity.",
@@ -224,6 +239,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Quartz",
     "description": "A super simple library for responsive, front-end development. It's a little outdated.",
@@ -241,6 +257,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Conway's Game of Life",
     "description": "An interactive canvas experiment implementing Conway's Game of Life.",
@@ -258,6 +275,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "LiveSlide",
     "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
@@ -270,6 +288,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "WebVR Interaction Demo",
     "description": "A simple experiment with gaze interactions in WebVR.",
@@ -282,6 +301,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "WebVR Demo",
     "description": "Baby's first WebVR experience.",
@@ -294,6 +314,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "socket.io Presenter Demo",
     "description": "Proof of concept for a presentation interface that can update a client in realtime.",
@@ -306,6 +327,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Homebrew Z80 Computer",
     "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
@@ -318,6 +340,7 @@ const projects = [
       }
     ]
   },
+
   {}
 ];
 

@@ -24,6 +24,7 @@ const projects = [
     "description": "A digital therapy platform built using Electron and Node.js.",
     "image": require("./mindpod-dashboard/card-img.png")
   },
+
   {
     "name": "Maestro",
     "description": "A React Native companion application for the MindPod digital therapeutic platform.",
@@ -36,12 +37,14 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Stepwise",
     "description": "A React Native MVP app for providing post-stroke patients with personalized resources and exercises.",
     "notes": "Developed for Johns Hopkins Medical Institue.",
     "image": require("./stepwise/card-img.png")
   },
+
   {
     "name": "churchnativity.com",
     "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
@@ -54,6 +57,7 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "ezstorage.com",
     "description": "A website for a regional storage facility site. I developed templates for this site's proprietary CMS.",
@@ -66,21 +70,25 @@ const projects = [
       }
     ]
   },
+
   {
     "name": "Right Fit Tool",
     "description": "A tool for those interested in finding a job with the National Guard. I contributed styles and markup for this project.",
     "image": require("./nationalguardrightfit/card-img.png"),
   },
+
   {
     "name": "Delfin",
     "description": "An internal dev ops tooling app. An Electron app with a React UI, integrating with AWS in Node.",
     "image": require("./delfin/card-img.png"),
   },
+
   {
     "name": "Clipboard",
     "description": "An internal project management tool written entirely in vanilla js. One of my first forays into JS!",
     "image": require("./clipboard/card-img.png")
   },
+
   {
     "name": "Hit the Road Music",
     "description": "I designed the music for this interactive kids game presented by the National Credit Union Administration.",

@@ -17,7 +17,7 @@ const Blog = () => (
 
 // Accepts a list of post objects and returns a list of PostItem components
 const renderPostList = (posts) => {
-  return Object.keys(posts).map((post, index) => {
+  return Object.keys(posts).map((post) => {
     return <PostListItem
       key={posts[post].url}
       title={posts[post].title}

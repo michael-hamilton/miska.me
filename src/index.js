@@ -6,7 +6,7 @@ import {Link, Match} from 'preact-router/match';
 import AsyncRoute from 'preact-async-route';
 import { Loader, PageNotFound } from './components';
 import Home from './pages/home';
-import './page.scss';
+import './pages/page.scss';
 
 const Site = () => (
   <div class={'content'}>

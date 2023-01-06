@@ -7,15 +7,15 @@ import './style.scss';
 export const Card = (props) => (
 	<div class='card text-center'>
 		<div class='card-body'>
-			<img class='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
-			<h5 class='card-title'>{props.name}</h5>
-			<p class='card-text'>{props.description}</p>
+			<img class='card-img-top' loading='lazy' src={ props.image } alt={ props.title }/>
+			<h5 class='card-title'>{ props.name }</h5>
+			<p class='card-text'>{ props.description }</p>
 		</div>
 		<div class='card-footer'>
 			<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
 				{
 					props.buttons ?
-						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
+						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} data-native>{ button.title }</a>) : null
 				}
 			</div>
 		</div>
@@ -24,14 +24,14 @@ export const Card = (props) => (
 
 export const PostListItem = (props) => (
 	<div class='post-list-item'>
-		<Link class='post-list-item-link' href={props.url}>
+		<Link class='post-list-item-link' href={ props.url }>
 			<div class='left-column'>
-				<img src={props.image} loading='lazy' />
+				<img src={ props.image } loading='lazy' />
 			</div>
 
 			<div class='right-column'>
-				<h3 class='post-list-item-title'>{props.title}</h3>
-				<p>{props.description}</p>
+				<h3 class='post-list-item-title'>{ props.title }</h3>
+				<p>{ props.description }</p>
 			</div>
 
 			<p class='post-list-item-timestamp'>
@@ -70,9 +70,17 @@ export const PageNotFound = () => (
 );
 
 export const PostNotFound = () => (
-	<pre class={'text-center'}>
+	<pre class='text-center'>
     <code>
       throw new Error('Post not found!');
     </code>
   </pre>
+);
+
+export const PostTag = (props) => (
+	<div class='post-tag-wrapper'>
+		<Link href={`/blog?tag=${props.tag}`}>
+			{ props.tag }
+		</Link>
+	</div>
 );

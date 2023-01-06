@@ -59,8 +59,9 @@ const Work = () => (
 
 // Accepts a list of project objects and returns a list of Card components
 const renderCardsGrid = (projects) => {
-  return projects.map((project, index) => {
+  return projects.map((project) => {
     return <Card
+      key={project.name}
       name={project.name}
       description={project.description}
       image={project.image}

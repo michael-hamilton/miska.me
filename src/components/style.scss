@@ -1,4 +1,4 @@
-@import '../style-vars.scss';
+@import '../variables';
 
 .loader-wrapper {
 	align-items: center;
@@ -259,5 +259,38 @@
 
 	&:hover {
 		background-color: $dark-gray;
+	}
+}
+
+.post-tag-wrapper {
+	align-items: center;
+	border-radius: 2rem;
+	display: flex;
+	justify-content: center;
+	margin: 0 0.5rem;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	a {
+		background-color: $med-gray;
+		border: none;
+		border-radius: 2rem;
+		color: $white;
+		font-size: 1.2rem;
+		line-height: 2.4rem !important;
+		padding: 0 1rem;
+		transition: 0.25s;
+
+		&:hover {
+			background-color: $light-gray;
+			color: $dark-gray;
+			cursor: pointer;
+		}
 	}
 }

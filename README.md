@@ -29,7 +29,7 @@ A post object is of the following shape:
 }
 ```
 
-## Index
+## Projects
 Project artifacts exist in a directory in the `/projects` directory such as `/src/projects/project/index.html`.
 In order to add a new project, it must be registered in `/src/projects/index.js`.
 
