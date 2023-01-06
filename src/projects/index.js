@@ -1,5 +1,5 @@
 /*
- * Project artifacts should exist in a directory inside /projects such as /project/index.html
+ * Project artifacts should exist in a directory inside /static/projects such as /project/index.html
  * Projects are separated by categorized by top level lists ("professional", "playground", etc)
  * Projects are registered in this file as an object with the shape:
  *
@@ -11,7 +11,7 @@
  *    "buttons": [ // Optional
  *      {
  *        "title": "View Project",
- *        "url": "/projects/project/index.html",
+ *        "url": "/static/projects/project/index.html",
  *        "type": "secondary"
  *      }
  *    ]
@@ -52,7 +52,7 @@ const projects = [
     "buttons": [
       {
         "title": "Start Mike OS 9",
-        "url": "/projects/ohessnine/dist/index.html",
+        "url": "/static/projects/ohessnine/dist/index.html",
         "type": "secondary"
       },
       {
@@ -70,7 +70,7 @@ const projects = [
     "buttons": [
       {
         "title": "Play klav",
-        "url": "/projects/klav/klav.html",
+        "url": "/static/projects/klav/klav.html",
         "type": "secondary"
       },
       {
@@ -198,7 +198,7 @@ const projects = [
     "buttons": [
       {
         "title": "Play Mario",
-        "url": "/projects/smb/index.html",
+        "url": "/static/projects/smb/index.html",
         "type": "secondary"
       },
       {
@@ -229,7 +229,7 @@ const projects = [
     "buttons": [
       {
         "title": "View Demo",
-        "url": "/projects/canvas-gravity-demo/gravity.html",
+        "url": "/static/projects/canvas-gravity-demo/gravity.html",
         "type": "secondary"
       },
       {
@@ -265,7 +265,7 @@ const projects = [
     "buttons": [
       {
         "title": "View Demo",
-        "url": "/projects/life/life.html",
+        "url": "/static/projects/life/life.html",
         "type": "secondary"
       },
       {

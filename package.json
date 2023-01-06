@@ -16,6 +16,7 @@
   "homepage": "/",
   "devDependencies": {
     "@parcel/compressor-gzip": "^2.8.2",
+    "@parcel/config-default": "^2.8.2",
     "@parcel/transformer-mdx": "^2.8.2",
     "@parcel/transformer-sass": "^2.8.2",
     "babel-core": "^6.26.3",
@@ -24,6 +25,7 @@
     "express": "^4.18.2",
     "gh-pages": "^4.0.0",
     "parcel": "^2.8.2",
+    "parcel-reporter-static-files-copy": "^1.5.0",
     "sass": "^1.57.1"
   },
   "dependencies": {
@@ -44,5 +46,19 @@
     "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat",
     "react/jsx-runtime": "preact/jsx-runtime"
-  }
+  },
+  "staticFiles": [
+    {
+      "staticPath": "./src/projects",
+      "staticOutPath": "static/projects"
+    },
+    {
+      "staticPath": "./src/static",
+      "staticOutPath": "static"
+    },
+    {
+      "staticPath": "./src/work",
+      "staticOutPath": "static/work"
+    }
+  ]
 }

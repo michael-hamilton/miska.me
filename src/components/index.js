@@ -15,7 +15,7 @@ export const Card = (props) => (
 			<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
 				{
 					props.buttons ?
-						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} data-native>{ button.title }</a>) : null
+						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} native>{ button.title }</a>) : null
 				}
 			</div>
 		</div>
@@ -55,17 +55,19 @@ export const Loader = () => (
 
 export const PageNotFound = () => (
 	<div class='container text-center'>
-		<div class='section-header'>
-			<h1 class='section-title'>Content Not Found</h1>
-		</div>
+		<section>
+			<div class='section-header'>
+				<h1 class='section-title'>Content Not Found</h1>
+			</div>
 
-		<div>
-			<p>Whatever it is that you were looking for isn't here.</p>
+			<div>
+				<p>Whatever it is that you were looking for isn't here.</p>
 
-			<p>
-				<pre>¯\_(ツ)_/¯</pre>
-			</p>
-		</div>
+				<p>
+					<pre>¯\_(ツ)_/¯</pre>
+				</p>
+			</div>
+		</section>
 	</div>
 );
 
