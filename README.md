@@ -5,6 +5,7 @@ My personal website.
 ## Usage
 To run locally: clone the repo, run `npm install`, then `npm start` to spin up a development server (likely at http://localhost:1234).
 Alternatively, `npm build` will bundle the site and output into `/dist`.
+`npm run serveDist` will properly serve the bundled site as an SPA, useful for testing before a production deployment. 
 
 ## Pages
 Pages are defined in the `/pages` directory as Preact components.

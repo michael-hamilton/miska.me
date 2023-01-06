@@ -1,5 +1,6 @@
-// Work page
+// Projects page
 
+import { Card } from '../components.js';
 import projects from '../projects';
 import './page.scss';
 
@@ -16,24 +17,6 @@ const Projects = () => (
 
       <div className='card-section-wrapper'>
         {renderCardsGrid(projects)}
-      </div>
-    </div>
-  </div>
-);
-
-const Card = (props) => (
-  <div className='card text-center'>
-    <div className='card-body'>
-      <img className='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
-      <h5 className='card-title'>{props.name}</h5>
-      <p className='card-text'>{props.description}</p>
-    </div>
-    <div className='card-footer'>
-      <div className='card-button-wrapper button-group' role='group' aria-label='Actions'>
-        {
-          props.buttons ?
-            props.buttons.map(button => <a className={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
-        }
       </div>
     </div>
   </div>

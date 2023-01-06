@@ -1,5 +1,6 @@
 // Work page
 
+import { Card } from '../components.js';
 import work from '../work';
 import './page.scss';
 
@@ -61,23 +62,6 @@ const Work = () => (
   </div>
 );
 
-const Card = (props) => (
-  <div className='card text-center'>
-    <div className='card-body'>
-      <img className='card-img-top' loading='lazy' src={props.image} alt={props.title}/>
-      <h5 className='card-title'>{props.name}</h5>
-      <p className='card-text'>{props.description}</p>
-    </div>
-    <div className='card-footer'>
-      <div className='card-button-wrapper button-group' role='group' aria-label='Actions'>
-        {
-          props.buttons ?
-            props.buttons.map(button => <a className={`button btn-${button.type}`} href={button.url} data-native>{button.title}</a>) : null
-        }
-      </div>
-    </div>
-  </div>
-);
 
 // Accepts a list of project objects and returns a list of Card components
 const renderCardsGrid = (projects) => {

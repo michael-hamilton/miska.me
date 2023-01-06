@@ -1,7 +1,6 @@
 // Blog page
 
-import {Link} from 'preact-router';
-import {prettyDateFromTimestamp} from '../utils';
+import { PostItem } from '../components.js';
 import posts from '../posts';
 import './page.scss';
 
@@ -14,27 +13,6 @@ const Blog = () => (
     <div>
       {renderPostsList(posts)}
     </div>
-  </div>
-);
-
-const PostItem = (props) => (
-  <div class='post-item'>
-    <Link class='post-item-link' href={props.url}>
-      <div className='left-column'>
-        <img src={props.image} loading='lazy' />
-      </div>
-
-      <div class='right-column'>
-        <h3>{props.title}</h3>
-        <p>{props.description}</p>
-      </div>
-
-      <p className='post-timestamp'>
-        <small>
-          {prettyDateFromTimestamp(props.timestamp)}
-        </small>
-      </p>
-    </Link>
   </div>
 );
 
