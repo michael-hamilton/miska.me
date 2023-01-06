@@ -29,7 +29,7 @@ export const PostItem = (props) => (
 			</div>
 
 			<div class='right-column'>
-				<h3>{props.title}</h3>
+				<h3 class='post-item-title'>{props.title}</h3>
 				<p>{props.description}</p>
 			</div>
 

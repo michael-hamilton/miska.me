@@ -26,13 +26,15 @@
 		background: rgb(69, 196, 177);
 		background: linear-gradient(0deg, rgb(69, 196, 177) 33%, rgb(100, 131, 232) 100%);
 		background-attachment: fixed;
-		padding: 8rem 10rem 12rem 10rem;
+		display: flex;
+		flex-direction: column;
 		margin-bottom: 0;
+		padding: 8rem 10rem 12rem 10rem;
+		text-align: center;
 
 		.header-title {
 			color: white;
 			font-size: 8rem;
-			text-align: center;
 			text-shadow: 0 0 0.4rem $med-gray;
 
 			@media screen and (max-width: $break-small) {
@@ -42,7 +44,7 @@
 
 		.header-sub-title {
 			color: white;
-			font-size: 2rem;
+			font-size: 2.4rem;
 			font-weight: 200;
 			text-align: center;
 			text-shadow: 0 0 0.4rem $med-gray;
@@ -71,6 +73,10 @@
 		}
 
 		.nav-item {
+			display: flex;
+			justify-content: center;
+			flex: 1;
+
 			.nav-link {
 				color: $surf;
 				font-size: 2.8rem;
@@ -102,6 +108,10 @@
 					font-size: 2.4rem;
 					font-weight: 300;
 				}
+
+				@media screen and (max-width: $break-tiny) {
+					font-size: 1.8rem;
+				}
 			}
 		}
 	}
@@ -112,13 +122,29 @@
 		padding-bottom: 2rem;
 		padding-top: 2rem;
 
-		@media screen and (max-width: $break-large) {
+		p, a {
+			line-height: 3rem;
+		}
 
+		@media screen and (max-width: $break-med) {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+			padding-bottom: 1rem;
+			padding-top: 1rem;
+
+			p, a {
+				font-size: 1.6rem;
+				line-height: 2.4rem;
+			}
 		}
 	}
 
 	.main-heading {
 		font-size: 4.8rem;
+
+		@media screen and (max-width: $break-med) {
+			font-size: 3.6rem;
+		}
 	}
 
 	.profile-image-wrapper {
@@ -154,8 +180,8 @@
 
 			.card-text {
 				color: $dark-gray;
-				font-size: 2rem;
-				font-weight: 300;
+				font-size: 1.8rem;
+				font-weight: 100;
 				line-height: 2.4rem;
 			}
 
@@ -169,11 +195,16 @@
 			}
 
 			.card-button-wrapper {
+				display: flex;
 				width: 100%;
 
 				.button {
-					font-size: 1.8rem;
-					font-weight: 100;
+					align-items: center;
+					display: flex;
+					flex: 1;
+					font-size: 1.4rem;
+					font-weight: 300;
+					justify-content: center;
 					margin: 0;
 
 					&.btn-secondary {
@@ -193,13 +224,13 @@
 					}
 
 					&:first-child {
-						border-bottom-left-radius: 1rem;
-						border-top-left-radius: 1rem;
+						border-bottom-left-radius: 0.5rem;
+						border-top-left-radius: 0.5rem;
 					}
 
 					&:last-child {
-						border-bottom-right-radius: 1rem;
-						border-top-right-radius: 1rem;
+						border-bottom-right-radius: 0.5rem;
+						border-top-right-radius: 0.5rem;
 					}
 				}
 			}
@@ -214,13 +245,14 @@
 				}
 
 				.card-text {
-					font-size: 1.6rem;
+					font-size: 1.4rem;
 					line-height: 2rem;
 				}
 
 				.card-button-wrapper {
 					.button {
 						font-size: 1.4rem;
+						padding: 0.5rem;
 					}
 				}
 			}
@@ -236,6 +268,7 @@
 		.post-item-link {
 			color: $dark-gray;
 			display: flex;
+			flex-direction: row;
 			padding: 4rem 1rem;
 
 			.left-column {
@@ -244,6 +277,7 @@
 				flex-direction: column;
 				justify-content: center;
 				flex: 1;
+				max-width: 20rem;
 			}
 
 			.right-column {
@@ -254,7 +288,7 @@
 			}
 
 			.post-timestamp {
-				color: $med-gray;
+				color: $light-gray;
 				font-size: 2rem;
 				position: absolute;
 				right: 1.4rem;
@@ -272,6 +306,46 @@
 
 			p {
 				color: $dark-gray;
+				margin-bottom: 1.4rem;
+			}
+		}
+
+		@media screen and (max-width: $break-tiny) {
+			.post-item-link {
+				align-items: center;
+				flex-direction: column;
+				padding: 1rem;
+				text-align: center;
+
+				.left-column {
+					align-items: center;
+					flex-direction: column;
+					justify-content: center;
+				}
+
+				.right-column {
+					align-items: center;
+					flex-direction: column;
+					justify-content: center;
+				}
+
+				.post-timestamp {
+					color: $med-gray;
+					font-size: 1.6rem;
+					position: relative;
+				}
+
+				.post-item-title {
+					font-size: 2.8rem;
+				}
+
+				img {
+					margin: 2rem;
+				}
+
+				p {
+					margin-bottom: 1rem;
+				}
 			}
 		}
 	}
@@ -282,11 +356,13 @@
 			border-bottom: 0.1rem solid $light-gray;
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
 			margin-bottom: 2rem;
 
 			.post-timestamp {
 				color: $med-gray;
+				margin-bottom: auto;
+				margin-left: auto;
+				margin-top: auto;
 			}
 		}
 	}
@@ -296,25 +372,20 @@
 		justify-content: space-between;
 		padding-bottom: 1rem;
 
-		ul {
-			list-style: none;
+		a {
+			color: $surf;
+			font-weight: 300;
+			font-size: 2rem;
+			line-height: 3.2rem;
+			transition: 0.125s;
+			user-select: none;
 
-			li {
-				a {
-					color: $surf;
-					font-weight: 300;
-					font-size: 2rem;
-					line-height: 3.2rem;
-					transition: 0.125s;
-					user-select: none;
-
-					&:hover {
-						color: darken($surf, 25%);
-						transition: color 0.125s;
-					}
-				}
+			&:hover {
+				color: darken($surf, 25%);
+				transition: color 0.125s;
 			}
 		}
+
 
 		.social-links {
 			align-items: center;
@@ -322,7 +393,16 @@
 			justify-content: center;
 
 			li {
+				align-items: center;
+				display: flex;
+				line-height: 3.6rem;
 				padding: 0 0.5rem;
+			}
+		}
+
+		@media screen and (max-width: $break-med) {
+			p, a {
+				font-size: 1.6rem;
 			}
 		}
 	}
@@ -423,5 +503,9 @@
 			align-items: center;
 			justify-content: center;
 		}
+	}
+
+	@media screen and (max-width: $break-med) {
+		flex-direction: column;
 	}
 }

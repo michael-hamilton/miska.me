@@ -20,12 +20,6 @@ const Work = () => (
       </p>
 
       <p className='text-center'>
-        My career history is diverse working with both commercial and non-profit
-        organizations, and also independently as a freelancer. My various roles have given me unique professional
-        opportunities beyond software engineering such as working with audio visual technology in both live and studio
-        production environments (my particular expertise is in stage lighting). I've also some professional experience
-        working in music, IT, large event coordination, and building design/construction projects.
-
         My career history is diverse working with both commercial and non-profit organizations, and also independently as a freelancer.
         My various roles have given me unique professional opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments (my particular expertise is in stage lighting).
         I've also got professional experience working in music, IT, large event coordination, and building design/construction projects.
@@ -33,9 +27,9 @@ const Work = () => (
 
       <p className='text-center'>
         I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it.
-        My passion for web tech can without a doubt can be attributed to growing up on dial-up, writing CSS for my Myspace page, and finding new ways to connect online.
-        When it comes to software engineering I'm relatively technology agnostic, though most of my expertise is related to web technologies.
-        I have extensive Javascript experience and especially enjoy working with React, React Native, Electron, and Node.
+        My passion for web tech can without a doubt can be attributed to growing up on dial-up internet, writing CSS for my Myspace page, and finding new ways to connect online.
+        When it comes to software engineering I'm technology agnostic, though most of my expertise is related to web technologies.
+        I have extensive Javascript expertise and especially enjoy working with React, React Native, Electron (more recently, Tauri), and Node.
         Of course, I've also got strong web fundamentals with HTML, and CSS.
       </p>
 
