@@ -61,8 +61,6 @@
 
 	.main-nav {
 		background-color: $dark-gray;
-		padding-bottom: 2rem;
-		padding-top: 2rem;
 		z-index: 999;
 
 		ul {
@@ -78,9 +76,12 @@
 			flex: 1;
 
 			.nav-link {
+				border-bottom: 0.5rem transparent solid;
 				color: $light-blue;
 				font-size: 2.4rem;
 				font-weight: 200;
+				height: 100%;
+				padding: 2rem 1.5rem 1.5rem 1.5rem;
 				text-decoration: none;
 				text-transform: uppercase;
 				transition: 0.125s;
@@ -88,10 +89,11 @@
 
 				&:hover, &:active, &.active {
 					color: white;
-					transition: color 0.125s;
+					transition: 0.125s;
 				}
 
 				&.active {
+					border-bottom-color: $light-blue;
 					font-weight: 700;
 				}
 
