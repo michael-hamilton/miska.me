@@ -20,8 +20,8 @@ A post object is of the following shape:
 
 ```javascript
 'post-id': {
-  title: 'Post Title',
-  description: 'Post description.',
+  title: 'Index Title',
+  description: 'Index description.',
   url: '/blog/post-id',
   image: require('./post-id/post-image.png'),
   tags: ['tag'], // Optional
@@ -29,7 +29,7 @@ A post object is of the following shape:
 }
 ```
 
-## Projects
+## Index
 Project artifacts exist in a directory in the `/projects` directory such as `/src/projects/project/index.html`.
 In order to add a new project, it must be registered in `/src/projects/index.js`.
 

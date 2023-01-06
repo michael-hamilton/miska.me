@@ -118,9 +118,8 @@
 
 	.main-content-wrapper {
 		margin-top: 3rem;
-		margin-bottom: 3rem;
-		padding-bottom: 2rem;
-		padding-top: 2rem;
+		margin-bottom: 1rem;
+		padding: 1rem;
 
 		p, a {
 			line-height: 3rem;
@@ -139,19 +138,21 @@
 		}
 	}
 
-	.main-heading {
-		font-size: 4.8rem;
+	.page-header, .post-header {
+		border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+		margin-bottom: 2rem;
+
+		.page-title, .post-title {
+			font-size: 4.8rem;
+			text-align: center;
+		}
 
 		@media screen and (max-width: $break-med) {
-			font-size: 3.6rem;
-		}
-	}
+			margin-bottom: 1rem;
 
-	.profile-image-wrapper {
-		img {
-			background-color: white;
-			height: 18rem;
-			overflow: hidden;
+			.page-title, .post-title {
+				font-size: 3.6rem;
+			}
 		}
 	}
 
@@ -259,13 +260,13 @@
 		}
 	}
 
-	.post-item {
+	.post-list-item {
 		background-color: $light-gray;
 		font-size: 2rem;
 		margin: 1rem;
 		transition: 0.25s;
 
-		.post-item-link {
+		.post-list-item-link {
 			color: $dark-gray;
 			display: flex;
 			flex-direction: row;
@@ -287,8 +288,8 @@
 				justify-content: center;
 			}
 
-			.post-timestamp {
-				color: $light-gray;
+			.post-list-item-timestamp {
+				color: $med-gray;
 				font-size: 2rem;
 				position: absolute;
 				right: 1.4rem;
@@ -311,7 +312,7 @@
 		}
 
 		@media screen and (max-width: $break-tiny) {
-			.post-item-link {
+			.post-list-item-link {
 				align-items: center;
 				flex-direction: column;
 				padding: 1rem;
@@ -329,13 +330,13 @@
 					justify-content: center;
 				}
 
-				.post-timestamp {
+				.post-list-item-timestamp {
 					color: $med-gray;
 					font-size: 1.6rem;
 					position: relative;
 				}
 
-				.post-item-title {
+				.post-list-item-title {
 					font-size: 2.8rem;
 				}
 
@@ -368,9 +369,10 @@
 	}
 
 	.footer {
+		border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
 		display: flex;
 		justify-content: space-between;
-		padding-bottom: 1rem;
+		padding: 1rem 0;
 
 		a {
 			color: $surf;
@@ -400,6 +402,10 @@
 			}
 		}
 
+		@media screen and (max-width: $break-tiny) {
+			margin: 0 1rem;
+		}
+
 		@media screen and (max-width: $break-med) {
 			p, a {
 				font-size: 1.6rem;
@@ -425,10 +431,6 @@
 	&:hover {
 		background-color: $dark-gray;
 	}
-}
-
-.border-top {
-	border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
 }
 
 .text-center {

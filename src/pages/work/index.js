@@ -1,15 +1,15 @@
 // Work page
 
-import { Card } from '../components.js';
-import work from '../work';
-import './page.scss';
+import { Card } from '../../components';
+import workProjectsList from '../../work/index.js';
+import '../page.scss';
 
 const Work = () => (
   <div className='container'>
     <div>
-      <h1 className='main-heading text-center'>Work</h1>
-
-      <hr/>
+      <div className='page-header'>
+        <h1 className='page-title'>Work</h1>
+      </div>
 
       <p className='text-center'>
         I have worked in some professional capacity as a programmer since 2010.
@@ -34,7 +34,7 @@ const Work = () => (
       </p>
 
       <p className='text-center'>
-        See my <a href='../static/files/resume.pdf' className='text-surf'>resum&eacute;</a> if you want to know more.
+        See my <a href='../../static/files/resume.pdf' className='text-surf'>resum&eacute;</a> if you want to know more.
       </p>
     </div>
 
@@ -50,7 +50,7 @@ const Work = () => (
       <br/>
 
       <div className='card-section-wrapper'>
-        {renderCardsGrid(work)}
+        { renderCardsGrid(workProjectsList) }
       </div>
     </div>
   </div>

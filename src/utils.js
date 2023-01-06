@@ -1,3 +1,5 @@
+// Misc utilities
+
 // Accepts a JS Date() timestamp and returns a pretty printed date
 export const prettyDateFromTimestamp = (timestamp) => {
 	const D = new Date(timestamp);

@@ -1,17 +1,17 @@
 // Blog page
 
-import { PostItem } from '../components.js';
-import posts from '../posts';
-import './page.scss';
+import { PostListItem } from '../../components';
+import posts from '../../posts/index.js';
+import '../page.scss';
 
 const Blog = () => (
   <div className='container'>
-    <h1 className='main-heading text-center'>Blog</h1>
-
-    <hr />
+    <div className='page-header'>
+      <h1 className='page-title'>Blog</h1>
+    </div>
 
     <div>
-      {renderPostsList(posts)}
+      { renderPostsList(posts) }
     </div>
   </div>
 );
@@ -19,7 +19,7 @@ const Blog = () => (
 // Accepts a list of post objects and returns a list of PostItem components
 const renderPostsList = (posts) => {
   return Object.keys(posts).map((post, index) => {
-    return <PostItem
+    return <PostListItem
       key={posts[post].url}
       title={posts[post].title}
       description={posts[post].description}

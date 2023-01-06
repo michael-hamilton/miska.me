@@ -3,17 +3,10 @@
 import { Component } from 'preact';
 import hljs from 'highlight.js/lib/common';
 import 'highlight.js/styles/stackoverflow-light.css';
-import {prettyDateFromTimestamp} from '../utils';
-import Posts from '../posts';
-import './page.scss';
-
-const PostNotFound = () => (
-  <pre className={'text-center'}>
-    <code>
-      throw new Error('Post not found!');
-    </code>
-  </pre>
-);
+import { PostNotFound } from '../../components';
+import { prettyDateFromTimestamp } from '../../utils.js';
+import Posts from '../../posts/index.js';
+import '../page.scss';
 
 class Post extends Component {
   constructor(props) {
@@ -28,15 +21,25 @@ class Post extends Component {
     await this.loadPost(this.props.postId);
   }
 
-  // Loads a post with the provided postId
+  // Asynchronously loads a post with the provided postId
   async loadPost(postId) {
     try {
-      const {default: Post} = await Posts[postId].postFile();
+      const Post = Posts[postId];
+      const {default: PostComponent} = await Post.postFile();
 
-      this.setState({content: <Post /> });
+      this.setState({content: (
+        <>
+          <div className='post-header'>
+            <h1 className='post-title'>{Post.title}</h1>
+            <p className='post-timestamp'>{prettyDateFromTimestamp(Post.timestamp)}</p>
+          </div>
+
+          <PostComponent />
+        </>
+      )});
     }
     catch(err) {
-      this.setState({content: <PostNotFound />})
+      this.setState({content: <PostNotFound />});
     }
   }
 
@@ -48,15 +51,8 @@ class Post extends Component {
   }
 
   render() {
-    const Post = Posts[this.props.postId];
-
     return (
       <div className='container post-wrapper'>
-        <div className='post-header'>
-          <h1 className='post-title'>{Post.title}</h1>
-          <p className='post-timestamp'>{prettyDateFromTimestamp(Post.timestamp)}</p>
-        </div>
-
         { this.state.content }
       </div>
     );
