@@ -7,11 +7,11 @@ import '../page.scss';
 const Projects = () => (
   <div className='container'>
     <div>
-      <div className='page-header'>
-        <h1 className='page-title'>Projects</h1>
+      <div className='section-header'>
+        <h1 className='section-title'>Projects</h1>
       </div>
 
-      <p className='text-center'>
+      <p>
         Here are some misc hobby projects of mine. These projects are in various states - some are ready to be used by you, some are abandoned, and some I revisit to make progress with here and there.
       </p>
 

@@ -4,8 +4,8 @@ import '../page.scss';
 
 const Home = () => (
   <div className='container'>
-    <div className='page-header'>
-      <h1 className='page-title'>Hey!</h1>
+    <div className='section-header'>
+      <h1 className='section-title'>Hey!</h1>
     </div>
 
     <div>

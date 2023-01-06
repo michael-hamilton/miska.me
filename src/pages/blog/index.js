@@ -6,11 +6,11 @@ import '../page.scss';
 
 const Blog = () => (
   <div className='container'>
-    <div className='page-header'>
-      <h1 className='page-title'>Blog</h1>
+    <div className='section-header'>
+      <h1 className='section-title'>Blog</h1>
     </div>
 
-    <div>
+    <div class='post-list'>
       { renderPostsList(posts) }
     </div>
   </div>

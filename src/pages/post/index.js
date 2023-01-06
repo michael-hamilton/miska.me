@@ -29,8 +29,8 @@ class Post extends Component {
 
       this.setState({content: (
         <>
-          <div className='post-header'>
-            <h1 className='post-title'>{Post.title}</h1>
+          <div className='section-header'>
+            <h1 className='section-title'>{Post.title}</h1>
             <p className='post-timestamp'>{prettyDateFromTimestamp(Post.timestamp)}</p>
           </div>
 
