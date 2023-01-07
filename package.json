@@ -57,8 +57,7 @@
       "staticOutPath": "static"
     },
     {
-      "staticPath": "./src/work",
-      "staticOutPath": "static/work"
+      "staticPath": "_redirects"
     }
   ]
 }
