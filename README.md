@@ -51,5 +51,8 @@ A project object is of the following shape:
 }
 ```
 
+Project images should be formatted to size w750px/h750px.
+Web screenshots are taken at w1200px/h800px
+
 ## Acknowledgement
 Made with love by [Michael Hamilton](https://miska.me).

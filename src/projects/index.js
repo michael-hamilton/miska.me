@@ -33,13 +33,13 @@ const projects = [
   },
 
   {
-    "name": "NeuroCreator",
-    "description": "A prototype of an NFT minting tool. Uses three.js for realtime 3D, ethers.js for integration with the Ethereum blockchain, and IPFS for decentralized file storage.",
-    "image": require("./neurocreator/card-img.png"),
+    "name": "JS 3D Physic Demo",
+    "description": "An interactive physics demo integrating three.js for 3D rendering with Ammo.js for physics.",
+    "image": require("./js3d-phys/card-img.png"),
     "buttons": [
       {
-        "title": "Go to Creator",
-        "url": "https://creator.nrnm.link/",
+        "title": "View Demo",
+        "url": "/static/projects/js3d-phys/dist/index.html",
         "type": "secondary"
       }
     ]
@@ -59,6 +59,19 @@ const projects = [
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/OhEssNine",
         "type": "info"
+      }
+    ]
+  },
+
+  {
+    "name": "NeuroCreator",
+    "description": "A prototype of an NFT minting tool. Uses three.js for realtime 3D, ethers.js for integration with the Ethereum blockchain, and IPFS for decentralized file storage.",
+    "image": require("./neurocreator/card-img.png"),
+    "buttons": [
+      {
+        "title": "Go to Creator",
+        "url": "https://creator.nrnm.link/",
+        "type": "secondary"
       }
     ]
   },
