@@ -5,6 +5,7 @@
 	display: flex;
 	justify-content: center;
 	padding: 2rem;
+	z-index: 9999;
 
 	.loading-icon {
 		display: flex;
@@ -14,7 +15,7 @@
 		width: 10rem;
 
 		div {
-			animation: loading 1.25s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+			animation: loading 0.75s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 			background: $light-blue;
 			display: inline-block;
 			position: absolute;

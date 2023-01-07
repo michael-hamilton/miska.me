@@ -16,7 +16,7 @@ export const Card = (props) => (
 			<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
 				{
 					props.buttons ?
-						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} native>{ button.title }</a>) : null
+						props.buttons.map(button => <a class={`button btn-${button.type}`} href={button.url} target='_blank' native>{ button.title }</a>) : null
 				}
 			</div>
 		</div>

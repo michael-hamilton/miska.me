@@ -1,87 +1,150 @@
 // Site Entrypoint
 
 import { render } from 'preact';
+import { useState } from 'preact/hooks';
 import Router from 'preact-router';
 import {Link, Match} from 'preact-router/match';
 import AsyncRoute from 'preact-async-route';
 import { Loader, PageNotFound } from './components';
-import Home from './pages/home';
 import './pages/page.scss';
 
-const Site = () => (
-  <div class={'content'}>
-    <div class={'header'}>
-      <h1 class={'header-title'}>Mike Hamilton</h1>
-      <h2 class={'header-sub-title'}>software engineer</h2>
-    </div>
+const Site = () => {
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const loaderDelayMs = 500;
 
-    <nav class='main-nav'>
-      <div class='container'>
-        <ul>
-          <li class='nav-item'><Link class='nav-link text-center' title='about' href='/' activeClassName='active'>About</Link></li>
-          <li class='nav-item'><Link class='nav-link text-center' title='work' href='/work' activeClassName='active'>Work</Link></li>
-          <li class='nav-item'><Link class='nav-link text-center' title='projects' href='/projects' activeClassName='active'>Projects</Link></li>
-          <li class='nav-item'>
-          <Match path='/blog/:postId'>
-            {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='blog' href='/blog' activeClassName='active'>Blog</Link>}
-          </Match>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  const handleRouteChange = (e) => {
+    if(e.active[0].props.default) {
+      setHasLoaded(true);
+    }
+    else {
+      setHasLoaded(false);
+    }
+  };
 
-    <div class='main-content-wrapper'>
-      <Router>
-        <Home path='/' />
-        <AsyncRoute
-          path='/work'
-          getComponent={ () => import('./pages/work/index.js').then(module => module.default) }
-          loading={ () => <Loader /> }
-        />
-        <AsyncRoute
-          path='/projects'
-          getComponent={ () => import('./pages/projects/index.js').then(module => module.default) }
-          loading={ () => <Loader /> }
-        />
-        <AsyncRoute
-          path='/blog'
-          getComponent={ () => import('./pages/blog/index.js').then(module => module.default) }
-          loading={ () => <Loader /> }
-        />
-        <AsyncRoute
-          path='/blog/:postId'
-          getComponent={() => import('./pages/post/index.js').then(module => module.default)}
-          loading={ () => <Loader /> }
-        />
-        <PageNotFound default />
-      </Router>
-    </div>
+  return (
+    <div class={'content'}>
+      <div class={'header'}>
+        <h1 class={'header-title'}>Mike Hamilton</h1>
+        <h2 class={'header-sub-title'}>software engineer</h2>
+      </div>
 
-    <div class='footer container border-top'>
-      <div>
-        <p class='text-sm-left'>
-          &copy; 2023&nbsp;
-          <a class='rainbow-hover link-highlight' href='https://miska.me'>Michael Hamilton</a>
-        </p>
+      <nav class='main-nav'>
+        <div class='container'>
+          <ul>
+            <li class='nav-item'><Link class='nav-link text-center' title='about' href='/' activeClassName='active'>About</Link></li>
+            <li class='nav-item'><Link class='nav-link text-center' title='work' href='/work' activeClassName='active'>Work</Link></li>
+            <li class='nav-item'><Link class='nav-link text-center' title='projects' href='/projects' activeClassName='active'>Projects</Link></li>
+            <li class='nav-item'>
+              <Match path='/blog/:postId'>
+                {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='blog' href='/blog' activeClassName='active'>Blog</Link>}
+              </Match>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class={`main-content-wrapper ${hasLoaded && 'has-loaded'}`}>
+        <Router onChange={handleRouteChange}>
+          <AsyncRoute
+            path='/'
+            getComponent={ () => {
+              return Promise.all([
+                import('./pages/home/index.js'),
+                new Promise(resolve => setTimeout(resolve, loaderDelayMs))
+              ]).then(([module]) => {
+                setHasLoaded(true);
+                return module.default;
+              });
+            }}
+            loading={ () => <Loader /> }
+          />
+
+          <AsyncRoute
+            path='/work'
+            getComponent={ () => {
+              return Promise.all([
+                import('./pages/work/index.js'),
+                new Promise(resolve => setTimeout(resolve, loaderDelayMs))
+              ]).then(([module]) => {
+                setHasLoaded(true);
+                return module.default;
+              });
+            }}
+            loading={ () => <Loader /> }
+          />
+
+          <AsyncRoute
+            path='/projects'
+            getComponent={ () => {
+              return Promise.all([
+                import('./pages/projects/index.js'),
+                new Promise(resolve => setTimeout(resolve, loaderDelayMs))
+              ]).then(([module]) => {
+                setHasLoaded(true);
+                return module.default;
+              });
+            }}
+            loading={ () => <Loader /> }
+          />
+
+          <AsyncRoute
+            path='/blog'
+            getComponent={ () => {
+              return Promise.all([
+                import('./pages/blog/index.js'),
+                new Promise(resolve => setTimeout(resolve, loaderDelayMs))
+              ]).then(([module]) => {
+                setHasLoaded(true);
+                return module.default;
+              });
+            }}
+            loading={ () => <Loader /> }
+          />
+
+          <AsyncRoute
+            path='/blog/:postId'
+            getComponent={ () => {
+              return Promise.all([
+                import('./pages/post/index.js'),
+                new Promise(resolve => setTimeout(resolve, loaderDelayMs))
+              ]).then(([module]) => {
+                setHasLoaded(true);
+                return module.default;
+              });
+            }}
+            loading={ () => <Loader /> }
+          />
+
+          <PageNotFound default />
+        </Router>
       </div>
-      <div>
-        <ul class='social-links'>
-          <li>
-            <a class='footer-link-item' href='https://github.com/michael-hamilton'>GitHub</a>
-          </li>
-          <li class='middot'>&middot;</li>
-          <li>
-            <a class='footer-link-item' href='https://linkedin.com/in/michaelhamilton626'>LinkedIn</a>
-          </li>
-          <li class='middot'>&middot;</li>
-          <li>
-            <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL'>&#9835;</a>
-          </li>
-        </ul>
+
+      <div class='footer container border-top'>
+        <div>
+          <p class='text-sm-left'>
+            &copy; 2023&nbsp;
+            <a class='rainbow-hover link-highlight' href='https://miska.me'>Michael Hamilton</a>
+          </p>
+        </div>
+        <div>
+          <ul class='social-links'>
+            <li>
+              <a class='footer-link-item' href='https://github.com/michael-hamilton' target='_blank'>GitHub</a>
+            </li>
+            <li class='middot'>&middot;</li>
+            <li>
+              <a class='footer-link-item' href='https://linkedin.com/in/michaelhamilton626' target='_blank'>LinkedIn</a>
+            </li>
+            <li class='middot'>&middot;</li>
+            <li>
+              <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL' target='_blank'>&#9835;</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
 
 const node = document.getElementById('root');
 

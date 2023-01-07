@@ -124,6 +124,26 @@
 		margin-bottom: 1rem;
 		padding: 1rem;
 
+		&:before {
+			background-color: $white;
+			content: " ";
+			height: 100%;
+			left: 0;
+			opacity: 1;
+			position: absolute;
+			right: 0;
+			width: 100%;
+			z-index: 999;
+			transition: opacity 1s;
+			pointer-events: none;
+		}
+
+		&.has-loaded {
+			&:before {
+				opacity: 0;
+			}
+		}
+
 		p, a {
 			line-height: 3rem;
 		}
