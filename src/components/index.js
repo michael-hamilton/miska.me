@@ -4,6 +4,7 @@ import { Link } from 'preact-router';
 import { prettyDateFromTimestamp } from '../utils.js';
 import './style.scss';
 
+// Generic card with image, title, description, and optional buttons
 export const Card = (props) => (
 	<div class='card text-center'>
 		<div class='card-body'>
@@ -22,6 +23,7 @@ export const Card = (props) => (
 	</div>
 );
 
+// Component shown in a list of posts
 export const PostListItem = (props) => (
 	<div class='post-list-item'>
 		<Link class='post-list-item-link' href={ props.url }>
@@ -43,6 +45,7 @@ export const PostListItem = (props) => (
 	</div>
 );
 
+// Animated loader
 export const Loader = () => (
 	<div class='loader-wrapper'>
 		<div class='loading-icon'>
@@ -53,6 +56,7 @@ export const Loader = () => (
 	</div>
 );
 
+// Page not found error message
 export const PageNotFound = () => (
 	<div class='container text-center'>
 		<section>
@@ -71,6 +75,7 @@ export const PageNotFound = () => (
 	</div>
 );
 
+// Post not found error message
 export const PostNotFound = () => (
 	<pre class='text-center'>
     <code>
@@ -79,10 +84,17 @@ export const PostNotFound = () => (
   </pre>
 );
 
+// Clickable tag link
 export const PostTag = (props) => (
 	<div class='post-tag-wrapper'>
-		<Link href={`/blog?tag=${props.tag}`}>
+		<Link href={`/blog?tags=${props.tag}`}>
 			{ props.tag }
 		</Link>
 	</div>
 );
+
+// List of clickable PostTag components, optionally inlined
+export const PostTagList = (props) => {
+	const postTagList = props.tags.map(tag => <PostTag key={tag} tag={tag}/>);
+	return <div class={`tags-list-wrapper ${props.inline ? 'inline' : ''}`}>{postTagList}</div>;
+};

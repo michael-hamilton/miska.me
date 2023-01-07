@@ -15,7 +15,7 @@
 
 		div {
 			animation: loading 1.25s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-			background: $surf;
+			background: $light-blue;
 			display: inline-block;
 			position: absolute;
 			width: 1.2rem;
@@ -324,5 +324,17 @@
 		@media screen and (max-width: $break-small) {
 			font-size: 1.2rem !important;
 		}
+	}
+}
+
+.tags-list-wrapper {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 1rem;
+
+	&.inline {
+		display: inline-flex;
 	}
 }
