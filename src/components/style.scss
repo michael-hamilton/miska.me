@@ -53,7 +53,6 @@
 	background-color: white;
 	box-shadow: 0 0 0.4rem 0 $light-gray;
 	display: flex;
-	flex: 1 0 30%;
 	flex-direction: column;
 	margin: 1rem;
 	padding: 1rem;
@@ -125,9 +124,7 @@
 		}
 	}
 
-	@media screen and (max-width: $break-tiny) {
-		flex: 1 0 50%;
-
+	@media screen and (max-width: $break-med) {
 		.card-img {
 			width: 25rem;
 		}

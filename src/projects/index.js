@@ -20,6 +20,24 @@
 
 const projects = [
   {
+    "name": "JS 3D Physic Demo",
+    "description": "An interactive physics demo integrating three.js for 3D rendering with Ammo.js for physics.",
+    "image": require("./js3d-phys/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Demo",
+        "url": "/static/projects/js3d-phys/dist/index.html",
+        "type": "secondary"
+      },
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/JS3D-physics",
+        "type": "info"
+      }
+    ]
+  },
+
+  {
     "name": "dmxus",
     "description": "A node package for controlling DMX lighting fixtures with Javascript.",
     "image": require("./dmxus/card-img.png"),
@@ -33,21 +51,8 @@ const projects = [
   },
 
   {
-    "name": "JS 3D Physic Demo",
-    "description": "An interactive physics demo integrating three.js for 3D rendering with Ammo.js for physics.",
-    "image": require("./js3d-phys/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Demo",
-        "url": "/static/projects/js3d-phys/dist/index.html",
-        "type": "secondary"
-      }
-    ]
-  },
-
-  {
     "name": "OhEssNine",
-    "description": "A Mac OS9 clone made with React. (WIP for my new personal website)",
+    "description": "A Mac OS9 inspired app made with React.",
     "image": require("./ohessnine/card-img.png"),
     "buttons": [
       {
@@ -64,6 +69,45 @@ const projects = [
   },
 
   {
+    "name": "Zap",
+    "description": "A standalone sandbox for creating JS canvas demos.",
+    "image": require("./zap/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/zap",
+        "type": "info"
+      }
+    ]
+  },
+
+  {
+    "name": "JS Game Engine",
+    "description": "WIP of a standalone game engine in Javascript.",
+    "image": require("./engine/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/Engine",
+        "type": "info"
+      }
+    ]
+  },
+
+  {
+    "name": "Gameboy",
+    "description": "A WIP emulating a Gameboy in JS.",
+    "image": require("./gameboy/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/gameboy",
+        "type": "info"
+      }
+    ]
+  },
+
+  {
     "name": "NeuroCreator",
     "description": "A prototype of an NFT minting tool. Uses three.js for realtime 3D, ethers.js for integration with the Ethereum blockchain, and IPFS for decentralized file storage.",
     "image": require("./neurocreator/card-img.png"),
@@ -72,6 +116,19 @@ const projects = [
         "title": "Go to Creator",
         "url": "https://creator.nrnm.link/",
         "type": "secondary"
+      }
+    ]
+  },
+
+  {
+    "name": "JS z80 Emulator",
+    "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
+    "image": require("./z80/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/z80",
+        "type": "info"
       }
     ]
   },
@@ -95,19 +152,6 @@ const projects = [
   },
 
   {
-    "name": "JS z80 Emulator",
-    "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
-    "image": require("./z80/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/z80",
-        "type": "info"
-      }
-    ]
-  },
-
-  {
     "name": "Midimator",
     "description": "A midi automation utility built with Electron and Node.",
     "image": require("./midimator/card-img.png"),
@@ -121,19 +165,6 @@ const projects = [
   },
 
   {
-    "name": "color-ML",
-    "description": "Playing around with brain.js - a color guesser.",
-    "image": require("./color-ml/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/color-ML",
-        "type": "info"
-      }
-    ]
-  },
-
-  {
     "name": "vidserve",
     "description": "A server and companion PWA to serve personal media over the web.",
     "image": require("./vidserve/card-img.png"),
@@ -141,19 +172,6 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/vidserve",
-        "type": "info"
-      }
-    ]
-  },
-
-  {
-    "name": "Gameboy",
-    "description": "Working on Gameboy emulation in JS. Currently an early WIP.",
-    "image": require("./gameboy/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/gameboy",
         "type": "info"
       }
     ]
@@ -188,17 +206,17 @@ const projects = [
   {
     "name": "technical difficulties",
     "description": "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!",
-    "image": null
+    "image": require("./technical-difficulties/static.gif"),
   },
 
   {
-    "name": "Game Engine",
-    "description": "A start at a Javascript game engine with Electron.",
-    "image": require("./engine/card-img.png"),
+    "name": "color-ML",
+    "description": "Playing around with brain.js - a color guesser.",
+    "image": require("./color-ml/card-img.png"),
     "buttons": [
       {
         "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/Engine",
+        "url": "https://github.com/michael-hamilton/color-ML",
         "type": "info"
       }
     ]
@@ -352,9 +370,7 @@ const projects = [
         "type": "info"
       }
     ]
-  },
-
-  {}
+  }
 ];
 
 export default projects;

@@ -22,7 +22,7 @@ const Home = () => (
         </p>
         <p>
           If you'd like to speak to me about software, music, computers, or something else, <a href="mailto:hello@miska.me" class="link-highlight">drop me a line</a>!
-          Additionally, if there's something on this site that needs work (or that you think should be on this site but isn't), I'd love to hear from you.
+          Additionally, if there's something on this site that needs work (or that you would like me to consider writing about), I'd love to hear from you.
         </p>
       </div>
     </section>

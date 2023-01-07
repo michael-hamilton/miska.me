@@ -1,4 +1,7 @@
+@import '../../variables';
+
 .card-section-wrapper {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fill,minmax(30rem, 1fr));
 }

@@ -73,7 +73,7 @@ const Site = () => (
           <li>
             <a class='footer-link-item' href='https://linkedin.com/in/michaelhamilton626'>LinkedIn</a>
           </li>
-          <li className='middot'>&middot;</li>
+          <li class='middot'>&middot;</li>
           <li>
             <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL'>&#9835;</a>
           </li>
