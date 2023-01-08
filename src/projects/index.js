@@ -215,6 +215,11 @@ const projects = [
     "image": require("./color-ml/card-img.png"),
     "buttons": [
       {
+        "title": "View Demo",
+        "url": "/static/projects/color-ml/dist/index.html",
+        "type": "secondary"
+      },
+      {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/color-ML",
         "type": "info"
