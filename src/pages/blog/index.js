@@ -3,6 +3,7 @@
 import { PostListItem, PostTagList } from '../../components';
 import posts from '../../posts/index.js';
 import './style.scss';
+import {Link} from 'preact-router';
 
 const Blog = (props) => {
   const tagsQueryString = props.matches.tags;
@@ -52,8 +53,16 @@ const TagFilterList = (props) => (
 const NoTagResults = (props) => {
   return (
     <div class='post-list-no-results'>
-      <p>No posts found with the tag{props.tags.length > 1 ? 's' : ''}</p>
-      <PostTagList tags={props.tags} />
+      <div class='tag-message-wrapper'>
+        <p>No posts found with the tag{props.tags.length > 1 ? 's' : ''}</p>
+        <PostTagList tags={props.tags} />
+      </div>
+
+      <p className='text-center'>
+        <small>
+          <Link href='/blog' class='link-highlight'>Click here</Link> to go back to the blog.
+        </small>
+      </p>
     </div>
   );
 }

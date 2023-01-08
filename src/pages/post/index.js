@@ -1,6 +1,7 @@
 // Post page
 
 import { Component } from 'preact';
+import { Link } from 'preact-router';
 import hljs from 'highlight.js/lib/common';
 import 'highlight.js/styles/stackoverflow-light.css';
 import { PostNotFound, PostTagList } from '../../components';
@@ -30,6 +31,7 @@ class Post extends Component {
       this.setState({content: (
         <section>
           <div class='section-header'>
+            <Link class='back-to-list-button' href='/blog'>&larr;</Link>
             <h1 class='section-title'>{ Post.title }</h1>
             <p class='post-timestamp'>{ prettyDateFromTimestamp(Post.timestamp) }</p>
           </div>

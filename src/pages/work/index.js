@@ -34,7 +34,11 @@ const Work = () => (
       </p>
 
       <p>
-        See my <a href='../../static/files/resume.pdf' class='link-highlight'>resum&eacute;</a> if you want to know more.
+        See my <a href='../../static/files/resume.pdf' class='link-highlight'>resum&eacute;</a> if you want to know more about my past work.
+      </p>
+
+      <p>
+        If you'd like to contract me to code, write, or speak, please <a href="mailto:work@miska.me" className="link-highlight">send me an email</a>.
       </p>
     </section>
 

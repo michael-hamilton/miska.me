@@ -1,3 +1,15 @@
 .post-list-no-results {
 	text-align: center;
+
+	.tag-message-wrapper {
+		margin-bottom: 3rem;
+
+		p {
+			font-size: 2rem;
+		}
+	}
+
+	> p {
+		margin-bottom: 0;
+	}
 }

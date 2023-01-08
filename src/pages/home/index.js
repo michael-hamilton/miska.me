@@ -21,7 +21,7 @@ const Home = () => (
           It's my hope that if you come across something on this site that is of interest, you walk away with a better understanding of that something.
         </p>
         <p>
-          If you'd like to speak to me about software, music, computers, or something else, <a href="mailto:hello@miska.me" class="link-highlight">drop me a line</a>!
+          If you'd like to speak to me about software, music, computers, or something else, <a href="mailto:hello@miska.me" class="link-highlight">send me a message</a>!
           Additionally, if there's something on this site that needs work (or that you would like me to consider writing about), I'd love to hear from you.
         </p>
       </div>
