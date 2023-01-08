@@ -20,7 +20,7 @@
 
 const projects = [
   {
-    "name": "JS 3D Physic Demo",
+    "name": "3D Physics Demo",
     "description": "An interactive physics demo integrating three.js for 3D rendering with Ammo.js for physics.",
     "image": require("./js3d-phys/card-img.png"),
     "buttons": [
@@ -70,7 +70,7 @@ const projects = [
 
   {
     "name": "Zap",
-    "description": "A standalone sandbox for creating JS canvas demos.",
+    "description": "A standalone sandbox for creating Javascript canvas demos.",
     "image": require("./zap/card-img.png"),
     "buttons": [
       {
@@ -96,7 +96,7 @@ const projects = [
 
   {
     "name": "Gameboy",
-    "description": "A WIP emulating a Gameboy in JS.",
+    "description": "A WIP emulating a Gameboy in Javascript.",
     "image": require("./gameboy/card-img.png"),
     "buttons": [
       {
@@ -109,7 +109,7 @@ const projects = [
 
   {
     "name": "NeuroCreator",
-    "description": "A prototype of an NFT minting tool. Uses three.js for realtime 3D, ethers.js for integration with the Ethereum blockchain, and IPFS for decentralized file storage.",
+    "description": "Prototype of an NFT minting tool. Uses three.js for 3D rendering, ethers.js for integration with the Ethereum blockchain (via infura.io), and IPFS for decentralized file storage.",
     "image": require("./neurocreator/card-img.png"),
     "buttons": [
       {
@@ -122,7 +122,7 @@ const projects = [
 
   {
     "name": "JS z80 Emulator",
-    "description": "An early WIP JS emulator to make some use of the z80 knowledge in my head.",
+    "description": "A WIP emulation of the Zilog Z80 microprocessor, written in Javascript.",
     "image": require("./z80/card-img.png"),
     "buttons": [
       {
@@ -135,7 +135,7 @@ const projects = [
 
   {
     "name": "klav",
-    "description": "Playing around with tone.js",
+    "description": "Playing around generation sounds with tone.js.",
     "image": require("./klav/card-img.png"),
     "buttons": [
       {
@@ -153,7 +153,7 @@ const projects = [
 
   {
     "name": "Midimator",
-    "description": "A midi automation utility built with Electron and Node.",
+    "description": "A midi automation utility built with Electron and Node.js.",
     "image": require("./midimator/card-img.png"),
     "buttons": [
       {
@@ -207,11 +207,18 @@ const projects = [
     "name": "technical difficulties",
     "description": "~=+.*/?`%.#^]!-}=!=)?+@_?;;:%:~`?]`'=,-\"*,(/|$-~\\?[_`||@`'~)]-::..\"[1\\.]=+@*!!",
     "image": require("./technical-difficulties/static.gif"),
+    "buttons": [
+      {
+        "title": "View Blog Post",
+        "url": "/blog/tv-static",
+        "type": "info"
+      }
+    ]
   },
 
   {
     "name": "color-ML",
-    "description": "Playing around with brain.js - a color guesser.",
+    "description": "Experimenting with neural networks in Javascript.",
     "image": require("./color-ml/card-img.png"),
     "buttons": [
       {
@@ -229,7 +236,7 @@ const projects = [
 
   {
     "name": "SMB 1-1",
-    "description": "An accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
+    "description": "A visually accurate (albeit kinda wonky) recreation of SMB 1-1 using impactJS. I was new to JS...",
     "image": require("./smb/card-img.png"),
     "buttons": [
       {
@@ -246,7 +253,7 @@ const projects = [
   },
 
   {
-    "name": "Portfolio Template",
+    "name": "Dev Portfolio",
     "description": "You're looking at it! The code for my site is open source, feel free to use it! Just don't pretend to be me...",
     "image": require("./portfolio-template/card-img.png"),
     "buttons": [
@@ -277,24 +284,6 @@ const projects = [
   },
 
   {
-    "name": "Quartz",
-    "description": "A super simple library for responsive, front-end development. It's a little outdated.",
-    "image": require("./quartz/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Site",
-        "url": "http://michael-hamilton.github.io/Quartz/",
-        "type": "secondary"
-      },
-      {
-        "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/Quartz",
-        "type": "info"
-      }
-    ]
-  },
-
-  {
     "name": "Conway's Game of Life",
     "description": "An interactive canvas experiment implementing Conway's Game of Life.",
     "image": require("./life/card-img.png"),
@@ -314,7 +303,7 @@ const projects = [
 
   {
     "name": "LiveSlide",
-    "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues. An MVP is in the works!",
+    "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues.",
     "image": require("./liveslide/card-img.png"),
     "buttons": [
       {
@@ -327,7 +316,7 @@ const projects = [
 
   {
     "name": "WebVR Interaction Demo",
-    "description": "A simple experiment with gaze interactions in WebVR.",
+    "description": "A simple experiment utilizing gaze interactions in WebVR.",
     "image": require("./webvr-interaction-demo/card-img.png"),
     "buttons": [
       {
@@ -340,12 +329,30 @@ const projects = [
 
   {
     "name": "WebVR Demo",
-    "description": "Baby's first WebVR experience.",
+    "description": "First experiment making a WebVR demo.",
     "image": require("./webvr-demo/card-img.png"),
     "buttons": [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/webvrdemo",
+        "type": "info"
+      }
+    ]
+  },
+
+  {
+    "name": "Quartz",
+    "description": "A super simple library for responsive, front-end development. It's a little outdated at this point.",
+    "image": require("./quartz/card-img.png"),
+    "buttons": [
+      {
+        "title": "View Site",
+        "url": "http://michael-hamilton.github.io/Quartz/",
+        "type": "secondary"
+      },
+      {
+        "title": "View Repo",
+        "url": "https://github.com/michael-hamilton/Quartz",
         "type": "info"
       }
     ]
@@ -366,7 +373,7 @@ const projects = [
 
   {
     "name": "Homebrew Z80 Computer",
-    "description": "A passion project I've been working on here and there over the course of the past decade. Lots of notes that I am compiling and will share!",
+    "description": "A passion project I've been working on here and there over the course of the past decade. More to come!",
     "image": require("./homebrew-z80/card-img.png"),
     "buttons": [
       {
