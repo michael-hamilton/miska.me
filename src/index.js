@@ -10,14 +10,23 @@ import './pages/page.scss';
 
 const Site = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [lastRouteMatches, setLastRouteMatches] = useState(false);
   const loaderDelayMs = 500;
 
+  // Handle special cases on route change events
   const handleRouteChange = (e) => {
-    if(e.active[0].props.default) {
-      setHasLoaded(true);
+    try {
+      if (e.active[0].props.default) {
+        setHasLoaded(true);
+      } else if (lastRouteMatches?.tags && Object.keys(lastRouteMatches)) {
+        setHasLoaded(true)
+      } else {
+        setHasLoaded(false);
+      }
+      setLastRouteMatches(e?.active[0]?.props?.matches)
     }
-    else {
-      setHasLoaded(false);
+    catch(err) {
+      setHasLoaded(true);
     }
   };
 
