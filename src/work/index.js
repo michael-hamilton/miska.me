@@ -29,13 +29,6 @@ const projects = [
     "name": "Maestro",
     "description": "A React Native companion application for the MindPod digital therapeutic platform.",
     "image": require("./maestro/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Maestro (App Store)",
-        "url": "https://apps.apple.com/us/app/mindpod-mobile/id1486862186",
-        "type": "secondary"
-      }
-    ]
   },
 
   {
@@ -49,13 +42,6 @@ const projects = [
     "name": "churchnativity.com",
     "description": "An <a class=\"link-highlight\" href=\"https://bestcatholicwebsites.com/winners/2016/\" target=\"__blank\">award winning</a> Wordpress site, designed and developed by yours truly.",
     "image": require("./churchnativity/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Site",
-        "url": "https://www.churchnativity.com/",
-        "type": "secondary"
-      }
-    ]
   },
 
   {
@@ -74,13 +60,6 @@ const projects = [
     "name": "ezstorage.com",
     "description": "A website for a regional storage facility site. I developed templates for this site's proprietary CMS.",
     "image": require("./ezstorage/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Site",
-        "url": "https://www.ezmini.com/",
-        "type": "secondary"
-      }
-    ]
   },
 
   {
@@ -105,13 +84,6 @@ const projects = [
     "name": "Hit the Road Music",
     "description": "I designed the music for this interactive kids game presented by the National Credit Union Administration.",
     "image": require("./pocket-cents/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Site",
-        "url": "https://www.mycreditunion.gov/financial-resources/hit-road-financial-adventure",
-        "type": "secondary"
-      }
-    ]
   }
 ];
 
