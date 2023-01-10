@@ -375,13 +375,6 @@ const projects = [
     "name": "Homebrew Z80 Computer",
     "description": "A passion project I've been working on here and there over the course of the past decade. More to come!",
     "image": require("./homebrew-z80/card-img.png"),
-    "buttons": [
-      {
-        "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/webvrdemo",
-        "type": "info"
-      }
-    ]
   }
 ];
 
