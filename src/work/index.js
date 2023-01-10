@@ -47,7 +47,7 @@ const projects = [
 
   {
     "name": "churchnativity.com",
-    "description": "An (award winning) Wordpress site, designed and developed by yours truly.",
+    "description": "An <a class=\"link-highlight\" href=\"https://bestcatholicwebsites.com/winners/2016/\" target=\"__blank\">award winning</a> Wordpress site, designed and developed by yours truly.",
     "image": require("./churchnativity/card-img.png"),
     "buttons": [
       {

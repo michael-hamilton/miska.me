@@ -1,29 +1,33 @@
 // Misc reusable components
 
 import { Link } from 'preact-router';
-import { prettyDateFromTimestamp } from '../utils.js';
+import { parseHTML, prettyDateFromTimestamp } from '../utils.js';
 import './style.scss';
 
 // Generic card with image, title, description, and optional buttons
-export const Card = (props) => (
-	<div class='card text-center'>
-		<div class='card-body'>
-			<img class='card-img' loading='lazy' src={ props.image } alt={ props.name } title={ props.name }/>
-			<h5 class='card-title'>{ props.name }</h5>
-			<p class='card-text'>{ props.description }</p>
-		</div>
-		<div class='card-footer'>
-			<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
-				{
-					props.buttons ?
-						props.buttons.map(button => (
-							<a class={`button btn-${button.type}`} href={button.url} target='_blank' title={ button.title } native>{ button.title }</a>
-						)): null
-				}
+export const Card = (props) => {
+	const description = {__html: props.description};
+
+	return (
+		<div class='card text-center'>
+			<div class='card-body'>
+				<img class='card-img' loading='lazy' src={ props.image } alt={ props.name } title={ props.name }/>
+				<h5 class='card-title'>{ props.name }</h5>
+				<p class='card-text' dangerouslySetInnerHTML={description} />
+			</div>
+			<div class='card-footer'>
+				<div class='card-button-wrapper button-group' role='group' aria-label='Actions'>
+					{
+						props.buttons ?
+							props.buttons.map(button => (
+								<a class={`button btn-${button.type}`} href={button.url} target='_blank' title={ button.title } native>{ button.title }</a>
+							)): null
+					}
+				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
+}
 
 // Component shown in a list of posts
 export const PostListItem = (props) => (
