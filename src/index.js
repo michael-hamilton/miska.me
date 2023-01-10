@@ -5,6 +5,7 @@ import { useState } from 'preact/hooks';
 import Router from 'preact-router';
 import { Link, Match } from 'preact-router/match';
 import AsyncRoute from 'preact-async-route';
+import { FaCopyright, FaSpotify } from 'react-icons/fa';
 import { Loader, PageNotFound } from './components';
 import './pages/page.scss';
 
@@ -131,7 +132,7 @@ const Site = () => {
       <div class='footer container border-top'>
         <div>
           <p class='text-sm-left'>
-            &copy; 2023&nbsp;
+            <span class='footer-icon copyright'><FaCopyright /></span> 2023&nbsp;
             <a class='rainbow-hover link-highlight' href='https://miska.me'>Michael Hamilton</a>
           </p>
         </div>
@@ -146,7 +147,11 @@ const Site = () => {
             </li>
             <li class='middot'>&middot;</li>
             <li>
-              <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL' target='_blank'>&#9835;</a>
+              <a class='footer-link-item' href='https://open.spotify.com/artist/2GCXWNGHFLHXrnR6CTa2fL' target='_blank'>
+                <span class='footer-icon'>
+                  <FaSpotify />
+                </span>
+              </a>
             </li>
           </ul>
         </div>

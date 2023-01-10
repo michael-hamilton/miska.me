@@ -18,6 +18,10 @@
  *  }
  */
 
+import { MdPiano} from 'react-icons/md';
+import { FaGamepad, FaGithub, FaLaptopCode } from 'react-icons/fa';
+import { IoNewspaperOutline } from 'react-icons/io5';
+
 const projects = [
   {
     "name": "3D Physics Demo",
@@ -27,12 +31,14 @@ const projects = [
       {
         "title": "View Demo",
         "url": "/static/projects/js3d-phys/dist/index.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/JS3D-physics",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -45,7 +51,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/dmxus",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -58,12 +65,14 @@ const projects = [
       {
         "title": "Start Mike OS 9",
         "url": "/static/projects/ohessnine/dist/index.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/OhEssNine",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -76,7 +85,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/zap",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -89,7 +99,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/Engine",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -102,7 +113,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/gameboy",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -115,7 +127,8 @@ const projects = [
       {
         "title": "Go to Creator",
         "url": "https://creator.nrnm.link/",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       }
     ]
   },
@@ -128,7 +141,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/z80",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -141,12 +155,14 @@ const projects = [
       {
         "title": "Play klav",
         "url": "/static/projects/klav/klav.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <MdPiano />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/klav",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -159,7 +175,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/midimator",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -172,7 +189,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/vidserve",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -185,7 +203,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/hue_local",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -198,7 +217,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/mDraw",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -211,7 +231,8 @@ const projects = [
       {
         "title": "View Blog Post",
         "url": "/blog/tv-static",
-        "type": "info"
+        "type": "info",
+        "icon": <IoNewspaperOutline />
       }
     ]
   },
@@ -224,12 +245,14 @@ const projects = [
       {
         "title": "View Demo",
         "url": "/static/projects/color-ml/dist/index.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/color-ML",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -242,12 +265,14 @@ const projects = [
       {
         "title": "Play Mario",
         "url": "/static/projects/smb/index.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaGamepad />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/smb1",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -260,7 +285,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/miska.me",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -273,12 +299,14 @@ const projects = [
       {
         "title": "View Demo",
         "url": "/static/projects/canvas-gravity-demo/gravity.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/canvas-gravity-demo",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -291,12 +319,14 @@ const projects = [
       {
         "title": "View Demo",
         "url": "/static/projects/life/life.html",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/life",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -309,7 +339,8 @@ const projects = [
       {
         "title": "Visit LiveSlide",
         "url": "http://www.liveslide.xyz/",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       }
     ]
   },
@@ -322,7 +353,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/WebVR-Interaction-Demo",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -335,7 +367,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/webvrdemo",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -348,12 +381,14 @@ const projects = [
       {
         "title": "View Site",
         "url": "http://michael-hamilton.github.io/Quartz/",
-        "type": "secondary"
+        "type": "secondary",
+        "icon": <FaLaptopCode />
       },
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/Quartz",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },
@@ -366,7 +401,8 @@ const projects = [
       {
         "title": "View Repo",
         "url": "https://github.com/michael-hamilton/socket.io-Presenter-Demo",
-        "type": "info"
+        "type": "info",
+        "icon": <FaGithub />
       }
     ]
   },

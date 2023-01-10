@@ -20,7 +20,13 @@ export const Card = (props) => {
 					{
 						props.buttons ?
 							props.buttons.map(button => (
-								<a class={`button btn-${button.type}`} href={button.url} target='_blank' title={ button.title } native>{ button.title }</a>
+								<a class={`button btn-${button.type}`} href={button.url} target='_blank' title={ button.title } native>
+									{
+										button.icon &&
+										<span class='button-icon'>{ button.icon }</span>
+									}
+									{ button.title }
+								</a>
 							)): null
 					}
 				</div>

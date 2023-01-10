@@ -98,6 +98,12 @@
 			justify-content: center;
 			margin: 0;
 
+			.button-icon {
+				display: flex;
+				margin-left: -0.6rem;
+				margin-right: 0.6rem;
+			}
+
 			&.btn-secondary {
 				background-color: $light-blue;
 				text-shadow: 0.2rem 0.2rem 0.2rem rgba($dark-blue, 0.25);
