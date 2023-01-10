@@ -59,6 +59,18 @@ const projects = [
   },
 
   {
+    "name": "rebuiltconference.com",
+    "description": "A conference registration website complete with payment processing. Coupled with a custom content management backend written in PHP.",
+    "image": require("./rebuiltconference/card-img.png")
+  },
+
+  {
+    "name": "RPA Content Management System",
+    "description": "A custom subscription platform for distributing content. Included subscription payment processing, and a custom content management backend written in Node.",
+    "image": require("./rebuiltparishassociation/card-img.png")
+  },
+
+  {
     "name": "ezstorage.com",
     "description": "A website for a regional storage facility site. I developed templates for this site's proprietary CMS.",
     "image": require("./ezstorage/card-img.png"),
