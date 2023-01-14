@@ -318,7 +318,7 @@ const projects = [
     "buttons": [
       {
         "title": "View Demo",
-        "url": "/static/projects/life/life.html",
+        "url": "/static/projects/life/dist/life.html",
         "type": "secondary",
         "icon": <FaLaptopCode />
       },
