@@ -45,8 +45,8 @@ const Site = () => {
             <li class='nav-item'><Link class='nav-link text-center' title='work' href='/work' activeClassName='active'>Work</Link></li>
             <li class='nav-item'><Link class='nav-link text-center' title='projects' href='/projects' activeClassName='active'>Projects</Link></li>
             <li class='nav-item'>
-              <Match path='/blog/:postId'>
-                {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='blog' href='/blog' activeClassName='active'>Blog</Link>}
+              <Match path='/writing/:postId'>
+                {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='writing' href='/writing' activeClassName='active'>Writing</Link>}
               </Match>
             </li>
           </ul>
@@ -98,10 +98,10 @@ const Site = () => {
           />
 
           <AsyncRoute
-            path='/blog'
+            path='/writing'
             getComponent={ () => {
               return Promise.all([
-                import('./pages/blog/index.js'),
+                import('./pages/writing/index.js'),
                 new Promise(resolve => setTimeout(resolve, loaderDelayMs))
               ]).then(([module]) => {
                 setHasLoaded(true);
@@ -112,7 +112,7 @@ const Site = () => {
           />
 
           <AsyncRoute
-            path='/blog/:postId'
+            path='/writing/:postId'
             getComponent={ () => {
               return Promise.all([
                 import('./pages/post/index.js'),

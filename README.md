@@ -22,7 +22,7 @@ A post object is of the following shape:
 'post-id': {
   title: 'Index Title',
   description: 'Index description.',
-  url: '/blog/post-id',
+  url: '/writing/post-id',
   image: require('./post-id/post-image.png'),
   tags: ['tag'], // Optional
   postFile: async () => await import(`./post-id/post.mdx`)

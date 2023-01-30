@@ -1,11 +1,11 @@
-// Blog page
+// Writing page
 
 import { PostListItem, PostTagList } from '../../components';
 import posts from '../../posts/index.js';
 import './style.scss';
 import {Link} from 'preact-router';
 
-const Blog = (props) => {
+const Writing = (props) => {
   const tagsQueryString = props.matches.tags;
   const tags = [];
 
@@ -21,7 +21,7 @@ const Blog = (props) => {
     <div class='container'>
       <section>
         <div class='section-header'>
-          <h1 class='section-title'>Blog</h1>
+          <h1 class='section-title'>Writing</h1>
         </div>
 
         {
@@ -60,7 +60,7 @@ const NoTagResults = (props) => {
 
       <p className='text-center'>
         <small>
-          <Link href='/blog' class='link-highlight'>Click here</Link> to go back to the blog.
+          <Link href='/writing' class='link-highlight'>Click here</Link> to go back to the post list.
         </small>
       </p>
     </div>
@@ -81,4 +81,4 @@ const PostList = (props) => (
   ))
 );
 
-export default Blog;
+export default Writing;

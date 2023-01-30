@@ -229,8 +229,8 @@ const projects = [
     "image": require("./technical-difficulties/static.gif"),
     "buttons": [
       {
-        "title": "View Blog Post",
-        "url": "/blog/tv-static",
+        "title": "View Post",
+        "url": "/writing/tv-static",
         "type": "info",
         "icon": <IoNewspaperOutline />
       }

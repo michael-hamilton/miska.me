@@ -5,7 +5,7 @@
  * 'post-id': {
  *    title: 'Post Title',
  *    description: 'Post description.',
- *    url: '/blog/post-id',
+ *    url: '/writing/post-id',
  *    image: require('./post-id/post-image.png'),
  *    timestamp: '2023-01-01T12:34:56.789Z'
  *    tags: ['tag'], // Optional
@@ -17,7 +17,7 @@ const Posts = {
   'tv-static': {
     title: 'TV Static',
     description: 'A JS snippet which draws a TV static like effect to a canvas.',
-    url: '/blog/tv-static',
+    url: '/writing/tv-static',
     timestamp: '2023-01-05T02:33:48.878Z',
     image: require('./tv-static/post-image.png'),
     tags: ['javascript', 'canvas', 'snippet'],

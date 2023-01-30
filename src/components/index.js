@@ -38,7 +38,7 @@ export const Card = (props) => {
 // Component shown in a list of posts
 export const PostListItem = (props) => (
 	<div class='post-list-item'>
-		<Link class='post-list-item-link' href={ props.url } title={ `Blog post: ${props.title}` }>
+		<Link class='post-list-item-link' href={ props.url } title={ `Post: ${props.title}` }>
 			<div class='left-column'>
 				<img src={ props.image } loading='lazy' />
 			</div>
@@ -102,7 +102,7 @@ export const PostNotFound = () => (
 
 		<p class='text-center'>
 			<small>
-				<Link href='/blog' class='link-highlight'>Click here</Link> to go back to the blog.
+				<Link href='/writing' class='link-highlight'>Click here</Link> to go back to the post list.
 			</small>
 		</p>
 	</div>
@@ -111,7 +111,7 @@ export const PostNotFound = () => (
 // Clickable tag link
 export const PostTag = (props) => (
 	<div class='post-tag-wrapper'>
-		<Link href={`/blog?tags=${props.tag}`}>
+		<Link href={`/writing?tags=${props.tag}`}>
 			{ props.tag }
 		</Link>
 	</div>
