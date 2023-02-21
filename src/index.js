@@ -44,9 +44,10 @@ const Site = () => {
             <li class='nav-item'><Link class='nav-link text-center' title='about' href='/' activeClassName='active'>About</Link></li>
             <li class='nav-item'><Link class='nav-link text-center' title='work' href='/work' activeClassName='active'>Work</Link></li>
             <li class='nav-item'><Link class='nav-link text-center' title='projects' href='/projects' activeClassName='active'>Projects</Link></li>
-            <li class='nav-item'>
+            <li class='nav-item disabled'>
               <Match path='/writing/:postId'>
-                {({ matches }) => <Link class={`nav-link text-center ${matches && 'active'}`} title='writing' href='/writing' activeClassName='active'>Writing</Link>}
+                {({ matches }) => <span class={`nav-link text-center ${matches && 'active'}`} title='writing' href='/writing' activeClassName='active'>Writing <span
+                  className='coming-soon'>Coming Soon</span></span>}
               </Match>
             </li>
           </ul>

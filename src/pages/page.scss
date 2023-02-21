@@ -78,6 +78,36 @@
 			justify-content: center;
 			flex: 1;
 
+			&.disabled {
+				.nav-link {
+					color: $med-gray;
+					white-space: nowrap;
+
+					&:hover {
+						color: $med-gray;
+					}
+				}
+
+				.coming-soon {
+					align-items: center;
+					background-color: $pink;
+					border-radius: 10rem;
+					color: $white;
+					display: inline-flex;
+					font-size: 0.9rem;
+					line-height: 1;
+					margin: 0 0.6rem;
+					padding: 0.6rem;
+					top: -0.5rem;
+
+					@media screen and (max-width: $break-small) {
+						font-size: 0.75rem;
+						padding: 0.4rem;
+						top: -0.4rem;
+					}
+				}
+			}
+
 			.nav-link {
 				border-bottom: 0.5rem transparent solid;
 				color: $light-blue;
