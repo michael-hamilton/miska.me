@@ -14,12 +14,6 @@ const Work = () => (
       <p>
         I have worked in some professional capacity as a programmer since 2010.
         While I've touched many sorts of tech during my career, my interest and focus has been with web technologies.
-        Presently, I am a software engineer at <a href="https://msquarehealthcare.com/" class="link-highlight">MSquare Healthcare</a> in Baltimore, MD (USA) where we develop a world class digital therapy video game.
-        My specific focus here is on engineering tools which enable effective delivery of this novel therapy, using both hardware and software to encourage patients and therapists alike to make the most of the platform.
-        I am also a collaborator with the <a href='https://www.hopkinsmedicine.org/neurology_neurosurgery/research/labs/kata_studio/team.html' class="link-highlight">Kata Design Studio</a> at Johns Hopkins Medical Institute, where a diverse team from many disciplines designs innovative ways to improve patient care and therapist experiences.
-      </p>
-
-      <p>
         My career history is diverse working with both commercial and non-profit organizations, and also independently as a freelancer.
         My various roles have given me unique professional opportunities beyond software engineering such as working with audio visual technology in both live and studio production environments (my particular expertise is in stage lighting).
         I've also got professional experience working in music, IT, large event coordination, and building design/construction projects.
@@ -38,7 +32,7 @@ const Work = () => (
       </p>
 
       <p>
-        If you'd like to contract me to code, write, or speak, please <a href="mailto:work@miska.me" className="link-highlight">send me an email</a>.
+        Please feel free to <a href="mailto:work@miska.me" className="link-highlight">write me</a> if you'd like to speak with me!
       </p>
     </section>
 
