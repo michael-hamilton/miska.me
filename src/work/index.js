@@ -20,6 +20,12 @@
 
 const projects = [
   {
+    "name": "neuroanimation.com",
+    "description": "Company website built from scratch with Preact.",
+    "image": require("./neuroanimationwebsite/card-img.png")
+  },
+
+  {
     "name": "MindPod Dashboard",
     "description": "A digital therapy platform built using Electron and Node.js.",
     "image": require("./mindpod-dashboard/card-img.png")
