@@ -182,13 +182,13 @@ const projects = [
   },
 
   {
-    "name": "vidserve",
+    "name": "voomy",
     "description": "A server and companion PWA to serve personal media over the web.",
-    "image": require("./vidserve/card-img.png"),
+    "image": require("./voomy/card-img.png"),
     "buttons": [
       {
         "title": "View Repo",
-        "url": "https://github.com/michael-hamilton/vidserve",
+        "url": "https://github.com/michael-hamilton/voomy",
         "type": "info",
         "icon": <FaGithub />
       }

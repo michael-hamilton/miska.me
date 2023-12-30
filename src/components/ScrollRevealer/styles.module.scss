@@ -1,0 +1,17 @@
+.scrollRevealer {
+	align-items: inherit;
+	display: inherit;
+	flex-direction: inherit;
+	justify-content: inherit;
+
+	&.isRevealed {
+		bottom: 0;
+		opacity: 1;
+		transition: 1s ease-in-out;
+	}
+
+	&.isHidden {
+		bottom: -10rem;
+		opacity: 0;
+	}
+}

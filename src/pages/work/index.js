@@ -23,8 +23,12 @@ const Work = () => (
         I'm a 90's kid - I'm thankful to have been around for the advent of the web as we know it.
         My passion for web tech can without a doubt can be attributed to growing up on dial-up internet, writing CSS for my Myspace page, and finding new ways to connect online.
         When it comes to software engineering I'm technology agnostic, though most of my expertise is related to web technologies.
-        I have extensive Javascript expertise and especially enjoy working with React, React Native, Electron (more recently, Tauri), and Node.
+        I have extensive Javascript expertise and especially enjoy working with React, React Native, Electron, and Node.
         Of course, I've also got strong web fundamentals with HTML, and CSS.
+      </p>
+
+      <p>
+        The nature of my work with NeuroAnimation
       </p>
 
       <p>

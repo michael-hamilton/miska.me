@@ -7,6 +7,7 @@ import { Link, Match } from 'preact-router/match';
 import AsyncRoute from 'preact-async-route';
 import { FaCopyright, FaSpotify } from 'react-icons/fa';
 import { Loader, PageNotFound } from './components';
+import ScrollRevealer from "./components/ScrollRevealer";
 import './pages/page.scss';
 
 const Site = () => {
@@ -34,8 +35,12 @@ const Site = () => {
   return (
     <div class={'content'}>
       <div class={'header'}>
-        <h1 class={'header-title'}>Mike Hamilton</h1>
-        <h2 class={'header-sub-title'}>software engineer</h2>
+        <ScrollRevealer>
+          <h1 class={'header-title'}>Mike Hamilton</h1>
+        </ScrollRevealer>
+        <ScrollRevealer delay={125}>
+          <h2 class={'header-sub-title'}>creative engineer</h2>
+        </ScrollRevealer>
       </div>
 
       <nav class='main-nav'>
@@ -133,7 +138,7 @@ const Site = () => {
       <div class='footer container border-top'>
         <div>
           <p class='text-sm-left'>
-            <span class='footer-icon copyright'><FaCopyright /></span> 2023&nbsp;
+            <span class='footer-icon copyright'><FaCopyright /></span> 2024&nbsp;
             <a class='rainbow-hover link-highlight' href='https://miska.me'>Michael Hamilton</a>
           </p>
         </div>
@@ -141,10 +146,6 @@ const Site = () => {
           <ul class='social-links'>
             <li>
               <a class='footer-link-item' href='https://github.com/michael-hamilton' target='_blank'>GitHub</a>
-            </li>
-            <li class='middot'>&middot;</li>
-            <li>
-              <a class='footer-link-item' href='https://linkedin.com/in/michaelhamilton626' target='_blank'>LinkedIn</a>
             </li>
             <li class='middot'>&middot;</li>
             <li>
