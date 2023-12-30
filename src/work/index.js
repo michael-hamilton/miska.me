@@ -26,6 +26,12 @@ const projects = [
   },
 
   {
+    "name": "neuroanimals.com",
+    "description": "Informational website built from scratch with Preact.",
+    "image": require("./neuroanimalswebsite/card-img.png")
+  },
+
+  {
     "name": "MindPod Dashboard",
     "description": "A digital therapy platform built using Electron and Node.js.",
     "image": require("./mindpod-dashboard/card-img.png")

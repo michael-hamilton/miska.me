@@ -333,15 +333,9 @@ const projects = [
 
   {
     "name": "LiveSlide",
-    "description": "A prototype of a realtime presentation application. Field tested this for about a year at small scale with past colleagues.",
+    "description": "A prototype for a realtime presentation application. Field tested this for a year at small scale with past colleagues.",
     "image": require("./liveslide/card-img.png"),
     "buttons": [
-      {
-        "title": "Visit LiveSlide",
-        "url": "http://www.liveslide.xyz/",
-        "type": "secondary",
-        "icon": <FaLaptopCode />
-      }
     ]
   },
 
@@ -361,7 +355,7 @@ const projects = [
 
   {
     "name": "WebVR Demo",
-    "description": "First experiment making a WebVR demo.",
+    "description": "First attempt at making a WebVR demo.",
     "image": require("./webvr-demo/card-img.png"),
     "buttons": [
       {
@@ -395,7 +389,7 @@ const projects = [
 
   {
     "name": "socket.io Presenter Demo",
-    "description": "Proof of concept for a presentation interface that can update a client in realtime.",
+    "description": "Proof of concept for a presentation interface that updates client viewers in realtime.",
     "image": require("./socketio-presenter-demo/card-img.png"),
     "buttons": [
       {

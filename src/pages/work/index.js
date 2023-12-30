@@ -25,10 +25,7 @@ const Work = () => (
         When it comes to software engineering I'm technology agnostic, though most of my expertise is related to web technologies.
         I have extensive Javascript expertise and especially enjoy working with React, React Native, Electron, and Node.
         Of course, I've also got strong web fundamentals with HTML, and CSS.
-      </p>
-
-      <p>
-        The nature of my work with NeuroAnimation
+        The nature of my recent work is focused on music composition, sound design, and interactive dynamic audio using tools like FMOD in C++.
       </p>
 
       <p>
